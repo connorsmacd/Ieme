@@ -1,4 +1,4 @@
-add_library(Ieme Fraction.cpp MixedFraction.cpp UnitFraction.cpp)
+add_library(Ieme Fraction.cpp Ieme.cpp MixedFraction.cpp UnitFraction.cpp)
 target_include_directories(Ieme PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../../include)
 target_compile_features(Ieme PUBLIC cxx_std_17)
 add_library(Ieme::Ieme ALIAS Ieme)
