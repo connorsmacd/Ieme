@@ -202,8 +202,6 @@ TEST_CASE("A fraction's reciprocal can be calculated", "[Fraction]")
     REQUIRE(reciprocalOf(Fraction(4, 19)) == Fraction(19, 4));
 }
 
-TEST_CASE("The \"unit\" of a fraction is 1 over its denominator", "[Fraction]") {}
-
 TEST_CASE("A fraction can be converted to a decimal", "[Fraction]")
 {
     REQUIRE(toDecimal(Fraction(4, 5)) == 0.8L);
@@ -430,20 +428,6 @@ TEST_CASE("A fraction can be deserialized", "[Fraction]")
     stream >> f;
 
     REQUIRE(f == Fraction(-5, 7));
-}
-
-TEST_CASE("A default-constructed unit fraction is 1", "[Fraction]")
-{
-    constexpr auto f = UnitFraction();
-
-    REQUIRE(symbolicallyEqual(f, Fraction(1)));
-}
-
-TEST_CASE("A unit fraction can be constructed from a denomintor", "[Fraction]")
-{
-    constexpr auto f = UnitFraction(3);
-
-    REQUIRE(f == Fraction(1, 3));
 }
 
 TEST_CASE("A default-constructed mixed fraction has a zero whole part and 0/1 fractional part",

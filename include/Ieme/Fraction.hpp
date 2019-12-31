@@ -9,9 +9,6 @@
 namespace Ieme {
 
 
-class UnitFraction;
-
-
 class Fraction final {
 
 public:
@@ -65,8 +62,6 @@ constexpr Fraction reduce(const Fraction& fraction) noexcept;
 
 constexpr Fraction reciprocalOf(const Fraction& fraction) noexcept;
 
-constexpr UnitFraction unitOf(const Fraction& fraction) noexcept;
-
 constexpr long double toDecimal(const Fraction& fraction) noexcept;
 
 constexpr Fraction fractionPow2(int exponent) noexcept;
@@ -87,20 +82,6 @@ constexpr bool isInteger(const Fraction& fraction) noexcept;
 constexpr bool isUnitFraction(const Fraction& fraction) noexcept;
 constexpr bool isDefined(const Fraction& fraction) noexcept;
 constexpr bool isUndefined(const Fraction& fraction) noexcept;
-
-
-class UnitFraction final {
-
-public:
-    constexpr UnitFraction() noexcept = default;
-    constexpr UnitFraction(long long denominator) noexcept;
-
-    constexpr Fraction asFraction() const noexcept { return {1, denominator_}; }
-    constexpr operator Fraction() const noexcept { return asFraction(); }
-
-private:
-    long long denominator_ = 1;
-};
 
 
 class MixedFraction final {
@@ -307,12 +288,6 @@ constexpr Fraction reciprocalOf(const Fraction& fraction) noexcept
     return {fraction.denominator(), fraction.numerator()};
 }
 
-constexpr UnitFraction unitOf(const Fraction& fraction) noexcept
-{
-    return isPositive(fraction) ? std::abs(fraction.denominator())
-                                : -std::abs(fraction.denominator());
-}
-
 constexpr long double toDecimal(const Fraction& fraction) noexcept
 {
     return static_cast<long double>(fraction.numerator())
@@ -402,11 +377,6 @@ constexpr bool isDefined(const Fraction& fraction) noexcept
 constexpr bool isUndefined(const Fraction& fraction) noexcept
 {
     return !isDefined(fraction);
-}
-
-constexpr UnitFraction::UnitFraction(const long long denominator) noexcept :
-    denominator_ {denominator}
-{
 }
 
 constexpr MixedFraction::MixedFraction(const long long wholePart,
