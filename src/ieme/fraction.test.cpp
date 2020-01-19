@@ -273,13 +273,13 @@ TEST_CASE("A fraction's absolute value can be calculated")
 
 TEST_CASE("A fraction can be promoted", "[fraction]")
 {
-    REQUIRE(+fraction<int>(7, 10) == 7 / 10_Fr);
+    REQUIRE(+(7 / 10_Fr) == 7 / 10_Fr);
 }
 
 TEST_CASE("A fraction can be negated", "[fraction]")
 {
-    REQUIRE(-7 / 10_Fr == -7 / 10_Fr);
-    REQUIRE(-fraction<int>(-7, 10) == 7 / 10_Fr);
+    REQUIRE(-(7 / 10_Fr) == -7 / 10_Fr);
+    REQUIRE(-(-7 / 10_Fr) == 7 / 10_Fr);
 }
 
 TEST_CASE("A fraction with both a positive numerator and denominator has 0 "
