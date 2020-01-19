@@ -11,14 +11,15 @@ using namespace ieme;
 using namespace ieme::literals;
 
 
-TEST_CASE("A default-constructed unit fraction is 1", "[Fraction]")
+TEST_CASE("A default-constructed unit fraction is 1", "[unit_fraction]")
 {
     constexpr auto f = unit_fraction<int>();
 
     REQUIRE(symbolically_equal(f.as_fraction(), 1 / 1_Fr));
 }
 
-TEST_CASE("A unit fraction can be constructed from a denomintor", "[Fraction]")
+TEST_CASE("A unit fraction can be constructed from a denomintor",
+          "[unit_fraction]")
 {
     constexpr auto f = unit_fraction<int>(3);
 
