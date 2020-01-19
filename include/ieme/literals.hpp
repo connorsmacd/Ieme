@@ -36,6 +36,11 @@ operator-(const fraction_literal<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
+operator/(const fraction<Rep, Ops>& left,
+          const fraction_literal<Rep, Ops>& right) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
 operator/(const Rep& left, const fraction_literal<Rep, Ops>& right) noexcept;
 
 constexpr fraction_literal<int>
@@ -93,6 +98,14 @@ constexpr fraction_literal<Rep, Ops>
 operator-(const fraction_literal<Rep, Ops>& value) noexcept
 {
     return -value.numerator();
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+operator/(const fraction<Rep, Ops>& left,
+          const fraction_literal<Rep, Ops>& right) noexcept
+{
+    return left / right.as_fraction();
 }
 
 template <typename Rep, typename Ops>
