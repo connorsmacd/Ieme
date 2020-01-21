@@ -2,6 +2,7 @@ add_library(Ieme fraction.cpp
                  ieme.cpp
                  literals.cpp
                  mixed_fraction.cpp
+                 safe_ops.cpp
                  unit_fraction.cpp)
 target_include_directories(Ieme PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../../include)
 target_compile_features(Ieme PUBLIC cxx_std_17)
