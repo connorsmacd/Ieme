@@ -42,10 +42,6 @@ public:
 
     constexpr Rep& denominator() noexcept { return denominator_; }
 
-    constexpr fraction with_switched_sign_position() const noexcept;
-
-    constexpr fraction with_minimal_negative_signs() const noexcept;
-
 private:
     Rep numerator_ = 0;
     Rep denominator_ = 1;
@@ -279,9 +275,6 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep num_negative_signs(const fraction<Rep, Ops>& value) noexcept;
-
-template <typename Rep, typename Ops>
 constexpr bool is_positive(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
@@ -338,26 +331,6 @@ constexpr fraction<Rep, Ops>::fraction(
     numerator_ {std::ratio<Numerator, Denominator>::num},
     denominator_ {std::ratio<Numerator, Denominator>::den}
 {
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-fraction<Rep, Ops>::with_switched_sign_position() const noexcept
-{
-    if (is_positive(*this))
-        return *this;
-
-    return {-numerator_, -denominator_};
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-fraction<Rep, Ops>::with_minimal_negative_signs() const noexcept
-{
-    if (num_negative_signs(*this) < 2)
-        return *this;
-
-    return {-numerator_, -denominator_};
 }
 
 template <typename Rep, typename Ops>
@@ -725,9 +698,11 @@ constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value) noexcept
 {
     const auto gcd = std::gcd(value.numerator(), value.denominator());
 
-    return fraction<Rep, Ops>(value.numerator() / gcd,
-                              value.denominator() / gcd)
-        .with_minimal_negative_signs();
+    const auto gcd_with_sign
+        = (value.numerator() < 0 && value.denominator() < 0) ? -gcd : gcd;
+
+    return fraction<Rep, Ops>(value.numerator() / gcd_with_sign,
+                              value.denominator() / gcd_with_sign);
 }
 
 template <typename Rep, typename Ops>
@@ -790,13 +765,6 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept
 {
     return is_positive(value) ? value : -value;
-}
-
-template <typename Rep, typename Ops>
-constexpr Rep num_negative_signs(const fraction<Rep, Ops>& value) noexcept
-{
-    return ((value.numerator() < 0) ? 1 : 0)
-           + ((value.denominator() < 0) ? 1 : 0);
 }
 
 template <typename Rep, typename Ops>

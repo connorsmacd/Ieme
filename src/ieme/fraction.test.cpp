@@ -190,29 +190,9 @@ TEST_CASE("An already irreducible fraction can be reduced", "[fraction]")
     REQUIRE(symbolically_equal(reduce(7 / 9_Fr), 7 / 9_Fr));
 }
 
-TEST_CASE("A fraction's sign position can be switched", "[fraction]")
+TEST_CASE("Reducing a fraction will cancel out negatives", "[fraction]")
 {
-    REQUIRE(symbolically_equal((10 / 13_Fr).with_switched_sign_position(),
-                               10 / 13_Fr));
-    REQUIRE(symbolically_equal((-10 / 13_Fr).with_switched_sign_position(),
-                               10 / -13_Fr));
-    REQUIRE(symbolically_equal((10 / -13_Fr).with_switched_sign_position(),
-                               -10 / 13_Fr));
-    REQUIRE(symbolically_equal((-10 / -13_Fr).with_switched_sign_position(),
-                               -10 / -13_Fr));
-}
-
-TEST_CASE("An equivalent fraction with minimal negative signs can be created",
-          "[fraction]")
-{
-    REQUIRE(symbolically_equal((10 / 13_Fr).with_minimal_negative_signs(),
-                               10 / 13_Fr));
-    REQUIRE(symbolically_equal((-10 / 13_Fr).with_minimal_negative_signs(),
-                               -10 / 13_Fr));
-    REQUIRE(symbolically_equal((10 / -13_Fr).with_minimal_negative_signs(),
-                               10 / -13_Fr));
-    REQUIRE(symbolically_equal((-10 / -13_Fr).with_minimal_negative_signs(),
-                               10 / 13_Fr));
+    REQUIRE(symbolically_equal(reduce(-45 / -80_Fr), 9 / 16_Fr));
 }
 
 TEST_CASE("A fraction's reciprocal can be calculated", "[fraction]")
@@ -288,34 +268,6 @@ TEST_CASE("A fraction can be negated", "[fraction]")
 {
     REQUIRE(-(7 / 10_Fr) == -7 / 10_Fr);
     REQUIRE(-(-7 / 10_Fr) == 7 / 10_Fr);
-}
-
-TEST_CASE("A fraction with both a positive numerator and denominator has 0 "
-          "negative signs",
-          "[fraction]")
-{
-    REQUIRE(num_negative_signs(1 / 6_Fr) == 0);
-}
-
-TEST_CASE("A fraction with a negative numerator and positive denominator has 1 "
-          "negative signs",
-          "[fraction]")
-{
-    REQUIRE(num_negative_signs(-1 / 6_Fr) == 1);
-}
-
-TEST_CASE("A fraction with a positive numerator and negative denominator has 1 "
-          "negative signs",
-          "[fraction]")
-{
-    REQUIRE(num_negative_signs(1 / -6_Fr) == 1);
-}
-
-TEST_CASE("A fraction with both a negative numerator and denominator has 2 "
-          "negative signs",
-          "[fraction]")
-{
-    REQUIRE(num_negative_signs(-1 / -6_Fr) == 2);
 }
 
 TEST_CASE(
