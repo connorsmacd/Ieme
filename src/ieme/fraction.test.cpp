@@ -56,6 +56,14 @@ TEST_CASE(
     REQUIRE(f1.denominator() == 4);
 }
 
+TEST_CASE("A fraction can be constructed from an std::ratio", "[fraction]")
+{
+    constexpr auto f = fraction<int>(std::ratio<45, 22>());
+
+    REQUIRE(f.numerator() == 45);
+    REQUIRE(f.denominator() == 22);
+}
+
 TEST_CASE("A fraction can be implicitly converted from an integer",
           "[fraction]")
 {

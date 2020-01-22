@@ -4,6 +4,7 @@
 #include <limits>
 #include <numeric>
 #include <ostream>
+#include <ratio>
 #include <type_traits>
 #include <utility>
 
@@ -28,6 +29,10 @@ public:
 
     template <typename OtherRep, typename OtherOps>
     constexpr fraction(const fraction<OtherRep, OtherOps>& other) noexcept;
+
+    template <std::intmax_t Numerator, std::intmax_t Denominator>
+    constexpr fraction(
+        const std::ratio<Numerator, Denominator>& ratio) noexcept;
 
     constexpr const Rep& numerator() const noexcept { return numerator_; }
 
@@ -323,6 +328,15 @@ constexpr fraction<Rep, Ops>::fraction(
     const fraction<OtherRep, OtherOps>& other) noexcept :
     numerator_ {Rep(other.numerator_)},
     denominator_ {Rep(other.denominator_)}
+{
+}
+
+template <typename Rep, typename Ops>
+template <std::intmax_t Numerator, std::intmax_t Denominator>
+constexpr fraction<Rep, Ops>::fraction(
+    const std::ratio<Numerator, Denominator>&) noexcept :
+    numerator_ {std::ratio<Numerator, Denominator>::num},
+    denominator_ {std::ratio<Numerator, Denominator>::den}
 {
 }
 
