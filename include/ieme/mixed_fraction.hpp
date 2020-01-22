@@ -24,7 +24,7 @@ public:
     constexpr operator fraction<Rep, Ops>() const noexcept;
 
     constexpr const Rep& whole_part() const noexcept { return whole_part_; }
-    constexpr fraction<Rep, Ops> fractional_part() const noexcept;
+    constexpr const fraction<Rep, Ops>& fractional_part() const noexcept;
 
 private:
     static constexpr fraction<Rep, Ops>
@@ -69,8 +69,8 @@ constexpr mixed_fraction<Rep, Ops>::operator fraction<Rep, Ops>() const noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> mixed_fraction<Rep, Ops>::fractional_part() const
-    noexcept
+constexpr const fraction<Rep, Ops>&
+mixed_fraction<Rep, Ops>::fractional_part() const noexcept
 {
     return fractional_part_;
 }
