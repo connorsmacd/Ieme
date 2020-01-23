@@ -15,9 +15,11 @@ public:
     using ops_type = typename fraction<Rep, Ops>::ops_type;
 
     constexpr mixed_fraction() noexcept = default;
+
     constexpr mixed_fraction(
         const Rep& whole_part,
         const fraction<Rep, Ops>& fractional_part) noexcept;
+
     constexpr mixed_fraction(const fraction<Rep, Ops>& value) noexcept;
 
     constexpr fraction<Rep, Ops> as_fraction() const noexcept;
