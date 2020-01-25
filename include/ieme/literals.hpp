@@ -7,7 +7,7 @@ namespace ieme {
 namespace literals {
 
 
-template <typename Rep, typename Ops = safe_ops>
+template <typename Rep, typename Ops = ops::strict>
 class fraction_denominator_literal final {
 
 public:
