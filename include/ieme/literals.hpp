@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IEME_LITERALS_HPP
+#define IEME_LITERALS_HPP
 
 #include <ieme/fraction.hpp>
 
@@ -139,3 +140,6 @@ operator""_ullFr(const unsigned long long int value) noexcept
 
 }; // namespace literals
 }; // namespace ieme
+
+
+#endif

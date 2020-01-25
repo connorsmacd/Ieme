@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IEME_FRACTION_HPP
+#define IEME_FRACTION_HPP
 
 #include <ieme/ops.hpp>
 #include <ieme/raw_fraction.hpp>
@@ -643,3 +644,6 @@ constexpr bool is_undefined(const fraction<Rep, Ops>& value) noexcept
 
 
 }; // namespace ieme
+
+
+#endif

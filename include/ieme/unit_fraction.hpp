@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IEME_UNIT_FRACTION_HPP
+#define IEME_UNIT_FRACTION_HPP
 
 #include <ieme/fraction.hpp>
 
@@ -66,3 +67,6 @@ unit_of(const fraction<Rep, Ops>& value) noexcept
 
 
 }; // namespace ieme
+
+
+#endif

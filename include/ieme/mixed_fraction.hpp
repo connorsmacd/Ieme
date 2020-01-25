@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IEME_MIXED_FRACTION_HPP
+#define IEME_MIXED_FRACTION_HPP
 
 #include <ieme/fraction.hpp>
 
@@ -87,3 +88,6 @@ constexpr fraction<Rep, Ops> mixed_fraction<Rep, Ops>::combine(
 
 
 }; // namespace ieme
+
+
+#endif

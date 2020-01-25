@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IEME_OPS_HPP_INCLUDED
+#define IEME_OPS_HPP_INCLUDED
 
 #include <ieme/raw_fraction.hpp>
 
@@ -554,3 +555,6 @@ constexpr bool fast::greater_equal(const raw_fraction<Rep>& left,
 
 }; // namespace ops
 }; // namespace ieme
+
+
+#endif
