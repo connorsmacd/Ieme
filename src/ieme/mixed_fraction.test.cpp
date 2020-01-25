@@ -14,33 +14,33 @@ TEST_CASE("A default-constructed mixed fraction has a zero whole part and 0/1 "
           "fractional part",
           "[mixed_fraction]")
 {
-    constexpr auto f = mixed_fraction<int>();
+  constexpr auto f = mixed_fraction<int>();
 
-    REQUIRE(f.whole_part() == 0);
-    REQUIRE(symbolically_equal(f.fractional_part(), 0 / 1_Fr));
+  REQUIRE(f.whole_part() == 0);
+  REQUIRE(symbolically_equal(f.fractional_part(), 0 / 1_Fr));
 }
 
 TEST_CASE("A mixed fraction can constructed from a whole and fractional part",
           "[mixed_fraction]")
 {
-    constexpr auto f = mixed_fraction<int>(-5, {4, 5});
+  constexpr auto f = mixed_fraction<int>(-5, {4, 5});
 
-    REQUIRE(f.whole_part() == -5);
-    REQUIRE(symbolically_equal(f.fractional_part(), 4 / 5_Fr));
+  REQUIRE(f.whole_part() == -5);
+  REQUIRE(symbolically_equal(f.fractional_part(), 4 / 5_Fr));
 }
 
 TEST_CASE("A mixed fraction can constructed from a fraction",
           "[mixed_fraction]")
 {
-    constexpr auto f = mixed_fraction<int>(-11 / 4_Fr);
+  constexpr auto f = mixed_fraction<int>(-11 / 4_Fr);
 
-    REQUIRE(f.whole_part() == -2);
-    REQUIRE(symbolically_equal(f.fractional_part(), 3 / 4_Fr));
+  REQUIRE(f.whole_part() == -2);
+  REQUIRE(symbolically_equal(f.fractional_part(), 3 / 4_Fr));
 }
 
 TEST_CASE("A mixed fraction can be converted to a fraction", "[mixed_fraction]")
 {
-    constexpr auto f = (fraction<int>) mixed_fraction<int>(-3, {1, 9});
+  constexpr auto f = (fraction<int>) mixed_fraction<int>(-3, {1, 9});
 
-    REQUIRE(symbolically_equal(f, -28 / 9_Fr));
+  REQUIRE(symbolically_equal(f, -28 / 9_Fr));
 }
