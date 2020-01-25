@@ -32,9 +32,6 @@ template <typename Rep>
 constexpr bool is_integer(const raw_fraction<Rep>& value) noexcept;
 
 template <typename Rep>
-constexpr bool is_unit_fraction(const raw_fraction<Rep>& value) noexcept;
-
-template <typename Rep>
 constexpr bool is_defined(const raw_fraction<Rep>& value) noexcept;
 
 template <typename Rep>
@@ -85,12 +82,6 @@ template <typename Rep>
 constexpr bool is_integer(const raw_fraction<Rep>& value) noexcept
 {
   return is_defined(value) && value.numerator % value.denominator == 0;
-}
-
-template <typename Rep>
-constexpr bool is_unit_fraction(const raw_fraction<Rep>& value) noexcept
-{
-  return is_integer(reciprocal(value));
 }
 
 template <typename Rep>
