@@ -441,18 +441,18 @@ template <typename Rep>
 constexpr raw_fraction<Rep> fast::plus(const raw_fraction<Rep>& left,
                                        const raw_fraction<Rep>& right) noexcept
 {
-  return {left.numerator() * right.denominator()
-            + right.numerator() * left.denominator(),
-          left.denominator() * right.denominator()};
+  return {left.numerator * right.denominator
+            + right.numerator * left.denominator,
+          left.denominator * right.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep> fast::minus(const raw_fraction<Rep>& left,
                                         const raw_fraction<Rep>& right) noexcept
 {
-  return {left.numerator() * right.denominator()
-            - right.numerator() * left.denominator(),
-          left.denominator() * right.denominator()};
+  return {left.numerator * right.denominator
+            - right.numerator * left.denominator,
+          left.denominator * right.denominator};
 }
 
 template <typename Rep>
@@ -494,11 +494,11 @@ template <typename Rep>
 constexpr bool fast::equal_to(const raw_fraction<Rep>& left,
                               const raw_fraction<Rep>& right) noexcept
 {
-  if (isUndefined(left) || isUndefined(right))
+  if (is_undefined(left) || is_undefined(right))
     return false;
 
-  return left.numerator() * right.denominator()
-         == right.numerator() * left.denominator();
+  return left.numerator * right.denominator
+         == right.numerator * left.denominator;
 }
 
 template <typename Rep>
@@ -512,44 +512,44 @@ template <typename Rep>
 constexpr bool fast::less(const raw_fraction<Rep>& left,
                           const raw_fraction<Rep>& right) noexcept
 {
-  if (isUndefined(left) || isUndefined(right))
+  if (is_undefined(left) || is_undefined(right))
     return false;
 
-  return left.numerator() * right.denominator()
-         < right.numerator() * left.denominator();
+  return left.numerator * right.denominator
+         < right.numerator * left.denominator;
 }
 
 template <typename Rep>
 constexpr bool fast::less_equal(const raw_fraction<Rep>& left,
                                 const raw_fraction<Rep>& right) noexcept
 {
-  if (isUndefined(left) || isUndefined(right))
+  if (is_undefined(left) || is_undefined(right))
     return false;
 
-  return left.numerator() * right.denominator()
-         <= right.numerator() * left.denominator();
+  return left.numerator * right.denominator
+         <= right.numerator * left.denominator;
 }
 
 template <typename Rep>
 constexpr bool fast::greater(const raw_fraction<Rep>& left,
                              const raw_fraction<Rep>& right) noexcept
 {
-  if (isUndefined(left) || isUndefined(right))
+  if (is_undefined(left) || is_undefined(right))
     return false;
 
-  return left.numerator() * right.denominator()
-         > right.numerator() * left.denominator();
+  return left.numerator * right.denominator
+         > right.numerator * left.denominator;
 }
 
 template <typename Rep>
 constexpr bool fast::greater_equal(const raw_fraction<Rep>& left,
                                    const raw_fraction<Rep>& right) noexcept
 {
-  if (isUndefined(left) || isUndefined(right))
+  if (is_undefined(left) || is_undefined(right))
     return false;
 
-  return left.numerator() * right.denominator()
-         >= right.numerator() * left.denominator();
+  return left.numerator * right.denominator
+         >= right.numerator * left.denominator;
 }
 
 
