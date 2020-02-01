@@ -709,7 +709,7 @@ template <typename Rep>
 constexpr bool safe::less(const Rep& left,
                           const raw_fraction<Rep>& right) noexcept
 {
-  return is_defined(left) && left * right.denominator < right.numerator;
+  return is_defined(right) && left * right.denominator < right.numerator;
 }
 
 template <typename Rep>
@@ -736,7 +736,7 @@ template <typename Rep>
 constexpr bool safe::less_equal(const Rep& left,
                                 const raw_fraction<Rep>& right) noexcept
 {
-  return is_defined(left) && left * right.denominator <= right.numerator;
+  return is_defined(right) && left * right.denominator <= right.numerator;
 }
 
 template <typename Rep>
@@ -802,8 +802,7 @@ template <typename Rep>
 constexpr raw_fraction<Rep> fast::plus(const raw_fraction<Rep>& left,
                                        const Rep& right) noexcept
 {
-  return {left.numerator + right.numerator * left.denominator,
-          left.denominator};
+  return {left.numerator + right * left.denominator, left.denominator};
 }
 
 template <typename Rep>
@@ -826,16 +825,14 @@ template <typename Rep>
 constexpr raw_fraction<Rep> fast::minus(const raw_fraction<Rep>& left,
                                         const Rep& right) noexcept
 {
-  return {left.numerator - right.numerator * left.denominator,
-          left.denominator};
+  return {left.numerator - right * left.denominator, left.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep> fast::minus(const Rep& left,
                                         const raw_fraction<Rep>& right) noexcept
 {
-  return {left.numerator * right.denominator - right.numerator,
-          right.denominator};
+  return {left * right.denominator - right.numerator, right.denominator};
 }
 
 template <typename Rep>
@@ -905,7 +902,7 @@ template <typename Rep>
 constexpr raw_fraction<Rep>
 fast::modulus(const Rep& left, const raw_fraction<Rep>& right) noexcept
 {
-  return {(left * right.denominator) % right, right.denominator};
+  return {(left * right.denominator) % right.numerator, right.denominator};
 }
 
 template <typename Rep>
@@ -965,7 +962,7 @@ template <typename Rep>
 constexpr bool fast::less(const raw_fraction<Rep>& left,
                           const Rep& right) noexcept
 {
-  return is_defined(left) && left.numerator < right * left.numerator;
+  return is_defined(left) && left.numerator < right * left.denominator;
 }
 
 template <typename Rep>
@@ -988,7 +985,7 @@ template <typename Rep>
 constexpr bool fast::less_equal(const raw_fraction<Rep>& left,
                                 const Rep& right) noexcept
 {
-  return is_defined(left) && left.numerator <= right * left.numerator;
+  return is_defined(left) && left.numerator <= right * left.denominator;
 }
 
 template <typename Rep>
