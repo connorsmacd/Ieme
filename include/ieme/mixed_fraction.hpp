@@ -7,7 +7,7 @@
 namespace ieme {
 
 
-template <typename Rep, typename Ops = ops::strict>
+template <typename Rep, typename Ops = ops::defaults>
 class mixed_fraction final {
 
 public:
