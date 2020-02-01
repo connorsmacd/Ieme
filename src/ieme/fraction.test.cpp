@@ -73,81 +73,6 @@ TEST_CASE("A fraction can be implicitly converted from an integer",
   REQUIRE(f.denominator() == 1);
 }
 
-TEST_CASE("Symbolically identical fractions are equal", "[fraction]")
-{
-  REQUIRE(4 / 5_Fr == 4 / 5_Fr);
-  REQUIRE_FALSE(4 / 5_Fr != 4 / 5_Fr);
-}
-
-TEST_CASE("Symbolically different but equivalent fractions are equal",
-          "[fraction]")
-{
-  REQUIRE(8 / 10_Fr == 4 / 5_Fr);
-  REQUIRE_FALSE(8 / 10_Fr != 4 / 5_Fr);
-}
-
-TEST_CASE("Inequivalent fractions are not equal", "[fraction]")
-{
-  REQUIRE_FALSE(4 / 5_Fr == 3 / 7_Fr);
-  REQUIRE(4 / 5_Fr != 3 / 7_Fr);
-}
-
-TEST_CASE("Undefined fractions are never equal to anything", "[fraction]")
-{
-  REQUIRE_FALSE(4 / 5_Fr == 4 / 0_Fr);
-  REQUIRE(4 / 5_Fr != 4 / 0_Fr);
-
-  REQUIRE_FALSE(4 / 0_Fr == 4 / 5_Fr);
-  REQUIRE(4 / 0_Fr != 4 / 5_Fr);
-
-  REQUIRE_FALSE(4 / 0_Fr == 4 / 0_Fr);
-  REQUIRE(4 / 0_Fr != 4 / 0_Fr);
-}
-
-TEST_CASE("A lesser fraction is less than a greater fraction", "[fraction]")
-{
-  REQUIRE(2 / 3_Fr < 4 / 5_Fr);
-  REQUIRE(2 / 3_Fr <= 4 / 5_Fr);
-  REQUIRE_FALSE(2 / 3_Fr >= 4 / 5_Fr);
-  REQUIRE_FALSE(2 / 3_Fr > 4 / 5_Fr);
-}
-
-TEST_CASE(
-  "Equivalent fractions are neither less than or greater than eachother",
-  "[fraction]")
-{
-  REQUIRE_FALSE(4 / 5_Fr < 4 / 5_Fr);
-  REQUIRE(4 / 5_Fr <= 4 / 5_Fr);
-  REQUIRE(4 / 5_Fr >= 4 / 5_Fr);
-  REQUIRE_FALSE(4 / 5_Fr > 4 / 5_Fr);
-}
-
-TEST_CASE("A greater fraction is greater than a lesser fraction", "[fraction]")
-{
-  REQUIRE_FALSE(4 / 7_Fr < 2 / 5_Fr);
-  REQUIRE_FALSE(4 / 7_Fr <= 2 / 5_Fr);
-  REQUIRE(4 / 7_Fr >= 2 / 5_Fr);
-  REQUIRE(4 / 7_Fr > 2 / 5_Fr);
-}
-
-TEST_CASE("Undefined fractions have no valid ordinal comparisons", "[fraction]")
-{
-  REQUIRE_FALSE(4 / 5_Fr < 4 / 0_Fr);
-  REQUIRE_FALSE(4 / 5_Fr <= 4 / 0_Fr);
-  REQUIRE_FALSE(4 / 5_Fr >= 4 / 0_Fr);
-  REQUIRE_FALSE(4 / 5_Fr > 4 / 0_Fr);
-
-  REQUIRE_FALSE(4 / 0_Fr < 4 / 5_Fr);
-  REQUIRE_FALSE(4 / 0_Fr <= 4 / 5_Fr);
-  REQUIRE_FALSE(4 / 0_Fr >= 4 / 5_Fr);
-  REQUIRE_FALSE(4 / 0_Fr > 4 / 5_Fr);
-
-  REQUIRE_FALSE(4 / 0_Fr < 4 / 0_Fr);
-  REQUIRE_FALSE(4 / 0_Fr <= 4 / 0_Fr);
-  REQUIRE_FALSE(4 / 0_Fr >= 4 / 0_Fr);
-  REQUIRE_FALSE(4 / 0_Fr > 4 / 0_Fr);
-}
-
 TEST_CASE("Fractions with identical numerators and denominators are "
           "symbolically equal",
           "[fraction]")
@@ -358,44 +283,6 @@ TEST_CASE("A fraction with a zero denominator is undefined", "[fraction]")
 {
   REQUIRE_FALSE(is_defined(4 / 0_Fr));
   REQUIRE(is_undefined(4 / 0_Fr));
-}
-
-TEST_CASE("Fractions with a common denominator can be added", "[fraction]")
-{
-  REQUIRE(1 / 5_Fr + 3 / 5_Fr == 4 / 5_Fr);
-}
-
-TEST_CASE("Fractions without a common denominator can be added", "[fraction]")
-{
-  REQUIRE(2 / 3_Fr + 1 / 4_Fr == 11 / 12_Fr);
-}
-
-TEST_CASE("Fractions with a common denominator can be subtracted", "[fraction]")
-{
-  REQUIRE(1 / 5_Fr - 3 / 5_Fr == -2 / 5_Fr);
-}
-
-TEST_CASE("Fractions without a common denominator can be subtracted",
-          "[fraction]")
-{
-  REQUIRE(2 / 3_Fr - 1 / 4_Fr == 5 / 12_Fr);
-}
-
-TEST_CASE("Fractions can be multiplied", "[fraction]")
-{
-  REQUIRE(2 / 3_Fr * 3 / 7_Fr == 6 / 21_Fr);
-}
-
-TEST_CASE("Fractions can be divided", "[fraction]")
-{
-  REQUIRE((2 / 3_Fr) / (3 / 11_Fr) == 22 / 9_Fr);
-}
-
-TEST_CASE("The remainder of two fractions can be calculated", "[fraction]")
-{
-  REQUIRE((19 / 21_Fr) % (4 / 21_Fr) == 3 / 21_Fr);
-  REQUIRE((4 / 7_Fr) % (2 / 5_Fr) == 6 / 35_Fr);
-  REQUIRE((-2 / 5_Fr) % (2 / 3_Fr) == -6 / 15_Fr);
 }
 
 TEST_CASE("A fraction can be serialized", "[fraction]")
