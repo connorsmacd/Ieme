@@ -21,6 +21,10 @@ add_executable(MixedFractionTest mixed_fraction.test.cpp)
 target_link_libraries(MixedFractionTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME MixedFractionTest COMMAND MixedFractionTest)
 
+add_executable(OpsTest ops.test.cpp)
+target_link_libraries(OpsTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME OpsTest COMMAND OpsTest)
+
 add_executable(RawFractionTest raw_fraction.test.cpp)
 target_link_libraries(RawFractionTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME RawFractionTest COMMAND RawFractionTest)
