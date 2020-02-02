@@ -37,26 +37,34 @@ TEST_CASE("A raw fraction's sign can be queried", "[raw_fraction]")
   const auto rf1 = raw_fraction<int> {12, 32};
 
   REQUIRE(is_positive(rf1));
-  REQUIRE_FALSE(is_negative(rf1));
+  REQUIRE(is_non_negative(rf1));
   REQUIRE_FALSE(is_zero(rf1));
+  REQUIRE_FALSE(is_non_positive(rf1));
+  REQUIRE_FALSE(is_negative(rf1));
 
   const auto rf2 = raw_fraction<int> {-5, 2};
 
   REQUIRE_FALSE(is_positive(rf2));
-  REQUIRE(is_negative(rf2));
+  REQUIRE_FALSE(is_non_negative(rf2));
   REQUIRE_FALSE(is_zero(rf2));
+  REQUIRE(is_non_positive(rf2));
+  REQUIRE(is_negative(rf2));
 
   const auto rf3 = raw_fraction<int> {0, 1};
 
   REQUIRE_FALSE(is_positive(rf3));
-  REQUIRE_FALSE(is_negative(rf3));
+  REQUIRE(is_non_negative(rf3));
   REQUIRE(is_zero(rf3));
+  REQUIRE(is_non_positive(rf3));
+  REQUIRE_FALSE(is_negative(rf3));
 
   const auto rf4 = raw_fraction<int> {1, 0};
 
   REQUIRE_FALSE(is_positive(rf4));
-  REQUIRE_FALSE(is_negative(rf4));
+  REQUIRE_FALSE(is_non_negative(rf4));
   REQUIRE_FALSE(is_zero(rf4));
+  REQUIRE_FALSE(is_non_positive(rf4));
+  REQUIRE_FALSE(is_negative(rf4));
 }
 
 TEST_CASE("A raw fraction can be queried about whether or not it's an integer",

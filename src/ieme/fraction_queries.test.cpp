@@ -23,16 +23,22 @@ TEST_CASE("A fraction can be queried about whether or not it's a defined value",
 TEST_CASE("A fraction's sign can be queried", "[fraction]")
 {
   REQUIRE(is_positive(12 / 32_Fr));
-  REQUIRE_FALSE(is_negative(12 / 32_Fr));
+  REQUIRE(is_non_negative(12 / 32_Fr));
   REQUIRE_FALSE(is_zero(12 / 32_Fr));
+  REQUIRE_FALSE(is_non_positive(12 / 32_Fr));
+  REQUIRE_FALSE(is_negative(12 / 32_Fr));
 
   REQUIRE_FALSE(is_positive(-5 / 2_Fr));
-  REQUIRE(is_negative(-5 / 2_Fr));
+  REQUIRE_FALSE(is_non_negative(-5 / 2_Fr));
   REQUIRE_FALSE(is_zero(-5 / 2_Fr));
+  REQUIRE(is_non_positive(-5 / 2_Fr));
+  REQUIRE(is_negative(-5 / 2_Fr));
 
   REQUIRE_FALSE(is_positive(0 / 1_Fr));
-  REQUIRE_FALSE(is_negative(0 / 1_Fr));
+  REQUIRE(is_non_negative(0 / 1_Fr));
   REQUIRE(is_zero(0 / 1_Fr));
+  REQUIRE(is_non_positive(0 / 1_Fr));
+  REQUIRE_FALSE(is_negative(0 / 1_Fr));
 }
 
 TEST_CASE("A fraction can be queried about whether or not it's an integer",
