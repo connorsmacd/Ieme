@@ -35,6 +35,26 @@ constexpr Rep floor(const fraction<Rep, Ops>& value) noexcept;
 template <typename Rep, typename Ops>
 constexpr Rep round(const fraction<Rep, Ops>& value) noexcept;
 
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+trunc_to_denominator(const fraction<Rep, Ops>& value,
+                     const Rep& denominator) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+ceil_to_denominator(const fraction<Rep, Ops>& value,
+                    const Rep& denominator) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+floor_to_denominator(const fraction<Rep, Ops>& value,
+                     const Rep& denominator) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+round_to_denominator(const fraction<Rep, Ops>& value,
+                     const Rep& denominator) noexcept;
+
 template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept;
 
@@ -96,6 +116,42 @@ constexpr Rep round(const fraction<Rep, Ops>& value) noexcept
   const auto floored = floor(value);
 
   return (value - floored < fraction<Rep, Ops>(1, 2)) ? floored : floored + 1;
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+trunc_to_denominator(const fraction<Rep, Ops>& value,
+                     const Rep& denominator) noexcept
+{
+  return {trunc(value * denominator), denominator};
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+ceil_to_denominator(const fraction<Rep, Ops>& value,
+                    const Rep& denominator) noexcept
+{
+  return {(denominator >= 0) ? ceil(value * denominator)
+                             : -ceil(value * -denominator),
+          denominator};
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+floor_to_denominator(const fraction<Rep, Ops>& value,
+                     const Rep& denominator) noexcept
+{
+  return {(denominator >= 0) ? floor(value * denominator)
+                             : -floor(value * -denominator),
+          denominator};
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+round_to_denominator(const fraction<Rep, Ops>& value,
+                     const Rep& denominator) noexcept
+{
+  return {round(value * denominator), denominator};
 }
 
 template <typename Rep, typename Ops>

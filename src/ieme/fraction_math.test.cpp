@@ -70,6 +70,246 @@ TEST_CASE("A fraction can be rounded", "[fraction]")
   REQUIRE(round(-2 / 1_Fr) == -2);
 }
 
+TEST_CASE("A fraction can be truncated to have a different demoninator",
+          "[fraction]")
+{
+  REQUIRE(symbolically_equal(trunc_to_denominator(4 / 3_Fr, 5), 6 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(5 / 3_Fr, 5), 8 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / 5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(3 / 5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(1 / 4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / 8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(-4 / 3_Fr, 5), -6 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-5 / 3_Fr, 5), -8 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / 5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-3 / 5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-1 / 4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / 8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(4 / -3_Fr, 5), -6 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(5 / -3_Fr, 5), -8 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / -5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(3 / -5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(1 / -4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / -8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(-4 / -3_Fr, 5), 6 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-5 / -3_Fr, 5), 8 / 5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / -5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-3 / -5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-1 / -4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / -8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(4 / 3_Fr, -5), -6 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(5 / 3_Fr, -5), -8 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / 5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(3 / 5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(1 / 4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / 8_Fr, -4), -1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(-4 / 3_Fr, -5), 6 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-5 / 3_Fr, -5), 8 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / 5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-3 / 5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-1 / 4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / 8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(4 / -3_Fr, -5), 6 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(5 / -3_Fr, -5), 8 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / -5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(3 / -5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(1 / -4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(2 / -8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(trunc_to_denominator(-4 / -3_Fr, -5), -6 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-5 / -3_Fr, -5), -8 / -5_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / -5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-3 / -5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-1 / -4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(trunc_to_denominator(-2 / -8_Fr, -4), -1 / -4_Fr));
+}
+
+TEST_CASE("A fraction can be ceilinged to have a different demoninator",
+          "[fraction]")
+{
+  REQUIRE(symbolically_equal(ceil_to_denominator(4 / 3_Fr, 5), 7 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(5 / 3_Fr, 5), 9 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / 5_Fr, 3), 2 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(3 / 5_Fr, 3), 2 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(1 / 4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / 8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(-4 / 3_Fr, 5), -6 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-5 / 3_Fr, 5), -8 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / 5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-3 / 5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-1 / 4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / 8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(4 / -3_Fr, 5), -6 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(5 / -3_Fr, 5), -8 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / -5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(3 / -5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(1 / -4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / -8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(-4 / -3_Fr, 5), 7 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-5 / -3_Fr, 5), 9 / 5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / -5_Fr, 3), 2 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-3 / -5_Fr, 3), 2 / 3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-1 / -4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / -8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(4 / 3_Fr, -5), -7 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(5 / 3_Fr, -5), -9 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / 5_Fr, -3), -2 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(3 / 5_Fr, -3), -2 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(1 / 4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / 8_Fr, -4), -1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(-4 / 3_Fr, -5), 6 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-5 / 3_Fr, -5), 8 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / 5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-3 / 5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-1 / 4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / 8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(4 / -3_Fr, -5), 6 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(5 / -3_Fr, -5), 8 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / -5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(3 / -5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(1 / -4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(2 / -8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(ceil_to_denominator(-4 / -3_Fr, -5), -7 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-5 / -3_Fr, -5), -9 / -5_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / -5_Fr, -3), -2 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-3 / -5_Fr, -3), -2 / -3_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-1 / -4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(ceil_to_denominator(-2 / -8_Fr, -4), -1 / -4_Fr));
+}
+
+TEST_CASE("A fraction can be floored to have a different demoninator",
+          "[fraction]")
+{
+  REQUIRE(symbolically_equal(floor_to_denominator(4 / 3_Fr, 5), 6 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(5 / 3_Fr, 5), 8 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / 5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(3 / 5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(1 / 4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / 8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(-4 / 3_Fr, 5), -7 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-5 / 3_Fr, 5), -9 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / 5_Fr, 3), -2 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-3 / 5_Fr, 3), -2 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-1 / 4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / 8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(4 / -3_Fr, 5), -7 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(5 / -3_Fr, 5), -9 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / -5_Fr, 3), -2 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(3 / -5_Fr, 3), -2 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(1 / -4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / -8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(-4 / -3_Fr, 5), 6 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-5 / -3_Fr, 5), 8 / 5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / -5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-3 / -5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-1 / -4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / -8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(4 / 3_Fr, -5), -6 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(5 / 3_Fr, -5), -8 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / 5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(3 / 5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(1 / 4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / 8_Fr, -4), -1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(-4 / 3_Fr, -5), 7 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-5 / 3_Fr, -5), 9 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / 5_Fr, -3), 2 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-3 / 5_Fr, -3), 2 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-1 / 4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / 8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(4 / -3_Fr, -5), 7 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(5 / -3_Fr, -5), 9 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / -5_Fr, -3), 2 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(3 / -5_Fr, -3), 2 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(1 / -4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(2 / -8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(floor_to_denominator(-4 / -3_Fr, -5), -6 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-5 / -3_Fr, -5), -8 / -5_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / -5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-3 / -5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-1 / -4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(floor_to_denominator(-2 / -8_Fr, -4), -1 / -4_Fr));
+}
+
+TEST_CASE("A fraction can be rounded to have a different demoninator",
+          "[fraction]")
+{
+  REQUIRE(symbolically_equal(round_to_denominator(4 / 3_Fr, 5), 7 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(5 / 3_Fr, 5), 8 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / 5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(3 / 5_Fr, 3), 2 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(1 / 4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / 8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(-4 / 3_Fr, 5), -7 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-5 / 3_Fr, 5), -8 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / 5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-3 / 5_Fr, 3), -2 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-1 / 4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / 8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(4 / -3_Fr, 5), -7 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(5 / -3_Fr, 5), -8 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / -5_Fr, 3), -1 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(3 / -5_Fr, 3), -2 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(1 / -4_Fr, 8), -2 / 8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / -8_Fr, 4), -1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(-4 / -3_Fr, 5), 7 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-5 / -3_Fr, 5), 8 / 5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / -5_Fr, 3), 1 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-3 / -5_Fr, 3), 2 / 3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-1 / -4_Fr, 8), 2 / 8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / -8_Fr, 4), 1 / 4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(4 / 3_Fr, -5), -7 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(5 / 3_Fr, -5), -8 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / 5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(3 / 5_Fr, -3), -2 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(1 / 4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / 8_Fr, -4), -1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(-4 / 3_Fr, -5), 7 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-5 / 3_Fr, -5), 8 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / 5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-3 / 5_Fr, -3), 2 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-1 / 4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / 8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(4 / -3_Fr, -5), 7 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(5 / -3_Fr, -5), 8 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / -5_Fr, -3), 1 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(3 / -5_Fr, -3), 2 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(1 / -4_Fr, -8), 2 / -8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(2 / -8_Fr, -4), 1 / -4_Fr));
+
+  REQUIRE(symbolically_equal(round_to_denominator(-4 / -3_Fr, -5), -7 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-5 / -3_Fr, -5), -8 / -5_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / -5_Fr, -3), -1 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-3 / -5_Fr, -3), -2 / -3_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-1 / -4_Fr, -8), -2 / -8_Fr));
+  REQUIRE(symbolically_equal(round_to_denominator(-2 / -8_Fr, -4), -1 / -4_Fr));
+}
+
 TEST_CASE("A fractional power of two can be calculated", "[fraction]")
 {
   REQUIRE(pow2(7) == 128);
