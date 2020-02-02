@@ -6,7 +6,7 @@
 #include <ieme/mixed_fraction.hpp>
 #include <ieme/ops.hpp>
 #include <ieme/raw_fraction.hpp>
+#include <ieme/raw_fraction_queries.hpp>
 #include <ieme/unit_fraction.hpp>
-
 
 #endif

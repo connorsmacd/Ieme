@@ -29,6 +29,10 @@ add_executable(RawFractionTest raw_fraction.test.cpp)
 target_link_libraries(RawFractionTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME RawFractionTest COMMAND RawFractionTest)
 
+add_executable(RawFractionQueriesTest raw_fraction.test.cpp)
+target_link_libraries(RawFractionQueriesTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME RawFractionQueriesTest COMMAND RawFractionQueriesTest)
+
 add_executable(UnitFractionTest unit_fraction.test.cpp)
 target_link_libraries(UnitFractionTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME UnitFractionTest COMMAND UnitFractionTest)
