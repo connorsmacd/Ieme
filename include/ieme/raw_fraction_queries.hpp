@@ -87,13 +87,14 @@ constexpr bool is_integer(const raw_fraction<Rep>& value) noexcept
 template <typename Rep>
 constexpr bool is_unit_fraction(const raw_fraction<Rep>& value) noexcept
 {
-  return is_defined(value) && value.denominator % value.numerator == 0;
+  return is_defined(value) && value.numerator != 0
+         && value.denominator % value.numerator == 0;
 }
 
 template <typename Rep>
 constexpr bool is_reduced_ignore_signs(const raw_fraction<Rep>& value) noexcept
 {
-  return is_defined(value) && std::gcd(value.numerator, value.denominator) != 1;
+  return is_defined(value) && std::gcd(value.numerator, value.denominator) == 1;
 }
 
 template <typename Rep>

@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
-#include <ieme/raw_fraction.hpp>
+#include <ieme/raw_fraction_queries.hpp>
 
 
 using namespace ieme;
@@ -93,7 +93,7 @@ TEST_CASE(
 
   const auto rf3 = raw_fraction<int> {0, 1};
 
-  REQUIRE(is_unit_fraction(rf3));
+  REQUIRE_FALSE(is_unit_fraction(rf3));
 
   const auto rf4 = raw_fraction<int> {1, 0};
 
