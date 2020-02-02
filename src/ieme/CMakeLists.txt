@@ -3,6 +3,7 @@ add_library(Ieme fraction.cpp
                  fraction_queries.cpp
                  ieme.cpp
                  literals.cpp
+                 math_utilities.cpp
                  mixed_fraction.cpp
                  ops.cpp
                  raw_fraction.cpp
@@ -28,6 +29,10 @@ add_test(NAME FractionQueriesTest COMMAND FractionQueriesTest)
 add_executable(LiteralsTest literals.test.cpp)
 target_link_libraries(LiteralsTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME LiteralsTest COMMAND LiteralsTest)
+
+add_executable(MathUtilitiesTest math_utilities.test.cpp)
+target_link_libraries(MathUtilitiesTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME MathUtilitiesTest COMMAND MathUtilitiesTest)
 
 add_executable(MixedFractionTest mixed_fraction.test.cpp)
 target_link_libraries(MixedFractionTest PUBLIC Ieme Catch2::Catch2)

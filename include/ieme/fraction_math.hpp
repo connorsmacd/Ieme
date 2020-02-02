@@ -3,6 +3,7 @@
 
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_queries.hpp>
+#include <ieme/math_utilities.hpp>
 
 
 namespace ieme {
@@ -100,13 +101,9 @@ constexpr Rep round(const fraction<Rep, Ops>& value) noexcept
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept
 {
-  const auto constexpr_pow2 = [=](const Rep& exponent) {
-    using unsigned_type = std::make_unsigned_t<Rep>;
-    return Rep(unsigned_type(1) << unsigned_type(exponent));
-  };
-
-  return (exponent >= 0) ? fraction<Rep, Ops>(constexpr_pow2(exponent))
-                         : fraction<Rep, Ops>(1, constexpr_pow2(-exponent));
+  return (exponent >= 0)
+           ? fraction<Rep, Ops>(math_utilities::pow2(exponent))
+           : fraction<Rep, Ops>(1, math_utilities::pow2(-exponent));
 }
 
 

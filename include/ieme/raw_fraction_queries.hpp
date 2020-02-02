@@ -1,6 +1,7 @@
 #ifndef IEME_RAW_FRACTION_QUERIES_HPP
 #define IEME_RAW_FRACTION_QUERIES_HPP
 
+#include <ieme/math_utilities.hpp>
 #include <ieme/raw_fraction.hpp>
 
 #include <numeric>
@@ -107,10 +108,8 @@ constexpr bool is_reduced(const raw_fraction<Rep>& value) noexcept
 template <typename Rep>
 constexpr bool is_proper(const raw_fraction<Rep>& value) noexcept
 {
-  const auto abs
-    = [=](const auto& value) { return (value > 0) ? value : -value; };
-
-  return abs(value.numerator) < abs(value.denominator);
+  return math_utilities::abs(value.numerator)
+         < math_utilities::abs(value.denominator);
 }
 
 template <typename Rep>
