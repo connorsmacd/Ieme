@@ -65,7 +65,7 @@ constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value) noexcept
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept
 {
-  return is_positive(value) ? value : -value;
+  return is_non_negative(value) ? value : -value;
 }
 
 template <typename Rep, typename Ops>
