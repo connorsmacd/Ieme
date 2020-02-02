@@ -2,6 +2,7 @@
 #define IEME_MIXED_FRACTION_HPP
 
 #include <ieme/fraction.hpp>
+#include <ieme/fraction_math.hpp>
 
 
 namespace ieme {

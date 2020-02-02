@@ -2,6 +2,8 @@
 #define IEME_IEME_HPP
 
 #include <ieme/fraction.hpp>
+#include <ieme/fraction_math.hpp>
+#include <ieme/fraction_queries.hpp>
 #include <ieme/literals.hpp>
 #include <ieme/mixed_fraction.hpp>
 #include <ieme/ops.hpp>

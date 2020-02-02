@@ -1,4 +1,6 @@
 add_library(Ieme fraction.cpp
+                 fraction_math.cpp
+                 fraction_queries.cpp
                  ieme.cpp
                  literals.cpp
                  mixed_fraction.cpp
@@ -14,6 +16,14 @@ add_library(Ieme::Ieme ALIAS Ieme)
 add_executable(FractionTest fraction.test.cpp)
 target_link_libraries(FractionTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME FractionTest COMMAND FractionTest)
+
+add_executable(FractionMathTest fraction_math.test.cpp)
+target_link_libraries(FractionMathTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME FractionMathTest COMMAND FractionMathTest)
+
+add_executable(FractionQueriesTest fraction_queries.test.cpp)
+target_link_libraries(FractionQueriesTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME FractionQueriesTest COMMAND FractionQueriesTest)
 
 add_executable(LiteralsTest literals.test.cpp)
 target_link_libraries(LiteralsTest PUBLIC Ieme Catch2::Catch2)
