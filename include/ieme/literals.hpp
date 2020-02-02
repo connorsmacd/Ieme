@@ -3,138 +3,100 @@
 
 #include <ieme/fraction.hpp>
 
+#include <type_traits>
+
 
 namespace ieme {
 namespace literals {
 
 
-template <typename Rep, typename Ops = ops::defaults>
+template <bool IsSigned, typename Ops = ops::defaults>
 class fraction_denominator_literal final {
 
 public:
-  using fraction_type = fraction<Rep, Ops>;
-  using rep_type = typename fraction<Rep, Ops>::rep_type;
-  using ops_type = typename fraction<Rep, Ops>::ops_type;
+  static constexpr const bool is_signed = IsSigned;
 
-  constexpr fraction_denominator_literal(const Rep& value) noexcept;
+  using unsigned_type = unsigned long long int;
+  using signed_type = std::make_signed_t<unsigned_type>;
+  using intermediate_type
+    = std::conditional_t<IsSigned, signed_type, unsigned_type>;
+  using ops_type = Ops;
 
-  constexpr const Rep& value() const noexcept { return value_; }
+  constexpr fraction_denominator_literal(intermediate_type value) noexcept;
+
+  constexpr intermediate_type value() const noexcept { return value_; }
 
 private:
-  Rep value_;
+  intermediate_type value_;
 };
 
-template <typename Rep, typename Ops>
-constexpr fraction_denominator_literal<Rep, Ops>
-operator+(const fraction_denominator_literal<Rep, Ops>& value) noexcept;
-
-template <typename Rep, typename Ops>
-constexpr fraction_denominator_literal<Rep, Ops>
-operator-(const fraction_denominator_literal<Rep, Ops>& value) noexcept;
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator/(const fraction<Rep, Ops>& left,
-          const fraction_denominator_literal<Rep, Ops>& right) noexcept;
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator/(const Rep& left,
-          const fraction_denominator_literal<Rep, Ops>& right) noexcept;
-
-constexpr fraction_denominator_literal<int>
+constexpr fraction_denominator_literal<false>
 operator""_Fr(unsigned long long int value) noexcept;
 
-constexpr fraction_denominator_literal<unsigned int>
-operator""_uFr(unsigned long long int value) noexcept;
+template <bool IsSigned, typename Ops>
+constexpr fraction_denominator_literal<IsSigned, Ops>
+operator+(const fraction_denominator_literal<IsSigned, Ops>& value) noexcept;
 
-constexpr fraction_denominator_literal<long int>
-operator""_lFr(unsigned long long int value) noexcept;
+template <bool IsSigned, typename Ops>
+constexpr fraction_denominator_literal<true, Ops>
+operator-(const fraction_denominator_literal<IsSigned, Ops>& value) noexcept;
 
-constexpr fraction_denominator_literal<unsigned long int>
-operator""_ulFr(unsigned long long int value) noexcept;
+template <bool IsSigned, typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+operator/(const fraction<Rep, Ops>& left,
+          const fraction_denominator_literal<IsSigned, Ops>& right) noexcept;
 
-constexpr fraction_denominator_literal<long long int>
-operator""_llFr(unsigned long long int value) noexcept;
-
-constexpr fraction_denominator_literal<unsigned long long int>
-operator""_ullFr(unsigned long long int value) noexcept;
+template <bool IsSigned, typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+operator/(const Rep& left,
+          const fraction_denominator_literal<IsSigned, Ops>& right) noexcept;
 
 
 // =============================================================================
 
 
-template <typename Rep, typename Ops>
-constexpr fraction_denominator_literal<Rep, Ops>::fraction_denominator_literal(
-  const Rep& value) noexcept :
+template <bool IsSigned, typename Ops>
+constexpr fraction_denominator_literal<IsSigned, Ops>::
+  fraction_denominator_literal(const intermediate_type value) noexcept :
   value_ {value}
 {
 }
 
-template <typename Rep, typename Ops>
-constexpr fraction_denominator_literal<Rep, Ops>
-operator+(const fraction_denominator_literal<Rep, Ops>& value) noexcept
-{
-  return value;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction_denominator_literal<Rep, Ops>
-operator-(const fraction_denominator_literal<Rep, Ops>& value) noexcept
-{
-  return -value.value();
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator/(const fraction<Rep, Ops>& left,
-          const fraction_denominator_literal<Rep, Ops>& right) noexcept
-{
-  return left / right.value();
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator/(const Rep& left,
-          const fraction_denominator_literal<Rep, Ops>& right) noexcept
-{
-  return {left, right.value()};
-}
-
-constexpr fraction_denominator_literal<int>
+constexpr fraction_denominator_literal<false>
 operator""_Fr(const unsigned long long int value) noexcept
 {
   return value;
 }
 
-constexpr fraction_denominator_literal<unsigned int>
-operator""_uFr(const unsigned long long int value) noexcept
+template <bool IsSigned, typename Ops>
+constexpr fraction_denominator_literal<IsSigned, Ops>
+operator+(const fraction_denominator_literal<IsSigned, Ops>& value) noexcept
 {
   return value;
 }
 
-constexpr fraction_denominator_literal<long int>
-operator""_lFr(const unsigned long long int value) noexcept
+template <bool IsSigned, typename Ops>
+constexpr fraction_denominator_literal<true, Ops>
+operator-(const fraction_denominator_literal<IsSigned, Ops>& value) noexcept
 {
-  return value;
+  return -typename fraction_denominator_literal<true, Ops>::intermediate_type(
+    value.value());
 }
 
-constexpr fraction_denominator_literal<unsigned long int>
-operator""_ulFr(const unsigned long long int value) noexcept
+template <bool IsSigned, typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+operator/(const fraction<Rep, Ops>& left,
+          const fraction_denominator_literal<IsSigned, Ops>& right) noexcept
 {
-  return value;
+  return left / Rep(right.value());
 }
 
-constexpr fraction_denominator_literal<long long int>
-operator""_llFr(const unsigned long long int value) noexcept
+template <bool IsSigned, typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+operator/(const Rep& left,
+          const fraction_denominator_literal<IsSigned, Ops>& right) noexcept
 {
-  return value;
-}
-
-constexpr fraction_denominator_literal<unsigned long long int>
-operator""_ullFr(const unsigned long long int value) noexcept
-{
-  return value;
+  return {left, Rep(right.value())};
 }
 
 
