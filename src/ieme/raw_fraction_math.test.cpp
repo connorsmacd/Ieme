@@ -7,6 +7,14 @@
 using namespace ieme;
 
 
+TEST_CASE("A raw fraction's reciprocal can be computed", "[raw_fraction]")
+{
+  const auto rf1 = reciprocal(raw_fraction<int> {-12, 32});
+
+  REQUIRE(rf1.numerator == 32);
+  REQUIRE(rf1.denominator == -12);
+}
+
 TEST_CASE("A raw fraction can be reduced", "[raw_fraction]")
 {
   const auto rf1 = reduce(raw_fraction<int> {12, 32});
@@ -33,12 +41,4 @@ TEST_CASE("A raw fraction can be reduced", "[raw_fraction]")
 
   REQUIRE(rf5.numerator == 9);
   REQUIRE(rf5.denominator == 16);
-}
-
-TEST_CASE("A raw fraction's reciprocal can be computed", "[raw_fraction]")
-{
-  const auto rf1 = reciprocal(raw_fraction<int> {-12, 32});
-
-  REQUIRE(rf1.numerator == 32);
-  REQUIRE(rf1.denominator == -12);
 }
