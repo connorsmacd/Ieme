@@ -615,7 +615,7 @@ template <typename Rep, typename Ops>
 std::ostream& operator<<(std::ostream& stream,
                          const fraction<Rep, Ops>& value) noexcept
 {
-  return stream << value.numerator() << '/' << value.denominator();
+  return stream << value.raw();
 }
 
 template <typename Rep, typename Ops>
@@ -624,9 +624,7 @@ std::istream& operator>>(std::istream& stream,
 {
   typename fraction<Rep, Ops>::raw_fraction_type new_raw;
 
-  stream >> new_raw.numerator;
-  stream.ignore(std::numeric_limits<std::streamsize>::max(), '/');
-  stream >> new_raw.denominator;
+  stream >> new_raw;
 
   value = new_raw;
 
