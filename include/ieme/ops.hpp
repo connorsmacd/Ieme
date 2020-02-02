@@ -2,6 +2,7 @@
 #define IEME_OPS_HPP
 
 #include <ieme/raw_fraction.hpp>
+#include <ieme/raw_fraction_math.hpp>
 #include <ieme/raw_fraction_queries.hpp>
 
 

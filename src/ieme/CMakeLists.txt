@@ -4,6 +4,7 @@ add_library(Ieme fraction.cpp
                  mixed_fraction.cpp
                  ops.cpp
                  raw_fraction.cpp
+                 raw_fraction_math.cpp
                  raw_fraction_queries.cpp
                  unit_fraction.cpp)
 target_include_directories(Ieme PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../../include)
@@ -29,6 +30,10 @@ add_test(NAME OpsTest COMMAND OpsTest)
 add_executable(RawFractionTest raw_fraction.test.cpp)
 target_link_libraries(RawFractionTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME RawFractionTest COMMAND RawFractionTest)
+
+add_executable(RawFractionMathTest raw_fraction_math.test.cpp)
+target_link_libraries(RawFractionMathTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME RawFractionMathTest COMMAND RawFractionMathTest)
 
 add_executable(RawFractionQueriesTest raw_fraction_queries.test.cpp)
 target_link_libraries(RawFractionQueriesTest PUBLIC Ieme Catch2::Catch2)
