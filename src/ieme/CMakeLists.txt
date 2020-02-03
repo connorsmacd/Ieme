@@ -4,7 +4,7 @@ add_library(Ieme fraction.cpp
                  ieme.cpp
                  literals.cpp
                  math_utilities.cpp
-                 mixed_fraction.cpp
+                 mixed_number.cpp
                  ops.cpp
                  raw_fraction.cpp
                  raw_fraction_math.cpp
@@ -34,9 +34,9 @@ add_executable(MathUtilitiesTest math_utilities.test.cpp)
 target_link_libraries(MathUtilitiesTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME MathUtilitiesTest COMMAND MathUtilitiesTest)
 
-add_executable(MixedFractionTest mixed_fraction.test.cpp)
-target_link_libraries(MixedFractionTest PUBLIC Ieme Catch2::Catch2)
-add_test(NAME MixedFractionTest COMMAND MixedFractionTest)
+add_executable(MixedNumberTest mixed_number.test.cpp)
+target_link_libraries(MixedNumberTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME MixedNumberTest COMMAND MixedNumberTest)
 
 add_executable(OpsTest ops.test.cpp)
 target_link_libraries(OpsTest PUBLIC Ieme Catch2::Catch2)
