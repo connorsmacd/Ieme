@@ -5,11 +5,8 @@
 #include <ieme/raw_fraction.hpp>
 
 #include <istream>
-#include <limits>
 #include <ostream>
 #include <ratio>
-#include <type_traits>
-#include <utility>
 
 
 namespace ieme {
@@ -33,13 +30,22 @@ public:
   constexpr fraction(const fraction<OtherRep, OtherOps>& other) noexcept;
 
   template <std::intmax_t Numerator, std::intmax_t Denominator>
-  constexpr fraction(const std::ratio<Numerator, Denominator>& ratio) noexcept;
+  constexpr fraction(std::ratio<Numerator, Denominator> ratio) noexcept;
 
   constexpr const Rep& numerator() const noexcept;
+  constexpr Rep& numerator() noexcept;
 
   constexpr const Rep& denominator() const noexcept;
+  constexpr Rep& denominator() noexcept;
+
+  constexpr const Rep& num() const noexcept { return numerator(); }
+  constexpr Rep& num() noexcept { return numerator(); }
+
+  constexpr const Rep& den() const noexcept { return denominator(); }
+  constexpr Rep& den() noexcept { return denominator(); }
 
   constexpr const raw_fraction_type& raw() const noexcept { return raw_; }
+  constexpr raw_fraction_type& raw() noexcept { return raw_; }
 
 private:
   raw_fraction_type raw_ = {0, 1};
@@ -246,12 +252,6 @@ template <typename Rep, typename Ops>
 constexpr bool not_symbolically_equal(const fraction<Rep, Ops>& left,
                                       const fraction<Rep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr Rep numerator(const fraction<Rep, Ops>& value) noexcept;
-
-template <typename Rep, typename Ops>
-constexpr Rep denominator(const fraction<Rep, Ops>& value) noexcept;
-
 
 // =============================================================================
 
@@ -273,14 +273,14 @@ template <typename Rep, typename Ops>
 template <typename OtherRep, typename OtherOps>
 constexpr fraction<Rep, Ops>::fraction(
   const fraction<OtherRep, OtherOps>& other) noexcept :
-  raw_ {Rep(numerator), Rep(denominator)}
+  raw_ {Rep(other.raw_.numerator, other.raw_.denominator)}
 {
 }
 
 template <typename Rep, typename Ops>
 template <std::intmax_t Numerator, std::intmax_t Denominator>
 constexpr fraction<Rep, Ops>::fraction(
-  const std::ratio<Numerator, Denominator>&) noexcept :
+  std::ratio<Numerator, Denominator>) noexcept :
   raw_ {std::ratio<Numerator, Denominator>::num,
         std::ratio<Numerator, Denominator>::den}
 {
@@ -293,7 +293,19 @@ constexpr const Rep& fraction<Rep, Ops>::numerator() const noexcept
 }
 
 template <typename Rep, typename Ops>
+constexpr Rep& fraction<Rep, Ops>::numerator() noexcept
+{
+  return raw_.numerator;
+}
+
+template <typename Rep, typename Ops>
 constexpr const Rep& fraction<Rep, Ops>::denominator() const noexcept
+{
+  return raw_.denominator;
+}
+
+template <typename Rep, typename Ops>
+constexpr Rep& fraction<Rep, Ops>::denominator() noexcept
 {
   return raw_.denominator;
 }
@@ -622,21 +634,14 @@ template <typename Rep, typename Ops>
 std::istream& operator>>(std::istream& stream,
                          fraction<Rep, Ops>& value) noexcept
 {
-  typename fraction<Rep, Ops>::raw_fraction_type new_raw;
-
-  stream >> new_raw;
-
-  value = new_raw;
-
-  return stream;
+  return stream >> value.raw();
 }
 
 template <typename Rep, typename Ops>
 constexpr bool symbolically_equal(const fraction<Rep, Ops>& left,
                                   const fraction<Rep, Ops>& right) noexcept
 {
-  return left.numerator() == right.numerator()
-         && left.denominator() == right.denominator();
+  return left.num() == right.num() && left.den() == right.den();
 }
 
 template <typename Rep, typename Ops>
@@ -644,18 +649,6 @@ constexpr bool not_symbolically_equal(const fraction<Rep, Ops>& left,
                                       const fraction<Rep, Ops>& right) noexcept
 {
   return !symbolically_equal(left, right);
-}
-
-template <typename Rep, typename Ops>
-constexpr Rep numerator(const fraction<Rep, Ops>& value) noexcept
-{
-  return value.numerator();
-}
-
-template <typename Rep, typename Ops>
-constexpr Rep denominator(const fraction<Rep, Ops>& value) noexcept
-{
-  return value.denominator();
 }
 
 
