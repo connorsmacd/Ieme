@@ -1,5 +1,5 @@
-#ifndef IEME_mixed_number_HPP
-#define IEME_mixed_number_HPP
+#ifndef IEME_MIXED_NUMBER_HPP
+#define IEME_MIXED_NUMBER_HPP
 
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
