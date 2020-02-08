@@ -6,6 +6,7 @@
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
 #include <ieme/fraction_queries.hpp>
+#include <ieme/hash.hpp>
 #include <ieme/literals.hpp>
 #include <ieme/math_utilities.hpp>
 #include <ieme/mixed_number.hpp>

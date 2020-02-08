@@ -3,6 +3,7 @@ add_library(Ieme endian.cpp
                  fraction.cpp
                  fraction_math.cpp
                  fraction_queries.cpp
+                 hash.cpp
                  ieme.cpp
                  literals.cpp
                  math_utilities.cpp
@@ -31,6 +32,10 @@ add_test(NAME FractionMathTest COMMAND FractionMathTest)
 add_executable(FractionQueriesTest fraction_queries.test.cpp)
 target_link_libraries(FractionQueriesTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME FractionQueriesTest COMMAND FractionQueriesTest)
+
+add_executable(HashTest hash.test.cpp)
+target_link_libraries(HashTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME HashTest COMMAND HashTest)
 
 add_executable(LiteralsTest literals.test.cpp)
 target_link_libraries(LiteralsTest PUBLIC Ieme Catch2::Catch2)
