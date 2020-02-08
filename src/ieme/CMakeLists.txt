@@ -1,4 +1,6 @@
-add_library(Ieme fraction.cpp
+add_library(Ieme endian.cpp
+                 floating_point.cpp
+                 fraction.cpp
                  fraction_math.cpp
                  fraction_queries.cpp
                  ieme.cpp
@@ -13,6 +15,10 @@ add_library(Ieme fraction.cpp
 target_include_directories(Ieme PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../../include)
 target_compile_features(Ieme PUBLIC cxx_std_17)
 add_library(Ieme::Ieme ALIAS Ieme)
+
+add_executable(FloatingPointTest floating_point.test.cpp)
+target_link_libraries(FloatingPointTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME FloatingPointTest COMMAND FloatingPointTest)
 
 add_executable(FractionTest fraction.test.cpp)
 target_link_libraries(FractionTest PUBLIC Ieme Catch2::Catch2)

@@ -1,6 +1,8 @@
 #ifndef IEME_IEME_HPP
 #define IEME_IEME_HPP
 
+#include <ieme/endian.hpp>
+#include <ieme/floating_point.hpp>
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
 #include <ieme/fraction_queries.hpp>
