@@ -18,7 +18,7 @@ enum class endian {
 };
 
 
-};
+}; // namespace ieme
 
 
 #endif
