@@ -72,18 +72,3 @@ TEST_CASE("A fraction can be deserialized", "[fraction]")
 
   REQUIRE(f == -5 / 7_Fr);
 }
-
-TEST_CASE("Fractions can be symbolically compared", "[fraction]")
-{
-  REQUIRE(symbolically_equal(7 / -9_Fr, 7 / -9_Fr));
-  REQUIRE_FALSE(not_symbolically_equal(7 / -9_Fr, 7 / -9_Fr));
-
-  REQUIRE_FALSE(symbolically_equal(14 / -18_Fr, 7 / -9_Fr));
-  REQUIRE(not_symbolically_equal(14 / -18_Fr, 7 / -9_Fr));
-
-  REQUIRE_FALSE(symbolically_equal(7 / -9_Fr, -7 / 9_Fr));
-  REQUIRE(not_symbolically_equal(7 / -9_Fr, -7 / 9_Fr));
-
-  REQUIRE(symbolically_equal(4 / 0_Fr, 4 / 0_Fr));
-  REQUIRE_FALSE(not_symbolically_equal(4 / 0_Fr, 4 / 0_Fr));
-}

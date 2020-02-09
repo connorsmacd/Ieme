@@ -77,3 +77,12 @@ TEST_CASE("A fraction can be queried about whether or not it's proper",
   REQUIRE_FALSE(is_proper(3 / 2_Fr));
   REQUIRE(is_improper(3 / 2_Fr));
 }
+
+TEST_CASE("Two raw fractions can be identically compared", "[raw_fraction]")
+{
+  REQUIRE(are_identical(-7 / 15_Fr, -7 / 15_Fr));
+  REQUIRE_FALSE(are_different(-7 / 15_Fr, -7 / 15_Fr));
+
+  REQUIRE_FALSE(are_identical(-7 / 15_Fr, 7 / -15_Fr));
+  REQUIRE(are_different(-7 / 15_Fr, 7 / -15_Fr));
+}

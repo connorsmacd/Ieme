@@ -3,6 +3,8 @@
 
 #include <ieme/literals.hpp>
 
+#include <ieme/fraction_queries.hpp>
+
 #include <type_traits>
 
 
@@ -12,10 +14,10 @@ using namespace ieme::literals;
 
 TEST_CASE("Literals have the expected symbolic equivalents", "[literals]")
 {
-  REQUIRE(symbolically_equal(3 / 4_Fr, fraction(3, 4)));
-  REQUIRE(symbolically_equal(-3 / 4_Fr, fraction(-3, 4)));
-  REQUIRE(symbolically_equal(3 / -4_Fr, fraction(3, -4)));
-  REQUIRE(symbolically_equal(-3 / -4_Fr, fraction(-3, -4)));
+  REQUIRE(are_identical(3 / 4_Fr, fraction(3, 4)));
+  REQUIRE(are_identical(-3 / 4_Fr, fraction(-3, 4)));
+  REQUIRE(are_identical(3 / -4_Fr, fraction(3, -4)));
+  REQUIRE(are_identical(-3 / -4_Fr, fraction(-3, -4)));
 }
 
 TEST_CASE("The type of numerator drives the representation type for the "

@@ -49,6 +49,14 @@ constexpr bool is_proper(const raw_fraction<Rep>& value) noexcept;
 template <typename Rep>
 constexpr bool is_improper(const raw_fraction<Rep>& value) noexcept;
 
+template <typename Rep>
+constexpr bool are_identical(const raw_fraction<Rep>& left,
+                             const raw_fraction<Rep>& right);
+
+template <typename Rep>
+constexpr bool are_different(const raw_fraction<Rep>& left,
+                             const raw_fraction<Rep>& right);
+
 
 // =============================================================================
 
@@ -136,6 +144,21 @@ template <typename Rep>
 constexpr bool is_improper(const raw_fraction<Rep>& value) noexcept
 {
   return !is_proper(value);
+}
+
+template <typename Rep>
+constexpr bool are_identical(const raw_fraction<Rep>& left,
+                             const raw_fraction<Rep>& right)
+{
+  return left.numerator == right.numerator
+         && left.denominator == right.denominator;
+}
+
+template <typename Rep>
+constexpr bool are_different(const raw_fraction<Rep>& left,
+                             const raw_fraction<Rep>& right)
+{
+  return !are_identical(left, right);
 }
 
 

@@ -4,6 +4,7 @@
 
 #include <ieme/unit_fraction.hpp>
 
+#include <ieme/fraction_queries.hpp>
 #include <ieme/literals.hpp>
 
 
@@ -15,7 +16,7 @@ TEST_CASE("A default-constructed unit fraction is 1", "[unit_fraction]")
 {
   constexpr auto f = unit_fraction<int>();
 
-  REQUIRE(symbolically_equal(f.as_fraction(), 1 / 1_Fr));
+  REQUIRE(are_identical(f.as_fraction(), 1 / 1_Fr));
 }
 
 TEST_CASE("A unit fraction can be constructed from a denomintor",

@@ -48,6 +48,14 @@ constexpr bool is_proper(const fraction<Rep, Ops>& value) noexcept;
 template <typename Rep, typename Ops>
 constexpr bool is_improper(const fraction<Rep, Ops>& value) noexcept;
 
+template <typename Rep, typename LeftOps, typename RightOps>
+constexpr bool are_identical(const fraction<Rep, LeftOps>& left,
+                             const fraction<Rep, RightOps>& right) noexcept;
+
+template <typename Rep, typename LeftOps, typename RightOps>
+constexpr bool are_different(const fraction<Rep, LeftOps>& left,
+                             const fraction<Rep, RightOps>& right) noexcept;
+
 
 // =============================================================================
 
@@ -128,6 +136,20 @@ template <typename Rep, typename Ops>
 constexpr bool is_improper(const fraction<Rep, Ops>& value) noexcept
 {
   return is_improper(value.raw());
+}
+
+template <typename Rep, typename LeftOps, typename RightOps>
+constexpr bool are_identical(const fraction<Rep, LeftOps>& left,
+                             const fraction<Rep, RightOps>& right) noexcept
+{
+  return are_identical(left.raw(), right.raw());
+}
+
+template <typename Rep, typename LeftOps, typename RightOps>
+constexpr bool are_different(const fraction<Rep, LeftOps>& left,
+                             const fraction<Rep, RightOps>& right) noexcept
+{
+  return are_different(left.raw(), right.raw());
 }
 
 

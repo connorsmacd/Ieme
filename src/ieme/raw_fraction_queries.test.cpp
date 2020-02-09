@@ -180,3 +180,32 @@ TEST_CASE("A raw fraction can be queried about whether or not it's proper",
   REQUIRE_FALSE(is_proper(rf8));
   REQUIRE(is_improper(rf8));
 }
+
+TEST_CASE("Two raw fractions can be identically compared", "[raw_fraction]")
+{
+  const auto rf1 = raw_fraction<int> {3, 4};
+  const auto rf2 = raw_fraction<int> {-3, 4};
+  const auto rf3 = raw_fraction<int> {3, -4};
+  const auto rf4 = raw_fraction<int> {-3, -4};
+
+  REQUIRE(are_identical(rf1, rf1));
+  REQUIRE_FALSE(are_different(rf1, rf1));
+
+  REQUIRE_FALSE(are_identical(rf1, rf2));
+  REQUIRE(are_different(rf1, rf2));
+
+  REQUIRE_FALSE(are_identical(rf1, rf3));
+  REQUIRE(are_different(rf1, rf3));
+
+  REQUIRE_FALSE(are_identical(rf1, rf4));
+  REQUIRE(are_different(rf1, rf4));
+
+  REQUIRE_FALSE(are_identical(rf2, rf3));
+  REQUIRE(are_different(rf2, rf3));
+
+  REQUIRE_FALSE(are_identical(rf2, rf4));
+  REQUIRE(are_different(rf2, rf4));
+
+  REQUIRE_FALSE(are_identical(rf3, rf4));
+  REQUIRE(are_different(rf3, rf4));
+}

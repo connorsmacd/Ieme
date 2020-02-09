@@ -244,14 +244,6 @@ template <typename Rep, typename Ops>
 std::istream& operator>>(std::istream& stream,
                          fraction<Rep, Ops>& value) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool symbolically_equal(const fraction<Rep, Ops>& left,
-                                  const fraction<Rep, Ops>& right) noexcept;
-
-template <typename Rep, typename Ops>
-constexpr bool not_symbolically_equal(const fraction<Rep, Ops>& left,
-                                      const fraction<Rep, Ops>& right) noexcept;
-
 
 // =============================================================================
 
@@ -635,20 +627,6 @@ std::istream& operator>>(std::istream& stream,
                          fraction<Rep, Ops>& value) noexcept
 {
   return stream >> value.raw();
-}
-
-template <typename Rep, typename Ops>
-constexpr bool symbolically_equal(const fraction<Rep, Ops>& left,
-                                  const fraction<Rep, Ops>& right) noexcept
-{
-  return left.num() == right.num() && left.den() == right.den();
-}
-
-template <typename Rep, typename Ops>
-constexpr bool not_symbolically_equal(const fraction<Rep, Ops>& left,
-                                      const fraction<Rep, Ops>& right) noexcept
-{
-  return !symbolically_equal(left, right);
 }
 
 
