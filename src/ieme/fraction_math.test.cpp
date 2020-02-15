@@ -22,6 +22,7 @@ TEST_CASE("A fraction can be reduced", "[fraction]")
   REQUIRE(are_identical(reduce(12 / 32_Fr), 3 / 8_Fr));
   REQUIRE(are_identical(reduce_ignore_signs(-12 / -32_Fr), -3 / -8_Fr));
   REQUIRE(are_identical(reduce(-12 / -32_Fr), 3 / 8_Fr));
+  REQUIRE(are_identical(reduce(1 / 0_Fr), 0 / 0_Fr));
 }
 
 TEST_CASE("A fraction's absolute value can be calculated", "[fraction]")

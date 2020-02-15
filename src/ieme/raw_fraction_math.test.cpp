@@ -27,4 +27,6 @@ TEST_CASE("A raw fraction can be reduced", "[raw_fraction]")
                         raw_fraction<int> {9, 16}));
   REQUIRE(are_identical(reduce_ignore_signs(raw_fraction<int> {-45, -80}),
                         raw_fraction<int> {-9, -16}));
+  REQUIRE(are_identical(reduce(raw_fraction<int> {-234123, 0}),
+                        raw_fraction<int> {0, 0}));
 }

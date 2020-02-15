@@ -33,6 +33,9 @@ template <typename Rep>
 constexpr raw_fraction<Rep>
 reduce_ignore_signs(const raw_fraction<Rep>& value) noexcept
 {
+  if (is_undefined(value))
+    return {Rep(0), Rep(0)};
+
   const auto gcd = std::gcd(value.numerator, value.denominator);
 
   return {value.numerator / gcd, value.denominator / gcd};
