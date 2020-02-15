@@ -5,6 +5,7 @@ add_library(Ieme endian.cpp
                  fraction_queries.cpp
                  hash.cpp
                  ieme.cpp
+                 limits.cpp
                  literals.cpp
                  math_utilities.cpp
                  mixed_number.cpp
@@ -36,6 +37,10 @@ add_test(NAME FractionQueriesTest COMMAND FractionQueriesTest)
 add_executable(HashTest hash.test.cpp)
 target_link_libraries(HashTest PUBLIC Ieme Catch2::Catch2)
 add_test(NAME HashTest COMMAND HashTest)
+
+add_executable(LimitsTest limits.test.cpp)
+target_link_libraries(LimitsTest PUBLIC Ieme Catch2::Catch2)
+add_test(NAME LimitsTest COMMAND LimitsTest)
 
 add_executable(LiteralsTest literals.test.cpp)
 target_link_libraries(LiteralsTest PUBLIC Ieme Catch2::Catch2)
