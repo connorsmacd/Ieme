@@ -376,3 +376,18 @@ TEST_CASE("A fractional power of two can be calculated", "[fraction]")
   REQUIRE(pow2(0) == 1);
   REQUIRE(pow2(-3) == 1 / 8_Fr);
 }
+
+TEST_CASE("A fractional power of an integer can be calculated", "[fraction]")
+{
+  REQUIRE(pow(3, 0) == 1);
+  REQUIRE(pow(3, 1) == 3);
+  REQUIRE(pow(3, 2) == 9);
+  REQUIRE(pow(3, 3) == 27);
+  REQUIRE(pow(-5, 8) == 390625);
+  REQUIRE(pow(-5, 9) == -1953125);
+  REQUIRE(pow(3, -1) == 1 / 3_Fr);
+  REQUIRE(pow(3, -2) == 1 / 9_Fr);
+  REQUIRE(pow(3, -3) == 1 / 27_Fr);
+  REQUIRE(pow(-5, -8) == 1 / 390625_Fr);
+  REQUIRE(pow(-5, -9) == -1 / 1953125_Fr);
+}

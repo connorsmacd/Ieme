@@ -71,6 +71,9 @@ constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
 template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept;
 
+template <typename Rep, typename Ops = ops::defaults>
+constexpr fraction<Rep, Ops> pow(const Rep& base, const Rep& exponent) noexcept;
+
 
 // =============================================================================
 
@@ -208,6 +211,14 @@ constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept
   return (exponent >= 0)
            ? fraction<Rep, Ops>(math_utilities::pow2(exponent))
            : fraction<Rep, Ops>(1, math_utilities::pow2(-exponent));
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops> pow(const Rep& base, const Rep& exponent) noexcept
+{
+  return (exponent >= 0)
+           ? fraction<Rep, Ops>(math_utilities::pow(base, exponent))
+           : fraction<Rep, Ops>(1, math_utilities::pow(base, -exponent));
 }
 
 
