@@ -56,7 +56,7 @@ cancel_signs(const raw_fraction<Rep>& value) noexcept
 {
   return (value.numerator > 0 || value.denominator > 0)
            ? value
-           : raw_fraction<Rep> {-value.numerator, -value.denominator};
+           : raw_fraction<Rep>(-value.numerator, -value.denominator);
 }
 
 template <typename Rep>
@@ -65,7 +65,7 @@ normalize_signs(const raw_fraction<Rep>& value) noexcept
 {
   return (value.denominator > 0)
            ? value
-           : raw_fraction<Rep> {-value.numerator, -value.denominator};
+           : raw_fraction<Rep>(-value.numerator, -value.denominator);
 }
 
 template <typename Rep>

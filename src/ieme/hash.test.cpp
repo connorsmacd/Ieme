@@ -12,13 +12,12 @@ using namespace ieme::literals;
 
 TEST_CASE("A raw fraction can be hashed", "[hash]")
 {
-  REQUIRE(hash(raw_fraction<int> {-3, 4}) == hash(raw_fraction<int> {-3, 4}));
-  REQUIRE(hash(raw_fraction<int> {23, 222})
-          == hash(raw_fraction<int> {23, 222}));
-  REQUIRE(std::hash<raw_fraction<int>>()(raw_fraction<int> {-3, 4})
-          == std::hash<raw_fraction<int>>()(raw_fraction<int> {-3, 4}));
-  REQUIRE(std::hash<raw_fraction<int>>()(raw_fraction<int> {23, 222})
-          == std::hash<raw_fraction<int>>()(raw_fraction<int> {23, 222}));
+  REQUIRE(hash(raw_fraction(-3, 4)) == hash(raw_fraction(-3, 4)));
+  REQUIRE(hash(raw_fraction(23, 222)) == hash(raw_fraction(23, 222)));
+  REQUIRE(std::hash<raw_fraction<int>>()(raw_fraction(-3, 4))
+          == std::hash<raw_fraction<int>>()(raw_fraction(-3, 4)));
+  REQUIRE(std::hash<raw_fraction<int>>()(raw_fraction(23, 222))
+          == std::hash<raw_fraction<int>>()(raw_fraction(23, 222)));
 }
 
 TEST_CASE("A fraction can be hashed", "[hash]")
