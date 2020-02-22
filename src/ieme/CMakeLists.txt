@@ -10,6 +10,7 @@ add_library(Ieme endian.cpp
                  math_utilities.cpp
                  mixed_number.cpp
                  ops.cpp
+                 parse_utilities.cpp
                  raw_fraction.cpp
                  raw_fraction_math.cpp
                  raw_fraction_queries.cpp

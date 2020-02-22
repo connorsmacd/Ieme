@@ -4,9 +4,11 @@
 #include <ieme/endian.hpp>
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
+#include <ieme/parse_utilities.hpp>
 
 #include <cstdint>
 #include <limits>
+#include <string_view>
 #include <tuple>
 
 
@@ -27,6 +29,10 @@ constexpr double to_double(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr long double to_long_double(const fraction<Rep, Ops>& value) noexcept;
+
+template <typename Rep, typename Ops = ops::defaults>
+constexpr fraction<Rep, Ops>
+floating_point_string_to_fraction(std::string_view string) noexcept;
 
 
 template <typename Rep,
@@ -77,6 +83,58 @@ template <typename Rep, typename Ops>
 constexpr long double to_long_double(const fraction<Rep, Ops>& value) noexcept
 {
   return fraction_to_floating_point<long double>(value);
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+floating_point_string_to_fraction(const std::string_view string) noexcept
+{
+  const auto scan_results = parse_utilities::scan_floating_point_string(string);
+
+  if (!scan_results.is_valid)
+    return {Rep(0), Rep(0)};
+
+  const auto base = Rep(scan_results.base);
+
+  const auto digits_to_int
+    = [=](const std::string_view digits, const Rep digit_base) -> Rep {
+    auto result = Rep(0);
+    auto base_power = Rep(1);
+
+    for (auto it = digits.rbegin(); it != digits.rend(); ++it)
+    {
+      if (*it == '\'')
+        continue;
+
+      const auto digit_as_int = [=]() {
+        if (*it >= 'A' && *it <= 'F')
+          return Rep(*it - 'A' + 10);
+
+        if (*it >= 'a' && *it <= 'f')
+          return Rep(*it - 'a' + 10);
+
+        return Rep(*it - '0');
+      }();
+
+      result += digit_as_int * base_power;
+      base_power *= digit_base;
+    }
+
+    return result;
+  };
+
+  const auto whole = digits_to_int(scan_results.whole, base);
+
+  const auto fractional_num = digits_to_int(scan_results.fractional, base);
+  const auto fractional_den
+    = math_utilities::pow(base, Rep(scan_results.fractional_precision));
+
+  const auto exponent_base = (base == Rep(10)) ? Rep(10) : Rep(2);
+  const auto exponent = (scan_results.exponent_sign == '-' ? Rep(-1) : Rep(1))
+                        * digits_to_int(scan_results.exponent, 10U);
+
+  return (whole + fraction<Rep, Ops>(fractional_num, fractional_den))
+         * pow<Rep, Ops>(exponent_base, exponent);
 }
 
 template <typename Rep,
