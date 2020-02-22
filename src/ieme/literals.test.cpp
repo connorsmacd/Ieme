@@ -12,7 +12,8 @@ using namespace ieme;
 using namespace ieme::literals;
 
 
-TEST_CASE("Literals have the expected symbolic equivalents", "[literals]")
+TEST_CASE("Fraction literals have the expected symbolic equivalents",
+          "[literals]")
 {
   REQUIRE(are_identical(3 / 4_Fr, fraction(3, 4)));
   REQUIRE(are_identical(-3 / 4_Fr, fraction(-3, 4)));
@@ -20,8 +21,8 @@ TEST_CASE("Literals have the expected symbolic equivalents", "[literals]")
   REQUIRE(are_identical(-3 / -4_Fr, fraction(-3, -4)));
 }
 
-TEST_CASE("The type of numerator drives the representation type for the "
-          "resulting fraction",
+TEST_CASE("The type of numerator in a fraction literal drives the "
+          "representation type of the resulting fraction",
           "[literals]")
 {
   REQUIRE(std::is_same_v<decltype(3 / 4_Fr), fraction<int>>);
@@ -30,8 +31,19 @@ TEST_CASE("The type of numerator drives the representation type for the "
   REQUIRE(std::is_same_v<decltype(3UL / 4_Fr), fraction<unsigned long int>>);
 }
 
-TEST_CASE("Literals can be used within complex arithmetic expressions",
+TEST_CASE("Fraction literals can be used within complex arithmetic expressions",
           "[literals]")
 {
   REQUIRE(3 + 4 / -3_Fr * 2 / 5_Fr == fraction(37, 15));
+}
+
+TEST_CASE("Decimal fraction literals have the expected fractional equivalents",
+          "[literals]")
+{
+  REQUIRE(2.3_Dec == std::intmax_t(2) + std::intmax_t(3) / 10_Fr);
+  REQUIRE(94.332_Dec == std::intmax_t(94L) + std::intmax_t(332) / 1000_Fr);
+  REQUIRE(9.22E+3_Dec == std::intmax_t(9220));
+  REQUIRE(7.543E-10_Dec == std::intmax_t(7543) / 10'000'000'000'000_Fr);
+  REQUIRE(0xC.Ap2_Dec == std::intmax_t(0x65) / 0x2_Fr);
+  REQUIRE(0xC1.A1p-10_Dec == std::intmax_t(0xC1A1) / 0x40000_Fr);
 }

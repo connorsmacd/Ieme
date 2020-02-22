@@ -1,7 +1,9 @@
 #ifndef IEME_LITERALS_HPP
 #define IEME_LITERALS_HPP
 
+#include <ieme/floating_point.hpp>
 #include <ieme/fraction.hpp>
+#include <ieme/ops.hpp>
 
 #include <type_traits>
 
@@ -52,6 +54,10 @@ operator/(const Rep& left,
           const fraction_denominator_literal<IsSigned, Ops>& right) noexcept;
 
 
+constexpr fraction<std::intmax_t, ops::defaults>
+operator""_Dec(const char* string);
+
+
 // =============================================================================
 
 
@@ -97,6 +103,15 @@ operator/(const Rep& left,
           const fraction_denominator_literal<IsSigned, Ops>& right) noexcept
 {
   return {left, Rep(right.value())};
+}
+
+constexpr fraction<std::intmax_t, ops::defaults>
+operator""_Dec(const char* const string)
+{
+  const auto result
+    = floating_point_string_to_fraction<std::intmax_t, ops::defaults>(string);
+
+  return is_defined(result) ? result : throw "invalid floating point literal";
 }
 
 
