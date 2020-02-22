@@ -15,18 +15,92 @@ TEST_CASE("A raw fraction's reciprocal can be computed", "[raw_fraction]")
                         raw_fraction<int> {32, -12}));
 }
 
+TEST_CASE("Raw fractions can have double negative signs cancelled",
+          "[raw_fraction]")
+{
+  REQUIRE(are_identical(cancel_signs(raw_fraction<int> {3, 5}),
+                        raw_fraction<int> {3, 5}));
+  REQUIRE(are_identical(cancel_signs(raw_fraction<int> {-3, 5}),
+                        raw_fraction<int> {-3, 5}));
+  REQUIRE(are_identical(cancel_signs(raw_fraction<int> {3, -5}),
+                        raw_fraction<int> {3, -5}));
+  REQUIRE(are_identical(cancel_signs(raw_fraction<int> {-3, -5}),
+                        raw_fraction<int> {3, 5}));
+}
+
+TEST_CASE("Raw fractions can be normalized to cancel double negative signs or "
+          "move a negative sign to the numerator",
+          "[raw_fraction]")
+{
+  REQUIRE(are_identical(normalize_signs(raw_fraction<int> {3, 5}),
+                        raw_fraction<int> {3, 5}));
+  REQUIRE(are_identical(normalize_signs(raw_fraction<int> {-3, 5}),
+                        raw_fraction<int> {-3, 5}));
+  REQUIRE(are_identical(normalize_signs(raw_fraction<int> {3, -5}),
+                        raw_fraction<int> {-3, 5}));
+  REQUIRE(are_identical(normalize_signs(raw_fraction<int> {-3, -5}),
+                        raw_fraction<int> {3, 5}));
+}
+
 TEST_CASE("A raw fraction can be reduced", "[raw_fraction]")
 {
-  REQUIRE(are_identical(reduce(raw_fraction<int> {12, 32}),
-                        raw_fraction<int> {3, 8}));
-  REQUIRE(are_identical(reduce(raw_fraction<int> {-12, 32}),
-                        raw_fraction<int> {-3, 8}));
-  REQUIRE(are_identical(reduce(raw_fraction<int> {7, 99}),
-                        raw_fraction<int> {7, 99}));
-  REQUIRE(are_identical(reduce(raw_fraction<int> {-45, -80}),
-                        raw_fraction<int> {9, 16}));
-  REQUIRE(are_identical(reduce_ignore_signs(raw_fraction<int> {-45, -80}),
-                        raw_fraction<int> {-9, -16}));
-  REQUIRE(are_identical(reduce(raw_fraction<int> {-234123, 0}),
-                        raw_fraction<int> {0, 0}));
+  REQUIRE(
+    are_identical(reduce(raw_fraction<int> {12, 32}, reduce_type::ignore_signs),
+                  raw_fraction<int> {3, 8}));
+  REQUIRE(
+    are_identical(reduce(raw_fraction<int> {12, 32}, reduce_type::cancel_signs),
+                  raw_fraction<int> {3, 8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {12, 32}, reduce_type::normalize_signs),
+    raw_fraction<int> {3, 8}));
+
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, 32}, reduce_type::ignore_signs),
+    raw_fraction<int> {-3, 8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, 32}, reduce_type::cancel_signs),
+    raw_fraction<int> {-3, 8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, 32}, reduce_type::normalize_signs),
+    raw_fraction<int> {-3, 8}));
+
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {12, -32}, reduce_type::ignore_signs),
+    raw_fraction<int> {3, -8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {12, -32}, reduce_type::cancel_signs),
+    raw_fraction<int> {3, -8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {12, -32}, reduce_type::normalize_signs),
+    raw_fraction<int> {-3, 8}));
+
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, -32}, reduce_type::ignore_signs),
+    raw_fraction<int> {-3, -8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, -32}, reduce_type::cancel_signs),
+    raw_fraction<int> {3, 8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, -32}, reduce_type::normalize_signs),
+    raw_fraction<int> {3, 8}));
+
+  REQUIRE(
+    are_identical(reduce(raw_fraction<int> {-3, -8}, reduce_type::ignore_signs),
+                  raw_fraction<int> {-3, -8}));
+  REQUIRE(
+    are_identical(reduce(raw_fraction<int> {-3, -8}, reduce_type::cancel_signs),
+                  raw_fraction<int> {3, 8}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-3, -8}, reduce_type::normalize_signs),
+    raw_fraction<int> {3, 8}));
+
+  REQUIRE(
+    are_identical(reduce(raw_fraction<int> {-12, 0}, reduce_type::ignore_signs),
+                  raw_fraction<int> {0, 0}));
+  REQUIRE(
+    are_identical(reduce(raw_fraction<int> {-12, 0}, reduce_type::cancel_signs),
+                  raw_fraction<int> {0, 0}));
+  REQUIRE(are_identical(
+    reduce(raw_fraction<int> {-12, 0}, reduce_type::normalize_signs),
+    raw_fraction<int> {0, 0}));
 }

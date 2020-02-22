@@ -18,10 +18,28 @@ reciprocal(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
+cancel_signs(const fraction<Rep, Ops>& value) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+normalize_signs(const fraction<Rep, Ops>& value) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value,
+                                    reduce_type reduce_type
+                                    = reduce_type::normalize_signs) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
 reduce_ignore_signs(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value) noexcept;
+constexpr fraction<Rep, Ops>
+reduce_cancel_signs(const fraction<Rep, Ops>& value) noexcept;
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+reduce_normalize_signs(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept;
@@ -87,15 +105,44 @@ reciprocal(const fraction<Rep, Ops>& value) noexcept
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
+cancel_signs(const fraction<Rep, Ops>& value) noexcept
+{
+  return cancel_signs(value.raw());
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+normalize_signs(const fraction<Rep, Ops>& value) noexcept
+{
+  return normalize_signs(value.raw());
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value,
+                                    const reduce_type reduce_type) noexcept
+{
+  return reduce(value.raw(), reduce_type);
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
 reduce_ignore_signs(const fraction<Rep, Ops>& value) noexcept
 {
   return reduce_ignore_signs(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value) noexcept
+constexpr fraction<Rep, Ops>
+reduce_cancel_signs(const fraction<Rep, Ops>& value) noexcept
 {
-  return reduce(value.raw());
+  return reduce_cancel_signs(value.raw());
+}
+
+template <typename Rep, typename Ops>
+constexpr fraction<Rep, Ops>
+reduce_normalize_signs(const fraction<Rep, Ops>& value) noexcept
+{
+  return reduce_normalize_signs(value.raw());
 }
 
 template <typename Rep, typename Ops>
