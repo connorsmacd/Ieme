@@ -17,7 +17,8 @@ struct raw_fraction {
 
   constexpr raw_fraction() noexcept = default;
 
-  constexpr raw_fraction(Rep init_numerator, Rep init_denominator) noexcept;
+  constexpr raw_fraction(const Rep& init_numerator,
+                         const Rep& init_denominator) noexcept;
 
   template <typename OtherRep,
             typename = std::enable_if_t<std::is_convertible_v<OtherRep, Rep>>>
@@ -37,8 +38,9 @@ std::istream& operator>>(std::istream& stream,
 
 
 template <typename Rep>
-constexpr raw_fraction<Rep>::raw_fraction(const Rep init_numerator,
-                                          const Rep init_denominator) noexcept :
+constexpr raw_fraction<Rep>::raw_fraction(
+  const Rep& init_numerator,
+  const Rep& init_denominator) noexcept :
   numerator {init_numerator},
   denominator {init_denominator}
 {
