@@ -3,7 +3,6 @@
 
 #include <istream>
 #include <limits>
-#include <numeric>
 #include <ostream>
 #include <type_traits>
 
