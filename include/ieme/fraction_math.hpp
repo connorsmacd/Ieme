@@ -26,8 +26,8 @@ normalize_signs(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value,
-                                    reduce_type reduce_type
-                                    = reduce_type::normalize_signs) noexcept;
+                                    reduce_mode mode
+                                    = reduce_mode::normalize_signs) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
@@ -46,7 +46,7 @@ constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr Rep to_whole(const fraction<Rep, Ops>& value,
-                       round_mode round_mode = round_mode::round) noexcept;
+                       round_mode mode = round_mode::round) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr Rep trunc(const fraction<Rep, Ops>& value) noexcept;
@@ -63,7 +63,7 @@ constexpr Rep round(const fraction<Rep, Ops>& value) noexcept;
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
                                           const Rep& new_denominator,
-                                          round_mode round_mode
+                                          round_mode mode
                                           = round_mode::round) noexcept;
 
 template <typename Rep, typename Ops>
@@ -119,9 +119,9 @@ normalize_signs(const fraction<Rep, Ops>& value) noexcept
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value,
-                                    const reduce_type reduce_type) noexcept
+                                    const reduce_mode mode) noexcept
 {
-  return reduce(value.raw(), reduce_type);
+  return reduce(value.raw(), mode);
 }
 
 template <typename Rep, typename Ops>

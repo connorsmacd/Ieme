@@ -9,7 +9,7 @@
 namespace ieme {
 
 
-enum class reduce_type { ignore_signs, cancel_signs, normalize_signs };
+enum class reduce_mode { ignore_signs, cancel_signs, normalize_signs };
 
 
 template <typename Rep>
@@ -25,8 +25,8 @@ normalize_signs(const raw_fraction<Rep>& value) noexcept;
 
 template <typename Rep>
 constexpr raw_fraction<Rep> reduce(const raw_fraction<Rep>& value,
-                                   reduce_type reduce_type
-                                   = reduce_type::normalize_signs) noexcept;
+                                   reduce_mode mode
+                                   = reduce_mode::normalize_signs) noexcept;
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
@@ -70,15 +70,15 @@ normalize_signs(const raw_fraction<Rep>& value) noexcept
 
 template <typename Rep>
 constexpr raw_fraction<Rep> reduce(const raw_fraction<Rep>& value,
-                                   const reduce_type reduce_type) noexcept
+                                   const reduce_mode mode) noexcept
 {
-  switch (reduce_type)
+  switch (mode)
   {
-    case reduce_type::ignore_signs:
+    case reduce_mode::ignore_signs:
       return reduce_ignore_signs(value);
-    case reduce_type::cancel_signs:
+    case reduce_mode::cancel_signs:
       return reduce_cancel_signs(value);
-    case reduce_type::normalize_signs:
+    case reduce_mode::normalize_signs:
       return reduce_normalize_signs(value);
   }
 

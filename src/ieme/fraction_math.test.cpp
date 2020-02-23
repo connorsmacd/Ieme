@@ -37,46 +37,46 @@ TEST_CASE("Fractions can be normalized to cancel double negative signs or "
 TEST_CASE("A fraction can be reduced", "[fraction]")
 {
   REQUIRE(
-    are_identical(reduce(12 / 32_Fr, reduce_type::ignore_signs), 3 / 8_Fr));
+    are_identical(reduce(12 / 32_Fr, reduce_mode::ignore_signs), 3 / 8_Fr));
   REQUIRE(
-    are_identical(reduce(12 / 32_Fr, reduce_type::cancel_signs), 3 / 8_Fr));
+    are_identical(reduce(12 / 32_Fr, reduce_mode::cancel_signs), 3 / 8_Fr));
   REQUIRE(
-    are_identical(reduce(12 / 32_Fr, reduce_type::normalize_signs), 3 / 8_Fr));
+    are_identical(reduce(12 / 32_Fr, reduce_mode::normalize_signs), 3 / 8_Fr));
 
   REQUIRE(
-    are_identical(reduce(-12 / 32_Fr, reduce_type::ignore_signs), -3 / 8_Fr));
+    are_identical(reduce(-12 / 32_Fr, reduce_mode::ignore_signs), -3 / 8_Fr));
   REQUIRE(
-    are_identical(reduce(-12 / 32_Fr, reduce_type::cancel_signs), -3 / 8_Fr));
-  REQUIRE(are_identical(reduce(-12 / 32_Fr, reduce_type::normalize_signs),
+    are_identical(reduce(-12 / 32_Fr, reduce_mode::cancel_signs), -3 / 8_Fr));
+  REQUIRE(are_identical(reduce(-12 / 32_Fr, reduce_mode::normalize_signs),
                         -3 / 8_Fr));
 
   REQUIRE(
-    are_identical(reduce(12 / -32_Fr, reduce_type::ignore_signs), 3 / -8_Fr));
+    are_identical(reduce(12 / -32_Fr, reduce_mode::ignore_signs), 3 / -8_Fr));
   REQUIRE(
-    are_identical(reduce(12 / -32_Fr, reduce_type::cancel_signs), 3 / -8_Fr));
-  REQUIRE(are_identical(reduce(12 / -32_Fr, reduce_type::normalize_signs),
+    are_identical(reduce(12 / -32_Fr, reduce_mode::cancel_signs), 3 / -8_Fr));
+  REQUIRE(are_identical(reduce(12 / -32_Fr, reduce_mode::normalize_signs),
                         -3 / 8_Fr));
 
   REQUIRE(
-    are_identical(reduce(-12 / -32_Fr, reduce_type::ignore_signs), -3 / -8_Fr));
+    are_identical(reduce(-12 / -32_Fr, reduce_mode::ignore_signs), -3 / -8_Fr));
   REQUIRE(
-    are_identical(reduce(-12 / -32_Fr, reduce_type::cancel_signs), 3 / 8_Fr));
-  REQUIRE(are_identical(reduce(-12 / -32_Fr, reduce_type::normalize_signs),
+    are_identical(reduce(-12 / -32_Fr, reduce_mode::cancel_signs), 3 / 8_Fr));
+  REQUIRE(are_identical(reduce(-12 / -32_Fr, reduce_mode::normalize_signs),
                         3 / 8_Fr));
 
   REQUIRE(
-    are_identical(reduce(-3 / -8_Fr, reduce_type::ignore_signs), -3 / -8_Fr));
+    are_identical(reduce(-3 / -8_Fr, reduce_mode::ignore_signs), -3 / -8_Fr));
   REQUIRE(
-    are_identical(reduce(-3 / -8_Fr, reduce_type::cancel_signs), 3 / 8_Fr));
+    are_identical(reduce(-3 / -8_Fr, reduce_mode::cancel_signs), 3 / 8_Fr));
   REQUIRE(
-    are_identical(reduce(-3 / -8_Fr, reduce_type::normalize_signs), 3 / 8_Fr));
+    are_identical(reduce(-3 / -8_Fr, reduce_mode::normalize_signs), 3 / 8_Fr));
 
   REQUIRE(
-    are_identical(reduce(-12 / 0_Fr, reduce_type::ignore_signs), 0 / 0_Fr));
+    are_identical(reduce(-12 / 0_Fr, reduce_mode::ignore_signs), 0 / 0_Fr));
   REQUIRE(
-    are_identical(reduce(-12 / 0_Fr, reduce_type::cancel_signs), 0 / 0_Fr));
+    are_identical(reduce(-12 / 0_Fr, reduce_mode::cancel_signs), 0 / 0_Fr));
   REQUIRE(
-    are_identical(reduce(-12 / 0_Fr, reduce_type::normalize_signs), 0 / 0_Fr));
+    are_identical(reduce(-12 / 0_Fr, reduce_mode::normalize_signs), 0 / 0_Fr));
 }
 
 TEST_CASE("A fraction's absolute value can be calculated", "[fraction]")

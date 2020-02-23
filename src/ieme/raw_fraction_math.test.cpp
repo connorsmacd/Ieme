@@ -43,59 +43,59 @@ TEST_CASE("Raw fractions can be normalized to cancel double negative signs or "
 
 TEST_CASE("A raw fraction can be reduced", "[raw_fraction]")
 {
-  REQUIRE(are_identical(reduce(raw_fraction(12, 32), reduce_type::ignore_signs),
+  REQUIRE(are_identical(reduce(raw_fraction(12, 32), reduce_mode::ignore_signs),
                         raw_fraction(3, 8)));
-  REQUIRE(are_identical(reduce(raw_fraction(12, 32), reduce_type::cancel_signs),
+  REQUIRE(are_identical(reduce(raw_fraction(12, 32), reduce_mode::cancel_signs),
                         raw_fraction(3, 8)));
   REQUIRE(
-    are_identical(reduce(raw_fraction(12, 32), reduce_type::normalize_signs),
+    are_identical(reduce(raw_fraction(12, 32), reduce_mode::normalize_signs),
                   raw_fraction(3, 8)));
 
   REQUIRE(
-    are_identical(reduce(raw_fraction(-12, 32), reduce_type::ignore_signs),
+    are_identical(reduce(raw_fraction(-12, 32), reduce_mode::ignore_signs),
                   raw_fraction(-3, 8)));
   REQUIRE(
-    are_identical(reduce(raw_fraction(-12, 32), reduce_type::cancel_signs),
+    are_identical(reduce(raw_fraction(-12, 32), reduce_mode::cancel_signs),
                   raw_fraction(-3, 8)));
   REQUIRE(
-    are_identical(reduce(raw_fraction(-12, 32), reduce_type::normalize_signs),
-                  raw_fraction(-3, 8)));
-
-  REQUIRE(
-    are_identical(reduce(raw_fraction(12, -32), reduce_type::ignore_signs),
-                  raw_fraction(3, -8)));
-  REQUIRE(
-    are_identical(reduce(raw_fraction(12, -32), reduce_type::cancel_signs),
-                  raw_fraction(3, -8)));
-  REQUIRE(
-    are_identical(reduce(raw_fraction(12, -32), reduce_type::normalize_signs),
+    are_identical(reduce(raw_fraction(-12, 32), reduce_mode::normalize_signs),
                   raw_fraction(-3, 8)));
 
   REQUIRE(
-    are_identical(reduce(raw_fraction(-12, -32), reduce_type::ignore_signs),
+    are_identical(reduce(raw_fraction(12, -32), reduce_mode::ignore_signs),
+                  raw_fraction(3, -8)));
+  REQUIRE(
+    are_identical(reduce(raw_fraction(12, -32), reduce_mode::cancel_signs),
+                  raw_fraction(3, -8)));
+  REQUIRE(
+    are_identical(reduce(raw_fraction(12, -32), reduce_mode::normalize_signs),
+                  raw_fraction(-3, 8)));
+
+  REQUIRE(
+    are_identical(reduce(raw_fraction(-12, -32), reduce_mode::ignore_signs),
                   raw_fraction(-3, -8)));
   REQUIRE(
-    are_identical(reduce(raw_fraction(-12, -32), reduce_type::cancel_signs),
+    are_identical(reduce(raw_fraction(-12, -32), reduce_mode::cancel_signs),
                   raw_fraction(3, 8)));
   REQUIRE(
-    are_identical(reduce(raw_fraction(-12, -32), reduce_type::normalize_signs),
+    are_identical(reduce(raw_fraction(-12, -32), reduce_mode::normalize_signs),
                   raw_fraction(3, 8)));
 
-  REQUIRE(are_identical(reduce(raw_fraction(-3, -8), reduce_type::ignore_signs),
+  REQUIRE(are_identical(reduce(raw_fraction(-3, -8), reduce_mode::ignore_signs),
                         raw_fraction(-3, -8)));
-  REQUIRE(are_identical(reduce(raw_fraction(-3, -8), reduce_type::cancel_signs),
+  REQUIRE(are_identical(reduce(raw_fraction(-3, -8), reduce_mode::cancel_signs),
                         raw_fraction(3, 8)));
   REQUIRE(
-    are_identical(reduce(raw_fraction(-3, -8), reduce_type::normalize_signs),
+    are_identical(reduce(raw_fraction(-3, -8), reduce_mode::normalize_signs),
                   raw_fraction(3, 8)));
 
   REQUIRE(
-    are_identical(reduce(raw_fraction<int>(-12, 0), reduce_type::ignore_signs),
+    are_identical(reduce(raw_fraction<int>(-12, 0), reduce_mode::ignore_signs),
                   raw_fraction<int>(0, 0)));
   REQUIRE(
-    are_identical(reduce(raw_fraction<int>(-12, 0), reduce_type::cancel_signs),
+    are_identical(reduce(raw_fraction<int>(-12, 0), reduce_mode::cancel_signs),
                   raw_fraction<int>(0, 0)));
   REQUIRE(are_identical(
-    reduce(raw_fraction<int>(-12, 0), reduce_type::normalize_signs),
+    reduce(raw_fraction<int>(-12, 0), reduce_mode::normalize_signs),
     raw_fraction<int>(0, 0)));
 }
