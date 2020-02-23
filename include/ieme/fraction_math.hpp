@@ -45,6 +45,10 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
+constexpr Rep to_whole(const fraction<Rep, Ops>& value,
+                       round_mode round_mode = round_mode::round) noexcept;
+
+template <typename Rep, typename Ops>
 constexpr Rep trunc(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
@@ -57,8 +61,10 @@ template <typename Rep, typename Ops>
 constexpr Rep round(const fraction<Rep, Ops>& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep to_whole(const fraction<Rep, Ops>& value,
-                       round_mode mode = round_mode::round) noexcept;
+constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
+                                          const Rep& new_denominator,
+                                          round_mode round_mode
+                                          = round_mode::round) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
@@ -79,12 +85,6 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
 round_redenominate(const fraction<Rep, Ops>& value,
                    const Rep& new_denominator) noexcept;
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
-                                          const Rep& new_denominator,
-                                          round_mode mode
-                                          = round_mode::round) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept;
@@ -152,6 +152,25 @@ constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept
 }
 
 template <typename Rep, typename Ops>
+constexpr Rep to_whole(const fraction<Rep, Ops>& value,
+                       const round_mode mode) noexcept
+{
+  switch (mode)
+  {
+    case round_mode::trunc:
+      return trunc(value);
+    case round_mode::ceil:
+      return ceil(value);
+    case round_mode::floor:
+      return floor(value);
+    case round_mode::round:
+      return round(value);
+  }
+
+  return to_whole(value);
+}
+
+template <typename Rep, typename Ops>
 constexpr Rep trunc(const fraction<Rep, Ops>& value) noexcept
 {
   return value.numerator() / value.denominator();
@@ -182,22 +201,23 @@ constexpr Rep round(const fraction<Rep, Ops>& value) noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr Rep to_whole(const fraction<Rep, Ops>& value,
-                       const round_mode mode) noexcept
+constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
+                                          const Rep& new_denominator,
+                                          const round_mode mode) noexcept
 {
   switch (mode)
   {
     case round_mode::trunc:
-      return trunc(value);
+      return trunc_redenominate(value, new_denominator);
     case round_mode::ceil:
-      return ceil(value);
+      return ceil_redenominate(value, new_denominator);
     case round_mode::floor:
-      return floor(value);
+      return floor_redenominate(value, new_denominator);
     case round_mode::round:
-      return round(value);
+      return round_redenominate(value, new_denominator);
   }
 
-  return to_whole(value);
+  return redenominate(value, new_denominator);
 }
 
 template <typename Rep, typename Ops>
@@ -230,26 +250,6 @@ constexpr fraction<Rep, Ops> round_redenominate(const fraction<Rep, Ops>& value,
                                                 const Rep& denominator) noexcept
 {
   return {round(value * denominator), denominator};
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
-                                          const Rep& new_denominator,
-                                          const round_mode mode) noexcept
-{
-  switch (mode)
-  {
-    case round_mode::trunc:
-      return trunc_redenominate(value, new_denominator);
-    case round_mode::ceil:
-      return ceil_redenominate(value, new_denominator);
-    case round_mode::floor:
-      return floor_redenominate(value, new_denominator);
-    case round_mode::round:
-      return round_redenominate(value, new_denominator);
-  }
-
-  return redenominate(value, new_denominator);
 }
 
 template <typename Rep, typename Ops>
