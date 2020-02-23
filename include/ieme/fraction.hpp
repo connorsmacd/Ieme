@@ -485,7 +485,7 @@ IEME_FRACTION_DEFINE_ARITHMETIC_OPS(%, modulus)
                                                                                \
     if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
       return left = left symbol right;                                         \
-    else if constexpr (std::is_same_v<LeftRep, common_rep_type>)               \
+    else                                                                       \
       return left = left symbol common_raw_type(right.raw());                  \
   }                                                                            \
                                                                                \
@@ -497,7 +497,7 @@ IEME_FRACTION_DEFINE_ARITHMETIC_OPS(%, modulus)
                                                                                \
     if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
       return left = left symbol right;                                         \
-    else if constexpr (std::is_same_v<LeftRep, common_rep_type>)               \
+    else                                                                       \
       return left = left symbol common_rep_type(right);                        \
   }
 
