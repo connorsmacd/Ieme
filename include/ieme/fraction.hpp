@@ -59,182 +59,271 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
 operator-(const fraction<Rep, Ops>& value) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator+(const fraction<Rep, Ops>& left,
-          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator+(const fraction<LeftRep, Ops>& left,
+          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator+(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator+(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator+(const Rep& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator+(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator-(const fraction<Rep, Ops>& left,
-          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator-(const fraction<LeftRep, Ops>& left,
+          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator-(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator-(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator-(const Rep& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator-(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator*(const fraction<Rep, Ops>& left,
-          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator*(const fraction<LeftRep, Ops>& left,
+          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator*(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator*(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator*(const Rep& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator*(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator/(const fraction<Rep, Ops>& left,
-          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator/(const fraction<LeftRep, Ops>& left,
+          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator/(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator/(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator/(const Rep& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator/(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator%(const fraction<Rep, Ops>& left,
-          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator%(const fraction<LeftRep, Ops>& left,
+          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator%(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator%(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>
-operator%(const Rep& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep, typename RightRep, typename Ops>
+constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
+operator%(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator+=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>&
+operator+=(fraction<LeftRep, Ops>& left,
+           const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator+=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>& operator+=(fraction<LeftRep, Ops>& left,
+                                             const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator-=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>&
+operator-=(fraction<LeftRep, Ops>& left,
+           const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator-=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>& operator-=(fraction<LeftRep, Ops>& left,
+                                             const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator*=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>&
+operator*=(fraction<LeftRep, Ops>& left,
+           const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator*=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>& operator*=(fraction<LeftRep, Ops>& left,
+                                             const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator/=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>&
+operator/=(fraction<LeftRep, Ops>& left,
+           const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator/=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>& operator/=(fraction<LeftRep, Ops>& left,
+                                             const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator%=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>&
+operator%=(fraction<LeftRep, Ops>& left,
+           const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator%=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
+constexpr fraction<LeftRep, Ops>& operator%=(fraction<LeftRep, Ops>& left,
+                                             const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator==(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator==(const fraction<LeftRep, Ops>& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator==(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator==(const fraction<LeftRep, Ops>& left,
+                          const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator==(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator==(const LeftRep& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator!=(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator!=(const fraction<LeftRep, Ops>& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator!=(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator!=(const fraction<LeftRep, Ops>& left,
+                          const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator!=(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator!=(const LeftRep& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator<(const fraction<Rep, Ops>& left,
-                         const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator<(const fraction<LeftRep, Ops>& left,
+                         const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator<(const fraction<Rep, Ops>& left,
-                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator<(const fraction<LeftRep, Ops>& left,
+                         const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator<(const Rep& left,
-                         const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator<(const LeftRep& left,
+                         const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator<=(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator<=(const fraction<LeftRep, Ops>& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator<=(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator<=(const fraction<LeftRep, Ops>& left,
+                          const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator<=(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator<=(const LeftRep& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator>(const fraction<Rep, Ops>& left,
-                         const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator>(const fraction<LeftRep, Ops>& left,
+                         const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator>(const fraction<Rep, Ops>& left,
-                         const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator>(const fraction<LeftRep, Ops>& left,
+                         const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator>(const Rep& left,
-                         const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator>(const LeftRep& left,
+                         const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator>=(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator>=(const fraction<LeftRep, Ops>& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator>=(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator>=(const fraction<LeftRep, Ops>& left,
+                          const RightRep& right) noexcept;
 
-template <typename Rep, typename Ops>
-constexpr bool operator>=(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept;
+template <typename LeftRep,
+          typename RightRep,
+          typename Ops,
+          typename = std::common_type_t<LeftRep, RightRep>>
+constexpr bool operator>=(const LeftRep& left,
+                          const fraction<RightRep, Ops>& right) noexcept;
 
 template <typename Rep, typename Ops>
 std::ostream& operator<<(std::ostream& stream,
@@ -314,306 +403,139 @@ constexpr fraction<Rep, Ops> operator-(const fraction<Rep, Ops>& value) noexcept
   return Ops::negate(value.raw());
 }
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator+(const fraction<Rep, Ops>& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::plus(left.raw(), right.raw());
-}
+#define IEME_DO_FRACTION_AND_FRACTION_OP(function)                             \
+  using common_rep_type = std::common_type_t<LeftRep, RightRep>;               \
+  using common_raw_type = raw_fraction<common_rep_type>;                       \
+                                                                               \
+  if constexpr (std::is_same_v<LeftRep, RightRep>)                             \
+    return Ops::function(left.raw(), right.raw());                             \
+  else if constexpr (std::is_same_v<LeftRep, common_rep_type>)                 \
+    return Ops::function(left.raw(), common_raw_type(right.raw()));            \
+  else if constexpr (std::is_same_v<RightRep, common_rep_type>)                \
+    return Ops::function(common_raw_type(left.raw()), right.raw());            \
+  else                                                                         \
+    return Ops::function(common_raw_type(left.raw()),                          \
+                         common_raw_type(right.raw()));
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator+(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept
-{
-  return Ops::plus(left.raw(), right);
-}
+#define IEME_DO_FRACTION_AND_REP_OP(function)                                  \
+  using common_rep_type = std::common_type_t<LeftRep, RightRep>;               \
+  using common_raw_type = raw_fraction<common_rep_type>;                       \
+                                                                               \
+  if constexpr (std::is_same_v<LeftRep, RightRep>)                             \
+    return Ops::function(left.raw(), right);                                   \
+  else if constexpr (std::is_same_v<LeftRep, common_rep_type>)                 \
+    return Ops::function(left.raw(), common_rep_type(right));                  \
+  else if constexpr (std::is_same_v<RightRep, common_rep_type>)                \
+    return Ops::function(common_raw_type(left.raw()), right);                  \
+  else                                                                         \
+    return Ops::function(common_raw_type(left.raw()), common_rep_type(right));
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator+(const Rep& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::plus(left, right.raw());
-}
+#define IEME_DO_REP_AND_FRACTION_OP(function)                                  \
+  using common_rep_type = std::common_type_t<LeftRep, RightRep>;               \
+  using common_raw_type = raw_fraction<common_rep_type>;                       \
+                                                                               \
+  if constexpr (std::is_same_v<LeftRep, RightRep>)                             \
+    return Ops::function(left, right.raw());                                   \
+  else if constexpr (std::is_same_v<LeftRep, common_rep_type>)                 \
+    return Ops::function(left, common_raw_type(right.raw()));                  \
+  else if constexpr (std::is_same_v<RightRep, common_rep_type>)                \
+    return Ops::function(common_rep_type(left), right.raw());                  \
+  else                                                                         \
+    return Ops::function(common_rep_type(left), common_raw_type(right.raw()));
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator-(const fraction<Rep, Ops>& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::minus(left.raw(), right.raw());
-}
+#define IEME_FRACTION_DEFINE_ARITHMETIC_OPS(symbol, function)                  \
+  template <typename LeftRep, typename RightRep, typename Ops>                 \
+  constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>               \
+  operator symbol(const fraction<LeftRep, Ops>& left,                          \
+                  const fraction<RightRep, Ops>& right) noexcept               \
+  {                                                                            \
+    IEME_DO_FRACTION_AND_FRACTION_OP(function)                                 \
+  }                                                                            \
+                                                                               \
+  template <typename LeftRep, typename RightRep, typename Ops>                 \
+  constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>               \
+  operator symbol(const fraction<LeftRep, Ops>& left,                          \
+                  const RightRep& right) noexcept                              \
+  {                                                                            \
+    IEME_DO_FRACTION_AND_REP_OP(function)                                      \
+  }                                                                            \
+                                                                               \
+  template <typename LeftRep, typename RightRep, typename Ops>                 \
+  constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>               \
+  operator symbol(const LeftRep& left,                                         \
+                  const fraction<RightRep, Ops>& right) noexcept               \
+  {                                                                            \
+    IEME_DO_REP_AND_FRACTION_OP(function)                                      \
+  }
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator-(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept
-{
-  return Ops::minus(left.raw(), right);
-}
+IEME_FRACTION_DEFINE_ARITHMETIC_OPS(+, plus)
+IEME_FRACTION_DEFINE_ARITHMETIC_OPS(-, minus)
+IEME_FRACTION_DEFINE_ARITHMETIC_OPS(*, multiplies)
+IEME_FRACTION_DEFINE_ARITHMETIC_OPS(/, divides)
+IEME_FRACTION_DEFINE_ARITHMETIC_OPS(%, modulus)
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator-(const Rep& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::minus(left, right.raw());
-}
+#define IEME_DEFINE_COMPOUND_ASSIGNMENT_OPS(symbol)                            \
+  template <typename LeftRep, typename RightRep, typename Ops, typename>       \
+  constexpr fraction<LeftRep, Ops>& operator symbol##=(                        \
+    fraction<LeftRep, Ops>& left,                                              \
+    const fraction<RightRep, Ops>& right) noexcept                             \
+  {                                                                            \
+    using common_rep_type = std::common_type_t<LeftRep, RightRep>;             \
+    using common_raw_type = raw_fraction<common_rep_type>;                     \
+                                                                               \
+    if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
+      return left = left symbol right;                                         \
+    else if constexpr (std::is_same_v<LeftRep, common_rep_type>)               \
+      return left = left symbol common_raw_type(right.raw());                  \
+  }                                                                            \
+                                                                               \
+  template <typename LeftRep, typename RightRep, typename Ops, typename>       \
+  constexpr fraction<LeftRep, Ops>& operator symbol##=(                        \
+    fraction<LeftRep, Ops>& left, const RightRep& right) noexcept              \
+  {                                                                            \
+    using common_rep_type = std::common_type_t<LeftRep, RightRep>;             \
+                                                                               \
+    if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
+      return left = left symbol right;                                         \
+    else if constexpr (std::is_same_v<LeftRep, common_rep_type>)               \
+      return left = left symbol common_rep_type(right);                        \
+  }
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator*(const fraction<Rep, Ops>& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::multiplies(left.raw(), right.raw());
-}
+IEME_DEFINE_COMPOUND_ASSIGNMENT_OPS(+)
+IEME_DEFINE_COMPOUND_ASSIGNMENT_OPS(-)
+IEME_DEFINE_COMPOUND_ASSIGNMENT_OPS(*)
+IEME_DEFINE_COMPOUND_ASSIGNMENT_OPS(/)
+IEME_DEFINE_COMPOUND_ASSIGNMENT_OPS(%)
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator*(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept
-{
-  return Ops::multiplies(left.raw(), right);
-}
+#define IEME_FRACTION_DEFINE_COMPARISON_OPS(symbol, function)                  \
+  template <typename LeftRep, typename RightRep, typename Ops, typename>       \
+  constexpr bool operator symbol(                                              \
+    const fraction<LeftRep, Ops>& left,                                        \
+    const fraction<RightRep, Ops>& right) noexcept                             \
+  {                                                                            \
+    IEME_DO_FRACTION_AND_FRACTION_OP(function)                                 \
+  }                                                                            \
+                                                                               \
+  template <typename LeftRep, typename RightRep, typename Ops, typename>       \
+  constexpr bool operator symbol(const fraction<LeftRep, Ops>& left,           \
+                                 const RightRep& right) noexcept               \
+  {                                                                            \
+    IEME_DO_FRACTION_AND_REP_OP(function)                                      \
+  }                                                                            \
+                                                                               \
+  template <typename LeftRep, typename RightRep, typename Ops, typename>       \
+  constexpr bool operator symbol(                                              \
+    const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept        \
+  {                                                                            \
+    IEME_DO_REP_AND_FRACTION_OP(function)                                      \
+  }
 
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator*(const Rep& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::multiplies(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator/(const fraction<Rep, Ops>& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::divides(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator/(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept
-{
-  return Ops::divides(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator/(const Rep& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::divides(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator%(const fraction<Rep, Ops>& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::modulus(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator%(const fraction<Rep, Ops>& left,
-                                       const Rep& right) noexcept
-{
-  return Ops::modulus(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator%(const Rep& left,
-                                       const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::modulus(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator+=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept
-{
-  return left = left + right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator+=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept
-{
-  return left = left + right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator-=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept
-{
-  return left = left - right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator-=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept
-{
-  return left = left - right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator*=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept
-{
-  return left = left * right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator*=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept
-{
-  return left = left * right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator/=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept
-{
-  return left = left / right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator/=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept
-{
-  return left = left / right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>&
-operator%=(fraction<Rep, Ops>& left, const fraction<Rep, Ops>& right) noexcept
-{
-  return left = left % right;
-}
-
-template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>& operator%=(fraction<Rep, Ops>& left,
-                                         const Rep& right) noexcept
-{
-  return left = left % right;
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator==(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::equal_to(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator==(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept
-{
-  return Ops::equal_to(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator==(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::equal_to(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator!=(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::not_equal_to(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator!=(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept
-{
-  return Ops::not_equal_to(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator!=(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::not_equal_to(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator<(const fraction<Rep, Ops>& left,
-                         const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::less(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator<(const fraction<Rep, Ops>& left,
-                         const Rep& right) noexcept
-{
-  return Ops::less(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator<(const Rep& left,
-                         const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::less(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator<=(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::less_equal(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator<=(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept
-{
-  return Ops::less_equal(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator<=(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::less_equal(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator>(const fraction<Rep, Ops>& left,
-                         const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::greater(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator>(const fraction<Rep, Ops>& left,
-                         const Rep& right) noexcept
-{
-  return Ops::greater(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator>(const Rep& left,
-                         const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::greater(left, right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator>=(const fraction<Rep, Ops>& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::greater_equal(left.raw(), right.raw());
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator>=(const fraction<Rep, Ops>& left,
-                          const Rep& right) noexcept
-{
-  return Ops::greater_equal(left.raw(), right);
-}
-
-template <typename Rep, typename Ops>
-constexpr bool operator>=(const Rep& left,
-                          const fraction<Rep, Ops>& right) noexcept
-{
-  return Ops::greater_equal(left, right.raw());
-}
+IEME_FRACTION_DEFINE_COMPARISON_OPS(==, equal_to)
+IEME_FRACTION_DEFINE_COMPARISON_OPS(!=, not_equal_to)
+IEME_FRACTION_DEFINE_COMPARISON_OPS(<, less)
+IEME_FRACTION_DEFINE_COMPARISON_OPS(<=, less_equal)
+IEME_FRACTION_DEFINE_COMPARISON_OPS(>, greater)
+IEME_FRACTION_DEFINE_COMPARISON_OPS(>=, greater_equal)
 
 template <typename Rep, typename Ops>
 std::ostream& operator<<(std::ostream& stream,

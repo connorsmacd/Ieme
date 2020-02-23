@@ -40,10 +40,10 @@ TEST_CASE("Fraction literals can be used within complex arithmetic expressions",
 TEST_CASE("Decimal fraction literals have the expected fractional equivalents",
           "[literals]")
 {
-  REQUIRE(2.3_Dec == std::intmax_t(2) + std::intmax_t(3) / 10_Fr);
-  REQUIRE(94.332_Dec == std::intmax_t(94L) + std::intmax_t(332) / 1000_Fr);
-  REQUIRE(9.22E+3_Dec == std::intmax_t(9220));
-  REQUIRE(7.543E-10_Dec == std::intmax_t(7543) / 10'000'000'000'000_Fr);
-  REQUIRE(0xC.Ap2_Dec == std::intmax_t(0x65) / 0x2_Fr);
-  REQUIRE(0xC1.A1p-10_Dec == std::intmax_t(0xC1A1) / 0x40000_Fr);
+  REQUIRE(2.3_Dec == 2 + 3 / 10_Fr);
+  REQUIRE(94.332_Dec == 94L + 332 / 1000_Fr);
+  REQUIRE(9.22E+3_Dec == 9220);
+  REQUIRE(7.543E-10_Dec == 7543L / 10'000'000'000'000_Fr);
+  REQUIRE(0xC.Ap2_Dec == 0x65 / 0x2_Fr);
+  REQUIRE(0xC1.A1p-10_Dec == 0xC1A1 / 0x40000_Fr);
 }
