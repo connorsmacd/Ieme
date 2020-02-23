@@ -4,6 +4,7 @@
 #include <ieme/endian.hpp>
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
+#include <ieme/limits.hpp>
 #include <ieme/parse_utilities.hpp>
 
 #include <cstdint>
@@ -146,6 +147,9 @@ template <typename Rep,
 constexpr fraction<Rep, Ops>
 floating_point_to_fraction(const Float value) noexcept
 {
+  const auto makeRepeating1s
+    = [=](const IntegerRep n) { return (IntegerRep(1) << n) - IntegerRep(1); };
+
   const auto [sign_part, exponent_part, mantissa_part] = [=]() {
     union superposition {
       IntegerRep integer_rep_part;
@@ -157,8 +161,7 @@ floating_point_to_fraction(const Float value) noexcept
 
     const auto extract_bit_field
       = [=](const IntegerRep position, const IntegerRep size) -> IntegerRep {
-      return (as_integer_rep >> position)
-             & ((IntegerRep(1) << size) - IntegerRep(1));
+      return (as_integer_rep >> position) & makeRepeating1s(size);
     };
 
     if constexpr (endian::native == endian::little)
@@ -172,6 +175,10 @@ floating_point_to_fraction(const Float value) noexcept
         extract_bit_field(1, NumExponentBits),
         extract_bit_field(NumExponentBits + 1, NumMantissaBits));
   }();
+
+  if (exponent_part == makeRepeating1s(NumExponentBits)
+      && mantissa_part != IntegerRep(0))
+    return limits<fraction<Rep, Ops>>::undefined();
 
   const auto sign = (sign_part == IntegerRep(0)) ? Rep(1) : Rep(-1);
 

@@ -15,10 +15,12 @@ TEST_CASE("Floats can be converted to fractions", "[floating_point]")
   REQUIRE(to_fraction<int>(24.0f) == 24);
   REQUIRE(to_fraction<int>(0.375f) == 3 / 8_Fr);
   REQUIRE(to_fraction<int>(-32.125f) == -32 - 1 / 8_Fr);
+  REQUIRE(is_undefined(to_fraction<int>(0.0f / 0.0f)));
 
   REQUIRE(to_fraction<long long int>(24.0) == 24);
   REQUIRE(to_fraction<long long int>(0.375) == 3 / 8_Fr);
   REQUIRE(to_fraction<long long int>(-32.125) == -32 - 1 / 8_Fr);
+  REQUIRE(is_undefined(to_fraction<long long int>(0.0f / 0.0f)));
 }
 
 TEST_CASE("Fractions can be converted to floats", "[floating_point]")
