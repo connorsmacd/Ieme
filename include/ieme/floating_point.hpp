@@ -93,7 +93,7 @@ floating_point_string_to_fraction(const std::string_view string) noexcept
   const auto scan_results = parse_utilities::scan_floating_point_string(string);
 
   if (!scan_results.is_valid)
-    return {Rep(0), Rep(0)};
+    return limits<fraction<Rep, Ops>>::undefined();
 
   const auto base = Rep(scan_results.base);
 
