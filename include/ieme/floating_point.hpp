@@ -39,7 +39,7 @@ floating_point_string_to_fraction(std::string_view string) noexcept;
 template <typename Rep,
           typename Ops,
           typename Float,
-          typename IntegerRep,
+          typename UintRep,
           auto NumMantissaBits,
           auto NumExponentBits>
 constexpr fraction<Rep, Ops> floating_point_to_fraction(Float value) noexcept;
@@ -141,27 +141,27 @@ floating_point_string_to_fraction(const std::string_view string) noexcept
 template <typename Rep,
           typename Ops,
           typename Float,
-          typename IntegerRep,
+          typename UintRep,
           auto NumMantissaBits,
           auto NumExponentBits>
 constexpr fraction<Rep, Ops>
 floating_point_to_fraction(const Float value) noexcept
 {
   const auto makeRepeating1s
-    = [=](const IntegerRep n) { return (IntegerRep(1) << n) - IntegerRep(1); };
+    = [=](const UintRep count) { return (UintRep(1) << count) - UintRep(1); };
 
   const auto [sign_part, exponent_part, mantissa_part] = [=]() {
-    union superposition {
-      IntegerRep integer_rep_part;
+    union float_and_uint_union {
+      UintRep uint_rep_part;
       Float float_part;
-      superposition(const Float init) : float_part {init} {}
+      float_and_uint_union(const Float init) : float_part {init} {}
     };
 
-    const auto as_integer_rep = superposition(value).integer_rep_part;
+    const auto as_uint_rep = float_and_uint_union(value).uint_rep_part;
 
     const auto extract_bit_field
-      = [=](const IntegerRep position, const IntegerRep size) -> IntegerRep {
-      return (as_integer_rep >> position) & makeRepeating1s(size);
+      = [=](const UintRep position, const UintRep size) -> UintRep {
+      return (as_uint_rep >> position) & makeRepeating1s(size);
     };
 
     if constexpr (endian::native == endian::little)
@@ -177,17 +177,19 @@ floating_point_to_fraction(const Float value) noexcept
   }();
 
   if (exponent_part == makeRepeating1s(NumExponentBits)
-      && mantissa_part != IntegerRep(0))
+      && mantissa_part != UintRep(0))
     return limits<fraction<Rep, Ops>>::undefined();
 
-  const auto sign = (sign_part == IntegerRep(0)) ? Rep(1) : Rep(-1);
+  const auto sign = (sign_part == UintRep(0)) ? Rep(1) : Rep(-1);
 
   const auto exponent_bias
     = math_utilities::pow2(Rep(NumExponentBits) - Rep(1)) - Rep(1);
   const auto exponent = Rep(exponent_part) - exponent_bias;
 
   const auto mantissa
-    = Rep(1) + Rep(mantissa_part) / pow2<Rep, Ops>(NumMantissaBits);
+    = Rep(1)
+      + fraction<Rep, Ops>(Rep(mantissa_part),
+                           math_utilities::pow2<Rep>(Rep(NumMantissaBits)));
 
   return sign * mantissa * pow2<Rep, Ops>(exponent);
 }
