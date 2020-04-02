@@ -98,7 +98,7 @@ floating_point_string_to_fraction(const std::string_view string) noexcept
   const auto base = Rep(scan_results.base);
 
   const auto digits_to_int
-    = [=](const std::string_view digits, const Rep digit_base) -> Rep {
+    = [&](const std::string_view digits, const Rep digit_base) -> Rep {
     auto result = Rep(0);
     auto base_power = Rep(1);
 
@@ -107,7 +107,7 @@ floating_point_string_to_fraction(const std::string_view string) noexcept
       if (*it == '\'')
         continue;
 
-      const auto digit_as_int = [=]() {
+      const auto digit_as_int = [&]() {
         if (*it >= 'A' && *it <= 'F')
           return Rep(*it - 'A' + 10);
 
@@ -148,9 +148,9 @@ constexpr fraction<Rep, Ops>
 floating_point_to_fraction(const Float value) noexcept
 {
   const auto makeRepeating1s
-    = [=](const UintRep count) { return (UintRep(1) << count) - UintRep(1); };
+    = [](const UintRep count) { return (UintRep(1) << count) - UintRep(1); };
 
-  const auto [sign_part, exponent_part, mantissa_part] = [=]() {
+  const auto [sign_part, exponent_part, mantissa_part] = [&]() {
     union float_and_uint_union {
       UintRep uint_rep_part;
       Float float_part;
@@ -160,7 +160,7 @@ floating_point_to_fraction(const Float value) noexcept
     const auto as_uint_rep = float_and_uint_union(value).uint_rep_part;
 
     const auto extract_bit_field
-      = [=](const UintRep position, const UintRep size) -> UintRep {
+      = [&](const UintRep position, const UintRep size) -> UintRep {
       return (as_uint_rep >> position) & makeRepeating1s(size);
     };
 

@@ -75,7 +75,7 @@ scan_floating_point_string(const std::string_view string) noexcept
   if (!no_radix_separator)
     remaining_string.remove_prefix(radix_separator_pos + 1);
 
-  const auto exponent_separator_pos = [=]() {
+  const auto exponent_separator_pos = [&]() {
     const auto [lower, upper] = (results.base == 10) ? std::make_pair('e', 'E')
                                                      : std::make_pair('p', 'P');
 
@@ -109,7 +109,7 @@ scan_floating_point_string(const std::string_view string) noexcept
         || is_valid_digit_sequence(results.fractional, results.base)))
     return {};
 
-  results.fractional_precision = [=]() {
+  results.fractional_precision = [&]() {
     auto result = 0U;
 
     for (const auto digit : results.fractional)
