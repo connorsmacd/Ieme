@@ -20,21 +20,40 @@ Ieme is a fast and simple C++ fractional arithmetic library intended for use in 
 * Intuitive syntax for storing and manipulating fractions
 * Lightweight and portable implementation to support constrained environments such as embedded systems
 * Arithmetic operations that can be tuned for performance, safety, ease-of-use, or debugging
+* Header only
 
 ## Integration
 
-### Headers
+### Requirements
+
+Ieme must be built with a compiler that supports C++17
+
+### Includes
 
 ```c++
 #include <ieme/ieme.hpp>
 ```
 
-The header `ieme/ieme.hpp` contains everything the library offers.
+The header `ieme/ieme.hpp` contains everything you need. There are individual headers for various modules, but these are not yet documented.
 
 ### CMake
 
-TODO
+Ieme is represented in CMake as an interface target.
 
-## Examples
+If you've installed Ieme, include this line in your CMakeLists.txt:
 
-TODO
+```cmake
+find_package(Ieme CONFIG REQUIRED)
+```
+
+If you're using Ieme as a subproject, add this line to your CMakeLists.txt, where "IemeSubdirectory" is the directory in your tree where Ieme is located:
+
+```cmake
+add_subdirectory(IemeSubdirectory)
+```
+
+To link to the target, do something like this:
+
+```cmake
+target_link_libraries(YourTarget Ieme::Ieme)
+```
