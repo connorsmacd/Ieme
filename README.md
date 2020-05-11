@@ -72,8 +72,8 @@ auto d = fraction<int>(std::milli); // 1/1000
 
 using namespace ieme::literals;
 
-auto e = -2 / 7_Fr; // -2/7 (fraction<int>)
-auto f = 7U / 9_Fr; // 7/9 (fraction<unsigned int>)
+auto e = -2/7_Fr; // -2/7 (fraction<int>)
+auto f = 7U/9_Fr; // 7/9 (fraction<unsigned int>)
 auto g = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
 ```
 
