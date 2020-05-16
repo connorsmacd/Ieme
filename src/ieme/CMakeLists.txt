@@ -108,8 +108,4 @@ if (${IEME_BUILD_TESTS})
     PRIVATE ${PROJECT_NAME} Catch2::Catch2)
   add_test(NAME RawFractionQueriesTest COMMAND RawFractionQueriesTest)
 
-  add_executable(UnitFractionTest unit_fraction.test.cpp)
-  target_link_libraries(UnitFractionTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
-  add_test(NAME UnitFractionTest COMMAND UnitFractionTest)
-
 endif()
