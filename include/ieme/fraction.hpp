@@ -12,6 +12,19 @@
 namespace ieme {
 
 
+template <typename Rep, typename Ops>
+class fraction;
+
+
+template <typename Rep, typename Ops>
+std::ostream& operator<<(std::ostream& stream,
+                         const fraction<Rep, Ops>& value) noexcept;
+
+template <typename Rep, typename Ops>
+std::istream& operator>>(std::istream& stream,
+                         fraction<Rep, Ops>& value) noexcept;
+
+
 template <typename Rep, typename Ops = ops::defaults>
 class fraction final {
 
@@ -53,6 +66,12 @@ public:
 
 private:
   raw_fraction_type raw_ = {0, 1};
+
+  friend std::ostream& operator<<<>(std::ostream& stream,
+                                    const fraction<Rep, Ops>& value) noexcept;
+
+  friend std::istream& operator>><>(std::istream& stream,
+                                    fraction<Rep, Ops>& value) noexcept;
 };
 
 template <typename Rep, typename Ops>
@@ -473,17 +492,23 @@ constexpr void operator>=(const fraction<LeftRep, LeftOps>& left,
                           const fraction<RightRep, RightOps>& right) noexcept
   = delete;
 
-template <typename Rep, typename Ops>
-std::ostream& operator<<(std::ostream& stream,
-                         const fraction<Rep, Ops>& value) noexcept;
-
-template <typename Rep, typename Ops>
-std::istream& operator>>(std::istream& stream,
-                         fraction<Rep, Ops>& value) noexcept;
-
 
 // =============================================================================
 
+
+template <typename Rep, typename Ops>
+std::ostream& operator<<(std::ostream& stream,
+                         const fraction<Rep, Ops>& value) noexcept
+{
+  return stream << value.raw_;
+}
+
+template <typename Rep, typename Ops>
+std::istream& operator>>(std::istream& stream,
+                         fraction<Rep, Ops>& value) noexcept
+{
+  return stream >> value.raw_;
+}
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>::fraction(const raw_fraction_type& raw) noexcept :
@@ -687,20 +712,6 @@ IEME_DEFINE_FRACTION_COMPARISON_OPS(<, less)
 IEME_DEFINE_FRACTION_COMPARISON_OPS(<=, less_equal)
 IEME_DEFINE_FRACTION_COMPARISON_OPS(>, greater)
 IEME_DEFINE_FRACTION_COMPARISON_OPS(>=, greater_equal)
-
-template <typename Rep, typename Ops>
-std::ostream& operator<<(std::ostream& stream,
-                         const fraction<Rep, Ops>& value) noexcept
-{
-  return stream << value.raw();
-}
-
-template <typename Rep, typename Ops>
-std::istream& operator>>(std::istream& stream,
-                         fraction<Rep, Ops>& value) noexcept
-{
-  return stream >> value.raw();
-}
 
 
 }; // namespace ieme
