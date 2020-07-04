@@ -19,7 +19,7 @@ public:
   constexpr mixed_number() noexcept = default;
 
   constexpr mixed_number(const Rep& whole_part,
-                         const fraction<Rep, Ops>& fractional_part) noexcept;
+                         const fraction<Rep, Ops>& fractional_part = {}) noexcept;
 
   constexpr mixed_number(const fraction<Rep, Ops>& value) noexcept;
 
