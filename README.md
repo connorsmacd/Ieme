@@ -70,7 +70,7 @@ auto b = fraction<int>(3, 4);       // 3/4
 auto c = fraction<int>(-2);         // -2/1
 auto d = fraction<int>(std::milli); // 1/1000
 
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 auto e = -2/7_Fr; // -2/7 (fraction<int>)
 auto f = 7U/9_Fr; // 7/9 (fraction<unsigned int>)
