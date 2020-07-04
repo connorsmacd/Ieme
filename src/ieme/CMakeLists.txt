@@ -49,6 +49,10 @@ if (${IEME_BUILD_TESTS})
   target_link_libraries(FractionTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
   add_test(NAME FractionTest COMMAND FractionTest)
 
+  add_executable(FractionLiteralsTest fraction_literals.test.cpp)
+  target_link_libraries(FractionLiteralsTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
+  add_test(NAME FractionLiteralsTest COMMAND FractionLiteralsTest)
+
   add_executable(FractionMathTest fraction_math.test.cpp)
   target_link_libraries(FractionMathTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
   add_test(NAME FractionMathTest COMMAND FractionMathTest)
@@ -65,10 +69,6 @@ if (${IEME_BUILD_TESTS})
   add_executable(LimitsTest limits.test.cpp)
   target_link_libraries(LimitsTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
   add_test(NAME LimitsTest COMMAND LimitsTest)
-
-  add_executable(LiteralsTest literals.test.cpp)
-  target_link_libraries(LiteralsTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
-  add_test(NAME LiteralsTest COMMAND LiteralsTest)
 
   add_executable(MathUtilitiesTest math_utilities.test.cpp)
   target_link_libraries(MathUtilitiesTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)

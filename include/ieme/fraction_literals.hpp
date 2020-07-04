@@ -9,7 +9,8 @@
 
 
 namespace ieme {
-namespace literals {
+inline namespace literals {
+inline namespace fraction_literals {
 
 
 template <bool IsSigned, typename Ops = ops::defaults>
@@ -115,6 +116,7 @@ operator""_Dec(const char* const string)
 }
 
 
+}; // namespace fraction_literals
 }; // namespace literals
 }; // namespace ieme
 

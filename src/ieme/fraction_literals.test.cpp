@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 
 #include <ieme/fraction_queries.hpp>
 
@@ -9,7 +9,7 @@
 
 
 using namespace ieme;
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 
 TEST_CASE("Fraction literals have the expected symbolic equivalents",

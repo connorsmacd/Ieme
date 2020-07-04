@@ -3,13 +3,13 @@
 
 #include <ieme/fraction.hpp>
 
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 
 #include <sstream>
 
 
 using namespace ieme;
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 
 TEST_CASE("A fraction is default constructable to 0/1", "[fraction]")

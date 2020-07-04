@@ -4,11 +4,11 @@
 #include <ieme/mixed_number.hpp>
 
 #include <ieme/fraction_queries.hpp>
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 
 
 using namespace ieme;
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 
 TEST_CASE("A default-constructed mixed number has a zero whole part and 0/1 "
@@ -28,6 +28,15 @@ TEST_CASE("A mixed number can constructed from a whole and fractional part",
 
   REQUIRE(f.whole_part() == -5);
   REQUIRE(are_identical(f.fractional_part(), 4 / 5_Fr));
+}
+
+TEST_CASE("A mixed number can constructed from just a whole part",
+          "[mixed_number]")
+{
+  constexpr auto f = mixed_number<int>(2);
+
+  REQUIRE(f.whole_part() == 2);
+  REQUIRE(are_identical(f.fractional_part(), 0 / 1_Fr));
 }
 
 TEST_CASE("A mixed number can constructed from a fraction", "[mixed_number]")

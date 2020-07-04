@@ -4,11 +4,11 @@
 #include <ieme/fraction_math.hpp>
 
 #include <ieme/fraction_queries.hpp>
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 
 
 using namespace ieme;
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 
 TEST_CASE("A fraction's reciprocal can be calculated", "[fraction]")

@@ -3,11 +3,11 @@
 
 #include <ieme/hash.hpp>
 
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 
 
 using namespace ieme;
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 
 TEST_CASE("A raw fraction can be hashed", "[hash]")

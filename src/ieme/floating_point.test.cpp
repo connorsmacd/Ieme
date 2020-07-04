@@ -3,11 +3,11 @@
 
 #include <ieme/floating_point.hpp>
 
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 
 
 using namespace ieme;
-using namespace ieme::literals;
+using namespace ieme::fraction_literals;
 
 
 TEST_CASE("Floats can be converted to fractions", "[floating_point]")

@@ -8,7 +8,7 @@
 #include <ieme/fraction_queries.hpp>
 #include <ieme/hash.hpp>
 #include <ieme/limits.hpp>
-#include <ieme/literals.hpp>
+#include <ieme/fraction_literals.hpp>
 #include <ieme/math_utilities.hpp>
 #include <ieme/mixed_number.hpp>
 #include <ieme/ops.hpp>
