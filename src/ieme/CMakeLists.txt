@@ -38,19 +38,6 @@ install(FILES
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/$<LOWER_CASE:${PROJECT_NAME}>
   DESTINATION include)
 
-if (NOT IEME_BUILD_TESTS)
-  set(IEME_BUILD_TESTS_DEFAULT "OFF")
-
-  if (${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
-    set(IEME_BUILD_TESTS_DEFAULT "ON")
-  endif()
-
-  set(IEME_BUILD_TESTS
-    ${IEME_BUILD_TESTS_DEFAULT}
-    CACHE
-    BOOL
-    "Toggle building of Ieme tests")
-endif()
 
 if (${IEME_BUILD_TESTS})
 
