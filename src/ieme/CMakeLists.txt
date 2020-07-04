@@ -41,6 +41,10 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/$<LOWER_CASE:${PROJECT_NAME}>
 
 if (${IEME_BUILD_TESTS})
 
+  add_executable(ChronoTest chrono.test.cpp)
+  target_link_libraries(ChronoTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
+  add_test(NAME ChronoTest COMMAND ChronoTest)
+
   add_executable(FloatingPointTest floating_point.test.cpp)
   target_link_libraries(FloatingPointTest PRIVATE ${PROJECT_NAME} Catch2::Catch2)
   add_test(NAME FloatingPointTest COMMAND FloatingPointTest)
