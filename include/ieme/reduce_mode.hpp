@@ -1,5 +1,5 @@
-#ifndef IEME_REDUCE_MODE_HPP_INCLUDED
-#define IEME_REDUCE_MODE_HPP_INCLUDED
+#ifndef IEME_REDUCE_MODE_HPP
+#define IEME_REDUCE_MODE_HPP
 
 
 namespace ieme {
