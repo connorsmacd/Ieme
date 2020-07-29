@@ -64,7 +64,7 @@ constexpr bool are_different(const raw_fraction<Rep>& left,
 template <typename Rep>
 constexpr bool is_defined(const raw_fraction<Rep>& value) noexcept
 {
-  return value.denominator != 0;
+  return value.denominator != Rep(0);
 }
 
 template <typename Rep>
@@ -76,60 +76,61 @@ constexpr bool is_undefined(const raw_fraction<Rep>& value) noexcept
 template <typename Rep>
 constexpr bool is_positive(const raw_fraction<Rep>& value) noexcept
 {
-  return (value.numerator > 0 && value.denominator > 0)
-         || (value.numerator < 0 && value.denominator < 0);
+  return (value.numerator > Rep(0) && value.denominator > Rep(0))
+         || (value.numerator < Rep(0) && value.denominator < Rep(0));
 }
 
 template <typename Rep>
 constexpr bool is_non_negative(const raw_fraction<Rep>& value) noexcept
 {
-  return (value.numerator >= 0 && value.denominator > 0)
-         || (value.numerator <= 0 && value.denominator < 0);
+  return (value.numerator >= Rep(0) && value.denominator > Rep(0))
+         || (value.numerator <= Rep(0) && value.denominator < Rep(0));
 }
 
 template <typename Rep>
 constexpr bool is_zero(const raw_fraction<Rep>& value) noexcept
 {
-  return is_defined(value) && value.numerator == 0;
+  return is_defined(value) && value.numerator == Rep(0);
 }
 
 template <typename Rep>
 constexpr bool is_non_positive(const raw_fraction<Rep>& value) noexcept
 {
-  return (value.numerator >= 0 && value.denominator < 0)
-         || (value.numerator <= 0 && value.denominator > 0);
+  return (value.numerator >= Rep(0) && value.denominator < Rep(0))
+         || (value.numerator <= Rep(0) && value.denominator > Rep(0));
 }
 
 template <typename Rep>
 constexpr bool is_negative(const raw_fraction<Rep>& value) noexcept
 {
-  return (value.numerator > 0 && value.denominator < 0)
-         || (value.numerator < 0 && value.denominator > 0);
+  return (value.numerator > Rep(0) && value.denominator < Rep(0))
+         || (value.numerator < Rep(0) && value.denominator > Rep(0));
 }
 
 template <typename Rep>
 constexpr bool is_integer(const raw_fraction<Rep>& value) noexcept
 {
-  return is_defined(value) && value.numerator % value.denominator == 0;
+  return is_defined(value) && value.numerator % value.denominator == Rep(0);
 }
 
 template <typename Rep>
 constexpr bool is_unit_fraction(const raw_fraction<Rep>& value) noexcept
 {
-  return is_defined(value) && value.numerator != 0
-         && value.denominator % value.numerator == 0;
+  return is_defined(value) && value.numerator != Rep(0)
+         && value.denominator % value.numerator == Rep(0);
 }
 
 template <typename Rep>
 constexpr bool is_reduced_ignore_signs(const raw_fraction<Rep>& value) noexcept
 {
-  return is_defined(value) && std::gcd(value.numerator, value.denominator) == 1;
+  return is_defined(value)
+         && std::gcd(value.numerator, value.denominator) == Rep(1);
 }
 
 template <typename Rep>
 constexpr bool is_reduced(const raw_fraction<Rep>& value) noexcept
 {
-  return (value.numerator > 0 || value.denominator > 0)
+  return (value.numerator > Rep(0) || value.denominator > Rep(0))
          && is_reduced_ignore_signs(value);
 }
 

@@ -161,7 +161,8 @@ constexpr Rep ceil(const fraction<Rep, Ops>& value) noexcept
 {
   const auto truncated = trunc(value);
 
-  return (is_integer(value) || truncated < 0) ? truncated : truncated + 1;
+  return (is_integer(value) || truncated < Rep(0)) ? truncated
+                                                   : truncated + Rep(1);
 }
 
 template <typename Rep, typename Ops>
@@ -169,7 +170,8 @@ constexpr Rep floor(const fraction<Rep, Ops>& value) noexcept
 {
   const auto truncated = trunc(value);
 
-  return (is_integer(value) || truncated >= 0) ? truncated : truncated - 1;
+  return (is_integer(value) || truncated >= Rep(0)) ? truncated
+                                                    : truncated - Rep(1);
 }
 
 template <typename Rep, typename Ops>
@@ -177,7 +179,9 @@ constexpr Rep round(const fraction<Rep, Ops>& value) noexcept
 {
   const auto floored = floor(value);
 
-  return (value - floored < fraction<Rep, Ops>(1, 2)) ? floored : floored + 1;
+  return (value - floored < fraction<Rep, Ops>(Rep(1), Rep(2)))
+           ? floored
+           : floored + Rep(1);
 }
 
 template <typename Rep, typename Ops>
@@ -211,8 +215,8 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> ceil_redenominate(const fraction<Rep, Ops>& value,
                                                const Rep& denominator) noexcept
 {
-  return {(denominator >= 0) ? ceil(value * denominator)
-                             : -ceil(value * -denominator),
+  return {(denominator >= Rep(0)) ? ceil(value * denominator)
+                                  : -ceil(value * -denominator),
           denominator};
 }
 
@@ -220,8 +224,8 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> floor_redenominate(const fraction<Rep, Ops>& value,
                                                 const Rep& denominator) noexcept
 {
-  return {(denominator >= 0) ? floor(value * denominator)
-                             : -floor(value * -denominator),
+  return {(denominator >= Rep(0)) ? floor(value * denominator)
+                                  : -floor(value * -denominator),
           denominator};
 }
 
@@ -235,17 +239,17 @@ constexpr fraction<Rep, Ops> round_redenominate(const fraction<Rep, Ops>& value,
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept
 {
-  return (exponent >= 0)
+  return (exponent >= Rep(0))
            ? fraction<Rep, Ops>(math_utilities::pow2(exponent))
-           : fraction<Rep, Ops>(1, math_utilities::pow2(-exponent));
+           : fraction<Rep, Ops>(Rep(1), math_utilities::pow2(-exponent));
 }
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> pow(const Rep& base, const Rep& exponent) noexcept
 {
-  return (exponent >= 0)
+  return (exponent >= Rep(0))
            ? fraction<Rep, Ops>(math_utilities::pow(base, exponent))
-           : fraction<Rep, Ops>(1, math_utilities::pow(base, -exponent));
+           : fraction<Rep, Ops>(Rep(1), math_utilities::pow(base, -exponent));
 }
 
 

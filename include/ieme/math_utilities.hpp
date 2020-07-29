@@ -24,7 +24,7 @@ constexpr Int pow(Int base, Int exponent) noexcept;
 template <typename Int>
 constexpr Int abs(const Int value) noexcept
 {
-  return (value >= 0) ? value : -value;
+  return (value >= Int(0)) ? value : -value;
 }
 
 template <typename Int>
@@ -38,13 +38,13 @@ constexpr Int pow2(const Int exponent) noexcept
 template <typename Int>
 constexpr Int pow(const Int base, const Int exponent) noexcept
 {
-  if (exponent == 0)
-    return 1;
+  if (exponent == Int(0))
+    return Int(1);
 
-  if (exponent % 2 == 1)
-    return base * pow(base, exponent - 1);
+  if (exponent % Int(2) == Int(1))
+    return base * pow(base, exponent - Int(1));
 
-  const auto squareRoot = pow(base, exponent / 2);
+  const auto squareRoot = pow(base, exponent / Int(2));
 
   return squareRoot * squareRoot;
 }

@@ -44,7 +44,7 @@ template <typename Rep>
 constexpr raw_fraction<Rep>
 normalize_signs(const raw_fraction<Rep>& value) noexcept
 {
-  return (value.denominator > 0)
+  return (value.denominator > Rep(0))
            ? value
            : raw_fraction<Rep>(-value.numerator, -value.denominator);
 }
