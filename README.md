@@ -34,7 +34,7 @@ Ieme must be built with a compiler that supports C++17
 #include <ieme/ieme.hpp>
 ```
 
-The header `ieme/ieme.hpp` contains everything you need. There are individual headers for various modules, but these are not yet documented.
+The header `ieme/ieme.hpp` contains everything you need.
 
 ### CMake
 
@@ -65,16 +65,16 @@ target_link_libraries(YourTarget Ieme::Ieme)
 ```c++
 using namespace ieme;
 
-auto a = fraction<int>();           // 0/1
-auto b = fraction<int>(3, 4);       // 3/4
-auto c = fraction<int>(-2);         // -2/1
-auto d = fraction<int>(std::milli); // 1/1000
+auto f1 = fraction<int>();           // 0/1
+auto f2 = fraction<int>(3, 4);       // 3/4
+auto f3 = fraction<int>(-2);         // -2/1
+auto f4 = fraction<int>(std::milli); // 1/1000
 
 using namespace ieme::fraction_literals;
 
-auto e = -2/7_Fr; // -2/7 (fraction<int>)
-auto f = 7U/9_Fr; // 7/9 (fraction<unsigned int>)
-auto g = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
+auto f5 = -2/7_Fr; // -2/7 (fraction<int>)
+auto f6 = 7U/9_Fr; // 7/9 (fraction<unsigned int>)
+auto f7 = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
 ```
 
 ### Math
@@ -82,16 +82,16 @@ auto g = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
 #### Arithmetic
 
 ```c++
-1/2_Fr + 3/4_Fr;   // 5/4
-1/2_Fr - 4/5_Fr;   // -3/10
-3/4_Fr * 3/7_Fr;   // 9/28
+auto f1 = 1/2_Fr + 3/4_Fr;   // 5/4
+auto f2 = 1/2_Fr - 4/5_Fr;   // -3/10
+auto f3 = 3/4_Fr * 3/7_Fr;   // 9/28
 
 // For divide and modulo, the divisor must be wrapped in parentheses.
 // Without parentheses, the operation 3/4_Fr / 3/2_Fr evalutes to ((3/4)/3)/2
 // instead of (3/4)/(3/2)
 
-3/4_Fr / (3/2_Fr); // 1/2
-4/7_Fr % (2/5_Fr); // 6/35
+auto f4 = 3/4_Fr / (3/2_Fr); // 1/2
+auto f5 = 4/7_Fr % (2/5_Fr); // 6/35
 ```
 
 #### Comparisons
@@ -102,58 +102,52 @@ auto g = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
 // To check if two fractions have the exact same representations, see
 // "are_identical" and "are_different" in queries
 
-1/2_Fr == 2/4_Fr; // true
-1/2_Fr != 2/4_Fr; // false
-1/2_Fr > 1/4_Fr;  // true
-1/2_Fr >= 1/3_Fr; // true
-1/2_Fr < 3/4_Fr;  // true
-1/2_Fr <= 2/3_Fr; // true
+auto b1 = 1/2_Fr == 2/4_Fr; // true
+auto b2 = 1/2_Fr != 2/4_Fr; // false
+auto b3 = 1/2_Fr > 1/4_Fr;  // true
+auto b4 = 1/2_Fr >= 1/3_Fr; // true
+auto b5 = 1/2_Fr < 3/4_Fr;  // true
+auto b6 = 1/2_Fr <= 2/3_Fr; // true
 ```
 
 #### Common Operations
 
 ```c++
-reciprocal(3/4_Fr); // 4/3
+auto f1 = reciprocal(3/4_Fr); // 4/3
 
-reduce(16/24_Fr); // 2/3
+auto f2 = reduce(16/24_Fr); // 2/3
 
-round(19/10_Fr); // 2
-trunc(19/10_Fr); // 1
-floor(19/10_Fr); // 1
-ceil(19/10_Fr);  // 2
+auto i1 = round(19/10_Fr); // 2
+auto i2 = trunc(19/10_Fr); // 1
+auto i3 = floor(19/10_Fr); // 1
+auto i4 = ceil(19/10_Fr);  // 2
 
-abs(-4/5_Fr); // 4/5
+auto f3 = abs(-4/5_Fr); // 4/5
 
-pow2(-3); // 1/8
+auto f4 = pow2(-3); // 1/8
 
-pow(3, -2); // 1/9
+auto f5 = pow(3, -2); // 1/9
 ```
 
 ### Queries
 
 ```c++
-is_undefined(2/0_Fr); // true
+auto b1 = is_undefined(2/0_Fr); // true
 
-is_positive(3/4_Fr);  // true
-is_zero(0/4_Fr);      // true
-is_negative(-3/4_Fr); // true
+auto b2 = is_positive(3/4_Fr);  // true
+auto b3 = is_zero(0/4_Fr);      // true
+auto b4 = is_negative(-3/4_Fr); // true
 
-is_integer(2/1_Fr);       // true
-is_unit_fraction(1/3_Fr); // true
+auto b5 = is_integer(2/1_Fr);       // true
+auto b6 = is_unit_fraction(1/3_Fr); // true
 
-is_reduced(5/10_Fr); // false
+auto b7 = is_reduced(5/10_Fr); // false
 
-is_proper(1/4_Fr);   // true
-is_improper(5/4_Fr); // true
+auto b8 = is_proper(1/4_Fr);   // true
+auto b9 = is_improper(5/4_Fr); // true
 
-are_identical(1/2_Fr, 1/2_Fr);   // true
-are_different(1/2_Fr, -1/-2_Fr); // true
-```
-
-### Mixed Numbers
-
-```c++
-// TODO
+auto b10 = are_identical(1/2_Fr, 1/2_Fr);   // true
+auto b11 = are_different(1/2_Fr, -1/-2_Fr); // true
 ```
 
 ### Floating Point Conversions
