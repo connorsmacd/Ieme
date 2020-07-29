@@ -1,7 +1,6 @@
 #ifndef IEME_FLOATING_POINT_HPP
 #define IEME_FLOATING_POINT_HPP
 
-#include <ieme/endian.hpp>
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
 #include <ieme/limits.hpp>
@@ -35,6 +34,18 @@ template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops>
 floating_point_string_to_fraction(std::string_view string) noexcept;
 
+
+enum class endian {
+#ifdef _WIN32
+  little = 0,
+  big = 1,
+  native = little
+#else
+  little = __ORDER_LITTLE_ENDIAN__,
+  big = __ORDER_BIG_ENDIAN__,
+  native = __BYTE_ORDER__
+#endif
+};
 
 template <typename Rep,
           typename Ops,

@@ -2,7 +2,6 @@
 #define IEME_IEME_HPP
 
 #include <ieme/chrono.hpp>
-#include <ieme/endian.hpp>
 #include <ieme/floating_point.hpp>
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_literals.hpp>
