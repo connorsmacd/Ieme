@@ -3,8 +3,8 @@
 
 #include <ieme/fraction_math.hpp>
 
-#include <ieme/fraction_queries.hpp>
 #include <ieme/fraction_literals.hpp>
+#include <ieme/fraction_queries.hpp>
 
 
 using namespace ieme;
@@ -14,14 +14,6 @@ using namespace ieme::fraction_literals;
 TEST_CASE("A fraction's reciprocal can be calculated", "[fraction]")
 {
   REQUIRE(are_identical(reciprocal(4 / -19_Fr), -19 / 4_Fr));
-}
-
-TEST_CASE("Fractions can have double negative signs cancelled", "[fraction]")
-{
-  REQUIRE(are_identical(cancel_signs(3 / 5_Fr), 3 / 5_Fr));
-  REQUIRE(are_identical(cancel_signs(-3 / 5_Fr), -3 / 5_Fr));
-  REQUIRE(are_identical(cancel_signs(3 / -5_Fr), 3 / -5_Fr));
-  REQUIRE(are_identical(cancel_signs(-3 / -5_Fr), 3 / 5_Fr));
 }
 
 TEST_CASE("Fractions can be normalized to cancel double negative signs or "
@@ -39,42 +31,30 @@ TEST_CASE("A fraction can be reduced", "[fraction]")
   REQUIRE(
     are_identical(reduce(12 / 32_Fr, reduce_mode::ignore_signs), 3 / 8_Fr));
   REQUIRE(
-    are_identical(reduce(12 / 32_Fr, reduce_mode::cancel_signs), 3 / 8_Fr));
-  REQUIRE(
     are_identical(reduce(12 / 32_Fr, reduce_mode::normalize_signs), 3 / 8_Fr));
 
   REQUIRE(
     are_identical(reduce(-12 / 32_Fr, reduce_mode::ignore_signs), -3 / 8_Fr));
-  REQUIRE(
-    are_identical(reduce(-12 / 32_Fr, reduce_mode::cancel_signs), -3 / 8_Fr));
   REQUIRE(are_identical(reduce(-12 / 32_Fr, reduce_mode::normalize_signs),
                         -3 / 8_Fr));
 
   REQUIRE(
     are_identical(reduce(12 / -32_Fr, reduce_mode::ignore_signs), 3 / -8_Fr));
-  REQUIRE(
-    are_identical(reduce(12 / -32_Fr, reduce_mode::cancel_signs), 3 / -8_Fr));
   REQUIRE(are_identical(reduce(12 / -32_Fr, reduce_mode::normalize_signs),
                         -3 / 8_Fr));
 
   REQUIRE(
     are_identical(reduce(-12 / -32_Fr, reduce_mode::ignore_signs), -3 / -8_Fr));
-  REQUIRE(
-    are_identical(reduce(-12 / -32_Fr, reduce_mode::cancel_signs), 3 / 8_Fr));
   REQUIRE(are_identical(reduce(-12 / -32_Fr, reduce_mode::normalize_signs),
                         3 / 8_Fr));
 
   REQUIRE(
     are_identical(reduce(-3 / -8_Fr, reduce_mode::ignore_signs), -3 / -8_Fr));
   REQUIRE(
-    are_identical(reduce(-3 / -8_Fr, reduce_mode::cancel_signs), 3 / 8_Fr));
-  REQUIRE(
     are_identical(reduce(-3 / -8_Fr, reduce_mode::normalize_signs), 3 / 8_Fr));
 
   REQUIRE(
     are_identical(reduce(-12 / 0_Fr, reduce_mode::ignore_signs), 0 / 0_Fr));
-  REQUIRE(
-    are_identical(reduce(-12 / 0_Fr, reduce_mode::cancel_signs), 0 / 0_Fr));
   REQUIRE(
     are_identical(reduce(-12 / 0_Fr, reduce_mode::normalize_signs), 0 / 0_Fr));
 }
