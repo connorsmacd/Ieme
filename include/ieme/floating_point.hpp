@@ -106,44 +106,20 @@ floating_point_string_to_fraction(const std::string_view string) noexcept
   if (!scan_results.is_valid)
     return limits<fraction<Rep, Ops>>::undefined();
 
-  const auto base = Rep(scan_results.base);
+  const auto base_as_rep = Rep(scan_results.base);
 
-  const auto digits_to_int
-    = [&](const std::string_view digits, const Rep digit_base) -> Rep {
-    auto result = Rep(0);
-    auto base_power = Rep(1);
+  const auto whole
+    = parse_utilities::digit_sequence_to_int(scan_results.whole, base_as_rep);
 
-    for (auto it = digits.rbegin(); it != digits.rend(); ++it)
-    {
-      if (*it == '\'')
-        continue;
-
-      const auto digit_as_int = [&]() {
-        if (*it >= 'A' && *it <= 'F')
-          return Rep(*it - 'A' + 10);
-
-        if (*it >= 'a' && *it <= 'f')
-          return Rep(*it - 'a' + 10);
-
-        return Rep(*it - '0');
-      }();
-
-      result += digit_as_int * base_power;
-      base_power *= digit_base;
-    }
-
-    return result;
-  };
-
-  const auto whole = digits_to_int(scan_results.whole, base);
-
-  const auto fractional_num = digits_to_int(scan_results.fractional, base);
+  const auto fractional_num = parse_utilities::digit_sequence_to_int(
+    scan_results.fractional, base_as_rep);
   const auto fractional_den
-    = math_utilities::pow(base, Rep(scan_results.fractional_precision));
+    = math_utilities::pow(base_as_rep, Rep(scan_results.fractional_precision));
 
-  const auto exponent_base = (base == Rep(10)) ? Rep(10) : Rep(2);
-  const auto exponent = (scan_results.exponent_sign == '-' ? Rep(-1) : Rep(1))
-                        * digits_to_int(scan_results.exponent, 10U);
+  const auto exponent_base = (scan_results.base == 10U) ? Rep(10) : Rep(2);
+  const auto exponent
+    = (scan_results.exponent_sign == '-' ? -1 : 1)
+      * parse_utilities::digit_sequence_to_int(scan_results.exponent, 10);
 
   return (whole + fraction<Rep, Ops>(fractional_num, fractional_den))
          * pow<Rep, Ops>(exponent_base, exponent);
@@ -193,14 +169,13 @@ floating_point_to_fraction(const Float value) noexcept
 
   const auto sign = (sign_part == UintRep(0)) ? Rep(1) : Rep(-1);
 
-  const auto exponent_bias
-    = math_utilities::pow2(Rep(NumExponentBits) - Rep(1)) - Rep(1);
-  const auto exponent = Rep(exponent_part) - exponent_bias;
+  const auto exponent_bias = math_utilities::pow2(int(NumExponentBits) - 1) - 1;
+  const auto exponent = int(exponent_part) - exponent_bias;
 
   const auto mantissa
     = Rep(1)
       + fraction<Rep, Ops>(Rep(mantissa_part),
-                           math_utilities::pow2<Rep>(Rep(NumMantissaBits)));
+                           math_utilities::pow2(Rep(NumMantissaBits)));
 
   return sign * mantissa * pow2<Rep, Ops>(exponent);
 }

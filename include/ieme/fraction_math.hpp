@@ -81,10 +81,10 @@ round_redenominate(const fraction<Rep, Ops>& value,
                    const Rep& new_denominator) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
-constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept;
+constexpr fraction<Rep, Ops> pow2(int exponent) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
-constexpr fraction<Rep, Ops> pow(const Rep& base, const Rep& exponent) noexcept;
+constexpr fraction<Rep, Ops> pow(const Rep& base, int exponent) noexcept;
 
 
 // =============================================================================
@@ -237,19 +237,20 @@ constexpr fraction<Rep, Ops> round_redenominate(const fraction<Rep, Ops>& value,
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> pow2(const Rep& exponent) noexcept
+constexpr fraction<Rep, Ops> pow2(const int exponent) noexcept
 {
-  return (exponent >= Rep(0))
-           ? fraction<Rep, Ops>(math_utilities::pow2(exponent))
-           : fraction<Rep, Ops>(Rep(1), math_utilities::pow2(-exponent));
+  return (exponent >= 0)
+           ? fraction<Rep, Ops>(math_utilities::pow2(Rep(exponent)))
+           : fraction<Rep, Ops>(Rep(1), math_utilities::pow2(Rep(-exponent)));
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> pow(const Rep& base, const Rep& exponent) noexcept
+constexpr fraction<Rep, Ops> pow(const Rep& base, const int exponent) noexcept
 {
-  return (exponent >= Rep(0))
-           ? fraction<Rep, Ops>(math_utilities::pow(base, exponent))
-           : fraction<Rep, Ops>(Rep(1), math_utilities::pow(base, -exponent));
+  return (exponent >= 0)
+           ? fraction<Rep, Ops>(math_utilities::pow(base, Rep(exponent)))
+           : fraction<Rep, Ops>(Rep(1),
+                                math_utilities::pow(base, Rep(-exponent)));
 }
 
 

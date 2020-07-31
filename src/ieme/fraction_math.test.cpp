@@ -407,9 +407,10 @@ TEST_CASE("A fraction can be redenominated using various rounding modes",
 
 TEST_CASE("A fractional power of two can be calculated", "[fraction]")
 {
-  REQUIRE(pow2(7) == 128);
-  REQUIRE(pow2(0) == 1);
-  REQUIRE(pow2(-3) == 1 / 8_Fr);
+  REQUIRE(pow2<int>(7) == 128);
+  REQUIRE(pow2<int>(0) == 1);
+  REQUIRE(pow2<int>(-3) == 1 / 8_Fr);
+  REQUIRE(pow2<unsigned int>(-9) == 1U / 512_Fr);
 }
 
 TEST_CASE("A fractional power of an integer can be calculated", "[fraction]")
@@ -423,6 +424,7 @@ TEST_CASE("A fractional power of an integer can be calculated", "[fraction]")
   REQUIRE(pow(3, -1) == 1 / 3_Fr);
   REQUIRE(pow(3, -2) == 1 / 9_Fr);
   REQUIRE(pow(3, -3) == 1 / 27_Fr);
+  REQUIRE(pow(4U, -5) == 1U / 1024_Fr);
   REQUIRE(pow(-5, -8) == 1 / 390625_Fr);
   REQUIRE(pow(-5, -9) == -1 / 1953125_Fr);
 }

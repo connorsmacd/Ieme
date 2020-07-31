@@ -25,6 +25,10 @@ scan_floating_point_string(std::string_view string) noexcept;
 constexpr bool is_valid_digit_sequence(std::string_view sequence,
                                        unsigned int base) noexcept;
 
+template <typename Int>
+constexpr Int digit_sequence_to_int(std::string_view sequence,
+                                    Int base) noexcept;
+
 
 // =============================================================================
 
@@ -163,6 +167,35 @@ constexpr bool is_valid_digit_sequence(const std::string_view sequence,
   }
 
   return digit_preceeded;
+}
+
+template <typename Int>
+constexpr Int digit_sequence_to_int(const std::string_view sequence,
+                                    const Int base) noexcept
+{
+  auto result = Int(0);
+  auto base_power = Int(1);
+
+  for (auto it = sequence.rbegin(); it != sequence.rend(); ++it)
+  {
+    if (*it == '\'')
+      continue;
+
+    const auto digit_as_int = [&]() {
+      if (*it >= 'A' && *it <= 'F')
+        return Int(*it - 'A' + 10);
+
+      if (*it >= 'a' && *it <= 'f')
+        return Int(*it - 'a' + 10);
+
+      return Int(*it - '0');
+    }();
+
+    result += digit_as_int * base_power;
+    base_power *= base;
+  }
+
+  return result;
 }
 
 
