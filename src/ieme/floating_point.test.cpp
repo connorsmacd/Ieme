@@ -54,7 +54,7 @@ TEST_CASE("Floating point strings can be converted to fractions",
   REQUIRE(floating_point_string_to_fraction<int>("0.0e+1") == 0);
   REQUIRE(floating_point_string_to_fraction<int>("0.0E-1") == 0);
   REQUIRE(floating_point_string_to_fraction<int>("9.0e1") == 90);
-  REQUIRE(floating_point_string_to_fraction<int>("9.0E+4") == 90000);
+  REQUIRE(floating_point_string_to_fraction<int>("9.0E+4") == 90'000);
   REQUIRE(floating_point_string_to_fraction<int>("39.0e-1") == 39 / 10_Fr);
   REQUIRE(floating_point_string_to_fraction<int>("4.3E2") == 430);
   REQUIRE(floating_point_string_to_fraction<int>("4'9.3'9e-1'0")
