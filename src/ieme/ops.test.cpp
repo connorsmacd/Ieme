@@ -18,9 +18,13 @@ TEMPLATE_PRODUCT_TEST_CASE("Ops functions produce the expected results",
                            "[ops]",
                            template_ops_test_helper,
                            ((int, safe),
+                            (int, safe_reduced_i),
+                            (int, safe_reduced_o),
+                            (int, safe_reduced_io),
                             (int, fast),
-                            (int, reduced_input<fast>),
-                            (int, reduced_output<fast>) ))
+                            (int, fast_reduced_i),
+                            (int, fast_reduced_o),
+                            (int, fast_reduced_io)))
 {
   using rf = typename TestType::raw_fraction_type;
   using o = typename TestType::ops_type;
