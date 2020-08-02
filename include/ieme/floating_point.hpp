@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <limits>
+#include <string>
 #include <string_view>
 #include <tuple>
 
@@ -16,10 +17,10 @@ namespace ieme {
 
 
 template <typename Rep, typename Ops = ops::defaults>
-constexpr fraction<Rep, Ops> to_fraction(float value) noexcept;
+fraction<Rep, Ops> to_fraction(float value) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
-constexpr fraction<Rep, Ops> to_fraction(double value) noexcept;
+fraction<Rep, Ops> to_fraction(double value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr float to_float(const fraction<Rep, Ops>& value) noexcept;
@@ -47,13 +48,14 @@ enum class endian {
 #endif
 };
 
+// TODO: use std::bit_cast when it's available so this can be constexpr
 template <typename Rep,
           typename Ops,
           typename Float,
           typename UintRep,
           auto NumMantissaBits,
           auto NumExponentBits>
-constexpr fraction<Rep, Ops> floating_point_to_fraction(Float value) noexcept;
+fraction<Rep, Ops> floating_point_to_fraction(Float value) noexcept;
 
 template <typename Float, typename Rep, typename Ops>
 constexpr Float
@@ -64,7 +66,7 @@ fraction_to_floating_point(const fraction<Rep, Ops>& value) noexcept;
 
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> to_fraction(const float value) noexcept
+fraction<Rep, Ops> to_fraction(const float value) noexcept
 {
   static_assert(std::numeric_limits<float>::is_iec559, "");
 
@@ -72,7 +74,7 @@ constexpr fraction<Rep, Ops> to_fraction(const float value) noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> to_fraction(const double value) noexcept
+fraction<Rep, Ops> to_fraction(const double value) noexcept
 {
   static_assert(std::numeric_limits<double>::is_iec559, "");
 
@@ -131,24 +133,23 @@ template <typename Rep,
           typename UintRep,
           auto NumMantissaBits,
           auto NumExponentBits>
-constexpr fraction<Rep, Ops>
-floating_point_to_fraction(const Float value) noexcept
+fraction<Rep, Ops> floating_point_to_fraction(const Float value) noexcept
 {
-  const auto makeRepeating1s
+  const auto make_repeating_1s
     = [](const UintRep count) { return (UintRep(1) << count) - UintRep(1); };
 
   const auto [sign_part, exponent_part, mantissa_part] = [&]() {
-    union float_and_uint_union {
-      UintRep uint_rep_part;
-      Float float_part;
-      float_and_uint_union(const Float init) : float_part {init} {}
-    };
-
-    const auto as_uint_rep = float_and_uint_union(value).uint_rep_part;
+    const auto as_uint_rep = [&]() {
+      UintRep result {};
+      std::memcpy(reinterpret_cast<void*>(&result),
+                  reinterpret_cast<const void*>(&value),
+                  sizeof(Float));
+      return result;
+    }();
 
     const auto extract_bit_field
       = [&](const UintRep position, const UintRep size) -> UintRep {
-      return (as_uint_rep >> position) & makeRepeating1s(size);
+      return (as_uint_rep >> position) & make_repeating_1s(size);
     };
 
     if constexpr (endian::native == endian::little)
@@ -163,7 +164,7 @@ floating_point_to_fraction(const Float value) noexcept
         extract_bit_field(NumExponentBits + 1, NumMantissaBits));
   }();
 
-  if (exponent_part == makeRepeating1s(NumExponentBits)
+  if (exponent_part == make_repeating_1s(NumExponentBits)
       && mantissa_part != UintRep(0))
     return limits<fraction<Rep, Ops>>::undefined();
 
