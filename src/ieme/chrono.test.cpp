@@ -38,7 +38,7 @@ TEST_CASE("Fraction time points can be constructed using integer time points",
 
 TEST_CASE("Any clock can be wrapped into a fractional clock", "[clock]")
 {
-  using clock_type = fractional_clock<std::chrono::system_clock, std::ratio<1>>;
+  using clock_type = clock_wrapper<std::chrono::system_clock, std::ratio<1>>;
 
   REQUIRE(clock_type::is_steady == std::chrono::system_clock::is_steady);
 
