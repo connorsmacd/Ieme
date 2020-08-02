@@ -153,5 +153,11 @@ auto b11 = are_different(1/2_Fr, -1/-2_Fr); // true
 ### Floating Point Conversions
 
 ```c++
-// TODO
+// Only available if platform uses IEEE754
+auto f1 = to_fraction<int>(0.375f); // 3/8
+auto f2 = to_fraction<int>(-2.25); // -9/4
+
+auto fl1 = to_float(1/4_Fr); // 0.25f
+auto d1 = to_double(5/8_Fr); // 0.625
+auto l1 = to_long_double(-1/16_Fr); // 0.0625L
 ```
