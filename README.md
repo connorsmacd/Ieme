@@ -86,10 +86,6 @@ auto f1 = 1/2_Fr + 3/4_Fr;   // 5/4
 auto f2 = 1/2_Fr - 4/5_Fr;   // -3/10
 auto f3 = 3/4_Fr * 3/7_Fr;   // 9/28
 
-// For divide and modulo, the divisor must be wrapped in parentheses.
-// Without parentheses, the operation 3/4_Fr / 3/2_Fr evalutes to ((3/4)/3)/2
-// instead of (3/4)/(3/2)
-
 auto f4 = 3/4_Fr / (3/2_Fr); // 1/2
 auto f5 = 4/7_Fr % (2/5_Fr); // 6/35
 ```
@@ -97,11 +93,6 @@ auto f5 = 4/7_Fr % (2/5_Fr); // 6/35
 #### Comparisons
 
 ```c++
-// Fractions are compared based on value rather than on representation, e.g.,
-// 1/2 and 2/4 are considered to be equal.
-// To check if two fractions have the exact same representations, see
-// "are_identical" and "are_different" in queries
-
 auto b1 = 1/2_Fr == 2/4_Fr; // true
 auto b2 = 1/2_Fr != 2/4_Fr; // false
 auto b3 = 1/2_Fr > 1/4_Fr;  // true
@@ -153,7 +144,6 @@ auto b11 = are_different(1/2_Fr, -1/-2_Fr); // true
 ### Floating Point Conversions
 
 ```c++
-// Only available if platform uses IEEE754
 auto f1 = to_fraction<int>(0.375f); // 3/8
 auto f2 = to_fraction<int>(-2.25); // -9/4
 
