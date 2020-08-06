@@ -72,8 +72,8 @@ std::size_t hash(const fraction<Rep, Ops>& value) noexcept
 template <typename Rep, typename Ops>
 std::size_t hash(const mixed_number<Rep, Ops>& value) noexcept
 {
-  return hash_combine(std::hash<Rep>()(value.whole_part()),
-                      hash(value.fractional_part()));
+  return hash_combine(std::hash<Rep>()(value.whole()),
+                      hash(value.fractional()));
 }
 
 constexpr std::size_t hash_combine(const std::size_t left,

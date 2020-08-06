@@ -3,8 +3,8 @@
 
 #include <ieme/mixed_number.hpp>
 
-#include <ieme/fraction_queries.hpp>
 #include <ieme/fraction_literals.hpp>
+#include <ieme/fraction_queries.hpp>
 
 
 using namespace ieme;
@@ -15,41 +15,126 @@ TEST_CASE("A default-constructed mixed number has a zero whole part and 0/1 "
           "fractional part",
           "[mixed_number]")
 {
-  constexpr auto f = mixed_number<int>();
+  constexpr auto mn = mixed_number<int>();
 
-  REQUIRE(f.whole_part() == 0);
-  REQUIRE(are_identical(f.fractional_part(), 0 / 1_Fr));
+  REQUIRE(mn.whole() == 0);
+  REQUIRE(are_identical(mn.fractional(), 0 / 1_Fr));
 }
 
 TEST_CASE("A mixed number can constructed from a whole and fractional part",
           "[mixed_number]")
 {
-  constexpr auto f = mixed_number<int>(-5, 4 / 5_Fr);
+  constexpr auto mn = mixed_number(-5, -4 / 5_Fr);
 
-  REQUIRE(f.whole_part() == -5);
-  REQUIRE(are_identical(f.fractional_part(), 4 / 5_Fr));
+  REQUIRE(mn.whole() == -5);
+  REQUIRE(are_identical(mn.fractional(), -4 / 5_Fr));
+}
+
+TEST_CASE("A mixed number will fix itself if the whole and fractional do not "
+          "have the same sign or if the fractional is improper",
+          "[mixed_number]")
+{
+  constexpr auto mn1 = mixed_number(5, -4 / 5_Fr);
+
+  REQUIRE(mn1.whole() == 4);
+  REQUIRE(are_identical(mn1.fractional(), 1 / 5_Fr));
+
+  constexpr auto mn2 = mixed_number(-5, 4 / 5_Fr);
+
+  REQUIRE(mn2.whole() == -4);
+  REQUIRE(are_identical(mn2.fractional(), -1 / 5_Fr));
+
+  constexpr auto mn3 = mixed_number(3, 6 / 5_Fr);
+
+  REQUIRE(mn3.whole() == 4);
+  REQUIRE(are_identical(mn3.fractional(), 1 / 5_Fr));
+
+  constexpr auto mn4 = mixed_number(-3, -6 / 5_Fr);
+
+  REQUIRE(mn4.whole() == -4);
+  REQUIRE(are_identical(mn4.fractional(), -1 / 5_Fr));
+
+  constexpr auto mn5 = mixed_number(7, -14 / 5_Fr);
+
+  REQUIRE(mn5.whole() == 4);
+  REQUIRE(are_identical(mn5.fractional(), 1 / 5_Fr));
+
+  constexpr auto mn6 = mixed_number(-7, 14 / 5_Fr);
+
+  REQUIRE(mn6.whole() == -4);
+  REQUIRE(are_identical(mn6.fractional(), -1 / 5_Fr));
 }
 
 TEST_CASE("A mixed number can constructed from just a whole part",
           "[mixed_number]")
 {
-  constexpr auto f = mixed_number<int>(2);
+  constexpr auto mn = mixed_number<int>(2);
 
-  REQUIRE(f.whole_part() == 2);
-  REQUIRE(are_identical(f.fractional_part(), 0 / 1_Fr));
+  REQUIRE(mn.whole() == 2);
+  REQUIRE(are_identical(mn.fractional(), 0 / 1_Fr));
 }
 
 TEST_CASE("A mixed number can constructed from a fraction", "[mixed_number]")
 {
-  constexpr auto f = mixed_number<int>(-11 / 4_Fr);
+  constexpr auto mn = mixed_number<int>(-11 / 4_Fr);
 
-  REQUIRE(f.whole_part() == -2);
-  REQUIRE(are_identical(f.fractional_part(), 3 / 4_Fr));
+  REQUIRE(mn.whole() == -2);
+  REQUIRE(are_identical(mn.fractional(), -3 / 4_Fr));
 }
 
 TEST_CASE("A mixed number can be converted to a fraction", "[mixed_number]")
 {
-  constexpr auto f = (fraction<int>) mixed_number(-3, 1 / 9_Fr);
+  constexpr auto f = (fraction<int>) mixed_number(-3, -1 / 9_Fr);
 
   REQUIRE(are_identical(f, -28 / 9_Fr));
+}
+
+TEST_CASE("A mixed number can be promoted", "[mixed_number]")
+{
+  constexpr auto mn = +mixed_number(7, 4 / 9_Fr);
+
+  REQUIRE(mn.whole() == 7);
+  REQUIRE(are_identical(mn.fractional(), 4 / 9_Fr));
+}
+
+TEST_CASE("A mixed number can be negated", "[mixed_number]")
+{
+  constexpr auto mn = -mixed_number(7, 4 / 9_Fr);
+
+  REQUIRE(mn.whole() == -7);
+  REQUIRE(are_identical(mn.fractional(), -4 / 9_Fr));
+}
+
+TEST_CASE("A whole number can be added to a mixed number", "[mixed_number]")
+{
+  constexpr auto mn1 = mixed_number(8, 1 / 4_Fr) + 2;
+
+  REQUIRE(mn1.whole() == 10);
+  REQUIRE(mn1.fractional() == 1 / 4_Fr);
+
+  constexpr auto mn2 = 2 + mixed_number(8, 1 / 4_Fr);
+
+  REQUIRE(mn2.whole() == 10);
+  REQUIRE(mn2.fractional() == 1 / 4_Fr);
+}
+
+TEST_CASE("A fraction can be added to a mixed number", "[mixed_number]")
+{
+  constexpr auto mn1 = mixed_number(8, 3 / 4_Fr) + 5 / 3_Fr;
+
+  REQUIRE(mn1.whole() == 10);
+  REQUIRE(mn1.fractional() == 5 / 12_Fr);
+
+  constexpr auto mn2 = -3 / 2_Fr + mixed_number(0, 1 / 4_Fr);
+
+  REQUIRE(mn2.whole() == -1);
+  REQUIRE(mn2.fractional() == -1 / 4_Fr);
+}
+
+TEST_CASE("Two mixed numbers can be added together", "[mixed_number]")
+{
+  constexpr auto mn1 = mixed_number(3, 4 / 5_Fr) + mixed_number(-2, -1 / 2_Fr);
+
+  REQUIRE(mn1.whole() == 1);
+  REQUIRE(mn1.fractional() == 3 / 10_Fr);
 }
