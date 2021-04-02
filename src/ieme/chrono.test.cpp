@@ -17,7 +17,7 @@ TEST_CASE("Integer durations can be implicitly converted to fraction durations",
           "[chrono]")
 {
   REQUIRE(microseconds(1s).count() == 1'000'000);
-  REQUIRE(hours(30min).count() == 1 / 2_Fr);
+  REQUIRE(hours(30min).count() == 1 / 2_fr);
 }
 
 TEST_CASE("Fraction durations can be constructed using integer durations",

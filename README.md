@@ -2,15 +2,15 @@
 
 ```c++
 ieme::fraction<int> f {1, 2}; // f = 1/2
-f = 3/4_Fr;                   // f = 3/4
-f = 1/2_Fr + 3/4_Fr;          // f = 5/4
-f = 1/2_Fr - 4/5_Fr;          // f = -3/10
-f = 3/4_Fr * 3/7_Fr;          // f = 9/28
+f = 3/4_fr;                   // f = 3/4
+f = 1/2_fr + 3/4_fr;          // f = 5/4
+f = 1/2_fr - 4/5_fr;          // f = -3/10
+f = 3/4_fr * 3/7_fr;          // f = 9/28
 f = 8;                        // f = 8/1
 f = 0.759_Dec;                // f = 759/1000
-f = reciprocal(3/4_Fr);       // f = 4/3
-f = reduce(16/24_Fr);         // f = 2/3
-int i = round(19/10_Fr);      // i = 2
+f = reciprocal(3/4_fr);       // f = 4/3
+f = reduce(16/24_fr);         // f = 2/3
+int i = round(19/10_fr);      // i = 2
 ```
 
 Ieme is a fast and simple C++ fractional arithmetic library intended for use in almost any environment.
@@ -72,8 +72,8 @@ auto f4 = fraction<int>(std::milli); // 1/1000
 
 using namespace ieme::fraction_literals;
 
-auto f5 = -2/7_Fr; // -2/7 (fraction<int>)
-auto f6 = 7U/9_Fr; // 7/9 (fraction<unsigned int>)
+auto f5 = -2/7_fr; // -2/7 (fraction<int>)
+auto f6 = 7U/9_fr; // 7/9 (fraction<unsigned int>)
 auto f7 = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
 ```
 
@@ -82,38 +82,38 @@ auto f7 = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
 #### Arithmetic
 
 ```c++
-auto f1 = 1/2_Fr + 3/4_Fr;   // 5/4
-auto f2 = 1/2_Fr - 4/5_Fr;   // -3/10
-auto f3 = 3/4_Fr * 3/7_Fr;   // 9/28
+auto f1 = 1/2_fr + 3/4_fr;   // 5/4
+auto f2 = 1/2_fr - 4/5_fr;   // -3/10
+auto f3 = 3/4_fr * 3/7_fr;   // 9/28
 
-auto f4 = 3/4_Fr / (3/2_Fr); // 1/2
-auto f5 = 4/7_Fr % (2/5_Fr); // 6/35
+auto f4 = 3/4_fr / (3/2_fr); // 1/2
+auto f5 = 4/7_fr % (2/5_fr); // 6/35
 ```
 
 #### Comparisons
 
 ```c++
-auto b1 = 1/2_Fr == 2/4_Fr; // true
-auto b2 = 1/2_Fr != 2/4_Fr; // false
-auto b3 = 1/2_Fr > 1/4_Fr;  // true
-auto b4 = 1/2_Fr >= 1/3_Fr; // true
-auto b5 = 1/2_Fr < 3/4_Fr;  // true
-auto b6 = 1/2_Fr <= 2/3_Fr; // true
+auto b1 = 1/2_fr == 2/4_fr; // true
+auto b2 = 1/2_fr != 2/4_fr; // false
+auto b3 = 1/2_fr > 1/4_fr;  // true
+auto b4 = 1/2_fr >= 1/3_fr; // true
+auto b5 = 1/2_fr < 3/4_fr;  // true
+auto b6 = 1/2_fr <= 2/3_fr; // true
 ```
 
 #### Common Operations
 
 ```c++
-auto f1 = reciprocal(3/4_Fr); // 4/3
+auto f1 = reciprocal(3/4_fr); // 4/3
 
-auto f2 = reduce(16/24_Fr); // 2/3
+auto f2 = reduce(16/24_fr); // 2/3
 
-auto i1 = round(19/10_Fr); // 2
-auto i2 = trunc(19/10_Fr); // 1
-auto i3 = floor(19/10_Fr); // 1
-auto i4 = ceil(19/10_Fr);  // 2
+auto i1 = round(19/10_fr); // 2
+auto i2 = trunc(19/10_fr); // 1
+auto i3 = floor(19/10_fr); // 1
+auto i4 = ceil(19/10_fr);  // 2
 
-auto f3 = abs(-4/5_Fr); // 4/5
+auto f3 = abs(-4/5_fr); // 4/5
 
 auto f4 = pow2(-3); // 1/8
 
@@ -123,22 +123,22 @@ auto f5 = pow(3, -2); // 1/9
 ### Queries
 
 ```c++
-auto b1 = is_undefined(2/0_Fr); // true
+auto b1 = is_undefined(2/0_fr); // true
 
-auto b2 = is_positive(3/4_Fr);  // true
-auto b3 = is_zero(0/4_Fr);      // true
-auto b4 = is_negative(-3/4_Fr); // true
+auto b2 = is_positive(3/4_fr);  // true
+auto b3 = is_zero(0/4_fr);      // true
+auto b4 = is_negative(-3/4_fr); // true
 
-auto b5 = is_integer(2/1_Fr);       // true
-auto b6 = is_unit_fraction(1/3_Fr); // true
+auto b5 = is_integer(2/1_fr);       // true
+auto b6 = is_unit_fraction(1/3_fr); // true
 
-auto b7 = is_reduced(5/10_Fr); // false
+auto b7 = is_reduced(5/10_fr); // false
 
-auto b8 = is_proper(1/4_Fr);   // true
-auto b9 = is_improper(5/4_Fr); // true
+auto b8 = is_proper(1/4_fr);   // true
+auto b9 = is_improper(5/4_fr); // true
 
-auto b10 = are_identical(1/2_Fr, 1/2_Fr);   // true
-auto b11 = are_different(1/2_Fr, -1/-2_Fr); // true
+auto b10 = are_identical(1/2_fr, 1/2_fr);   // true
+auto b11 = are_different(1/2_fr, -1/-2_fr); // true
 ```
 
 ### Floating Point Conversions
@@ -147,7 +147,7 @@ auto b11 = are_different(1/2_Fr, -1/-2_Fr); // true
 auto f1 = to_fraction<int>(0.375f); // 3/8
 auto f2 = to_fraction<int>(-2.25); // -9/4
 
-auto fl1 = to_float(1/4_Fr); // 0.25f
-auto d1 = to_double(5/8_Fr); // 0.625
-auto l1 = to_long_double(-1/16_Fr); // 0.0625L
+auto fl1 = to_float(1/4_fr); // 0.25f
+auto d1 = to_double(5/8_fr); // 0.625
+auto l1 = to_long_double(-1/16_fr); // 0.0625L
 ```

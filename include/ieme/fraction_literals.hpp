@@ -32,7 +32,7 @@ private:
 };
 
 constexpr denominator_literal<false>
-operator""_Fr(unsigned long long int value) noexcept;
+operator""_fr(unsigned long long int value) noexcept;
 
 template <bool IsSigned, typename Ops>
 constexpr denominator_literal<IsSigned, Ops>
@@ -68,7 +68,7 @@ constexpr denominator_literal<IsSigned, Ops>::denominator_literal(
 }
 
 constexpr denominator_literal<false>
-operator""_Fr(const unsigned long long int value) noexcept
+operator""_fr(const unsigned long long int value) noexcept
 {
   return value;
 }

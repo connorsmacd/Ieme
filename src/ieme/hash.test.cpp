@@ -22,22 +22,22 @@ TEST_CASE("A raw fraction can be hashed", "[hash]")
 
 TEST_CASE("A fraction can be hashed", "[hash]")
 {
-  REQUIRE(hash(-3 / 4_Fr) == hash(-3 / 4_Fr));
-  REQUIRE(hash(23 / 222_Fr) == hash(23 / 222_Fr));
-  REQUIRE(std::hash<fraction<int>>()(-3 / 4_Fr)
-          == std::hash<fraction<int>>()(-3 / 4_Fr));
-  REQUIRE(std::hash<fraction<int>>()(23 / 222_Fr)
-          == std::hash<fraction<int>>()(23 / 222_Fr));
+  REQUIRE(hash(-3 / 4_fr) == hash(-3 / 4_fr));
+  REQUIRE(hash(23 / 222_fr) == hash(23 / 222_fr));
+  REQUIRE(std::hash<fraction<int>>()(-3 / 4_fr)
+          == std::hash<fraction<int>>()(-3 / 4_fr));
+  REQUIRE(std::hash<fraction<int>>()(23 / 222_fr)
+          == std::hash<fraction<int>>()(23 / 222_fr));
 }
 
 TEST_CASE("A mixed number can be hashed", "[hash]")
 {
-  REQUIRE(hash(mixed_number(-72, 3 / 4_Fr))
-          == hash(mixed_number(-72, 3 / 4_Fr)));
-  REQUIRE(hash(mixed_number(889, 23 / 222_Fr))
-          == hash(mixed_number(889, 23 / 222_Fr)));
-  REQUIRE(std::hash<mixed_number<int>>()(mixed_number(-72, 3 / 4_Fr))
-          == std::hash<mixed_number<int>>()(mixed_number(-72, 3 / 4_Fr)));
-  REQUIRE(std::hash<mixed_number<int>>()(mixed_number(889, 23 / 222_Fr))
-          == std::hash<mixed_number<int>>()(mixed_number(889, 23 / 222_Fr)));
+  REQUIRE(hash(mixed_number(-72, 3 / 4_fr))
+          == hash(mixed_number(-72, 3 / 4_fr)));
+  REQUIRE(hash(mixed_number(889, 23 / 222_fr))
+          == hash(mixed_number(889, 23 / 222_fr)));
+  REQUIRE(std::hash<mixed_number<int>>()(mixed_number(-72, 3 / 4_fr))
+          == std::hash<mixed_number<int>>()(mixed_number(-72, 3 / 4_fr)));
+  REQUIRE(std::hash<mixed_number<int>>()(mixed_number(889, 23 / 222_fr))
+          == std::hash<mixed_number<int>>()(mixed_number(889, 23 / 222_fr)));
 }
