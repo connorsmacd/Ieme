@@ -179,8 +179,9 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
 
   auto const sign = (sign_part == UintRep(0)) ? Rep(1) : Rep(-1);
 
-  auto const exponent_bias = math_utilities::pow2(int(NumExponentBits) - 1) - 1;
-  auto const exponent = int(exponent_part) - exponent_bias;
+  auto const exponent_bias
+    = math_utilities::pow2(static_cast<int>(NumExponentBits) - 1) - 1;
+  auto const exponent = static_cast<int>(exponent_part) - exponent_bias;
 
   auto const mantissa
     = Rep(1)
