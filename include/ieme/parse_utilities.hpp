@@ -17,10 +17,10 @@ enum class sign : bool {
 
 struct floating_point_string_scan_results {
   bool is_valid = false;
-  unsigned int base = 10;
+  int base = 10;
   std::string_view whole;
   std::string_view fractional;
-  unsigned int fractional_precision = 0;
+  int fractional_precision = 0;
   sign exponent_sign = sign::positive;
   std::string_view exponent;
 };
@@ -29,7 +29,7 @@ constexpr floating_point_string_scan_results
 scan_floating_point_string(std::string_view string) noexcept;
 
 constexpr bool is_valid_digit_sequence(std::string_view sequence,
-                                       unsigned int base) noexcept;
+                                       int base) noexcept;
 
 template <typename Int>
 constexpr Int digit_sequence_to_int(std::string_view sequence,
@@ -155,7 +155,7 @@ scan_floating_point_string(std::string_view const string) noexcept
 }
 
 constexpr bool is_valid_digit_sequence(std::string_view const sequence,
-                                       unsigned int const base) noexcept
+                                       int const base) noexcept
 {
   auto digit_preceeded = false;
 
