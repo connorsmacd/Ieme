@@ -141,8 +141,8 @@ fraction<Rep, Ops> floating_point_to_fraction(const Float value) noexcept
   const auto [sign_part, exponent_part, mantissa_part] = [&]() {
     const auto as_uint_rep = [&]() {
       UintRep result {};
-      std::memcpy(reinterpret_cast<void*>(&result),
-                  reinterpret_cast<const void*>(&value),
+      std::memcpy(static_cast<void*>(&result),
+                  static_cast<const void*>(&value),
                   sizeof(Float));
       return result;
     }();
