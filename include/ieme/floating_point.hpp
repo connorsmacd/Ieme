@@ -145,19 +145,19 @@ template <typename Rep,
 fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
 {
   auto const make_repeating_1s
-    = [](const UintRep count) { return (UintRep(1) << count) - UintRep(1); };
+    = [](UintRep const count) { return (UintRep(1) << count) - UintRep(1); };
 
   auto const [sign_part, exponent_part, mantissa_part] = [&]() {
     auto const as_uint_rep = [&]() {
       UintRep result {};
       std::memcpy(static_cast<void*>(&result),
-                  static_cast<const void*>(&value),
+                  static_cast<void const*>(&value),
                   sizeof(Float));
       return result;
     }();
 
     auto const extract_bit_field
-      = [&](const UintRep position, const UintRep size) -> UintRep {
+      = [&](UintRep const position, UintRep const size) -> UintRep {
       return (as_uint_rep >> position) & make_repeating_1s(size);
     };
 
