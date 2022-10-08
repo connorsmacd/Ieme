@@ -9,13 +9,19 @@ namespace ieme {
 namespace parse_utilities {
 
 
+enum class sign : bool {
+  negative,
+  positive,
+};
+
+
 struct floating_point_string_scan_results {
   bool is_valid = false;
   unsigned int base = 10;
   std::string_view whole;
   std::string_view fractional;
   unsigned int fractional_precision = 0;
-  char exponent_sign = '+';
+  sign exponent_sign = sign::positive;
   std::string_view exponent;
 };
 
@@ -128,10 +134,16 @@ scan_floating_point_string(std::string_view const string) noexcept
 
   remaining_string.remove_prefix(exponent_separator_pos + 1);
 
-  if (remaining_string.front() == '-' || remaining_string.front() == '+')
+  switch (remaining_string.front())
   {
-    results.exponent_sign = remaining_string.front();
-    remaining_string.remove_prefix(1);
+    case '-':
+      results.exponent_sign = sign::negative;
+      [[fallthrough]];
+    case '+':
+      remaining_string.remove_prefix(1);
+      break;
+    default:
+      break;
   }
 
   results.exponent = remaining_string;
