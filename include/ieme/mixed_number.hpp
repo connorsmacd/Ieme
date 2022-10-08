@@ -21,23 +21,23 @@ public:
 
   constexpr mixed_number() noexcept = default;
 
-  constexpr mixed_number(const whole_type& whole,
-                         const fractional_type& fractional = {}) noexcept;
+  constexpr mixed_number(whole_type const& whole,
+                         fractional_type const& fractional = {}) noexcept;
 
   template <typename OtherFRep>
-  constexpr mixed_number(const fraction<OtherFRep, ops_type>& value) noexcept;
+  constexpr mixed_number(fraction<OtherFRep, ops_type> const& value) noexcept;
 
   template <typename OtherFRep, typename OtherOps>
   explicit constexpr mixed_number(
-    const fraction<OtherFRep, OtherOps>& value) noexcept;
+    fraction<OtherFRep, OtherOps> const& value) noexcept;
 
   constexpr fraction<common_rep_type, ops_type> as_fraction() const noexcept;
 
   constexpr operator fraction<common_rep_type, ops_type>() const noexcept;
 
-  constexpr const whole_type& whole() const noexcept;
+  constexpr whole_type const& whole() const noexcept;
 
-  constexpr const fractional_type& fractional() const noexcept;
+  constexpr fractional_type const& fractional() const noexcept;
 
 private:
   constexpr void fix() noexcept;
@@ -48,11 +48,11 @@ private:
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr mixed_number<WRep, FRep, Ops>
-operator+(const mixed_number<WRep, FRep, Ops>& value) noexcept;
+operator+(mixed_number<WRep, FRep, Ops> const& value) noexcept;
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr mixed_number<WRep, FRep, Ops>
-operator-(const mixed_number<WRep, FRep, Ops>& value) noexcept;
+operator-(mixed_number<WRep, FRep, Ops> const& value) noexcept;
 
 template <typename WRep1,
           typename FRep1,
@@ -62,32 +62,32 @@ template <typename WRep1,
 constexpr mixed_number<std::common_type_t<WRep1, WRep2>,
                        std::common_type_t<FRep1, FRep2>,
                        Ops>
-operator+(const mixed_number<WRep1, FRep1, Ops>& left,
-          const mixed_number<WRep2, FRep2, Ops>& right) noexcept;
+operator+(mixed_number<WRep1, FRep1, Ops> const& left,
+          mixed_number<WRep2, FRep2, Ops> const& right) noexcept;
 
 template <typename WRep1, typename FRep1, typename FRep2, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, FRep2>,
                        std::common_type_t<FRep1, FRep2>,
                        Ops>
-operator+(const mixed_number<WRep1, FRep1, Ops>& left,
-          const fraction<FRep2, Ops>& right) noexcept;
+operator+(mixed_number<WRep1, FRep1, Ops> const& left,
+          fraction<FRep2, Ops> const& right) noexcept;
 
 template <typename WRep1, typename FRep1, typename FRep2, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, FRep2>,
                        std::common_type_t<FRep1, FRep2>,
                        Ops>
-operator+(const fraction<FRep2, Ops>& left,
-          const mixed_number<WRep1, FRep1, Ops>& right) noexcept;
+operator+(fraction<FRep2, Ops> const& left,
+          mixed_number<WRep1, FRep1, Ops> const& right) noexcept;
 
 template <typename WRep1, typename FRep, typename WRep2, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, WRep2>, FRep, Ops>
-operator+(const mixed_number<WRep1, FRep, Ops>& left,
-          const WRep2& right) noexcept;
+operator+(mixed_number<WRep1, FRep, Ops> const& left,
+          WRep2 const& right) noexcept;
 
 template <typename WRep1, typename WRep2, typename FRep, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, WRep2>, FRep, Ops>
-operator+(const WRep1& left,
-          const mixed_number<WRep2, FRep, Ops>& right) noexcept;
+operator+(WRep1 const& left,
+          mixed_number<WRep2, FRep, Ops> const& right) noexcept;
 
 
 // =============================================================================
@@ -95,10 +95,9 @@ operator+(const WRep1& left,
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr mixed_number<WRep, FRep, Ops>::mixed_number(
-  const whole_type& whole,
-  const fractional_type& fractional) noexcept :
-  whole_ {whole},
-  fractional_ {fractional}
+  whole_type const& whole,
+  fractional_type const& fractional) noexcept :
+  whole_ {whole}, fractional_ {fractional}
 {
   fix();
 }
@@ -106,7 +105,7 @@ constexpr mixed_number<WRep, FRep, Ops>::mixed_number(
 template <typename WRep, typename FRep, typename Ops>
 template <typename OtherFRep>
 constexpr mixed_number<WRep, FRep, Ops>::mixed_number(
-  const fraction<OtherFRep, ops_type>& value) noexcept :
+  fraction<OtherFRep, ops_type> const& value) noexcept :
   whole_ {whole_type(trunc(value))},
   fractional_ {fractional_type(value - OtherFRep(whole_))}
 {
@@ -115,7 +114,7 @@ constexpr mixed_number<WRep, FRep, Ops>::mixed_number(
 template <typename WRep, typename FRep, typename Ops>
 template <typename OtherFRep, typename OtherOps>
 constexpr mixed_number<WRep, FRep, Ops>::mixed_number(
-  const fraction<OtherFRep, OtherOps>& value) noexcept :
+  fraction<OtherFRep, OtherOps> const& value) noexcept :
   mixed_number {fraction<OtherFRep, Ops>(value)}
 {
 }
@@ -129,22 +128,23 @@ constexpr auto mixed_number<WRep, FRep, Ops>::as_fraction() const noexcept
 }
 
 template <typename WRep, typename FRep, typename Ops>
-constexpr mixed_number<WRep, FRep, Ops>::
-operator fraction<common_rep_type, ops_type>() const noexcept
+constexpr mixed_number<WRep, FRep, Ops>::operator fraction<common_rep_type,
+                                                           ops_type>()
+  const noexcept
 {
   return as_fraction();
 }
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr auto mixed_number<WRep, FRep, Ops>::whole() const noexcept
-  -> const whole_type&
+  -> whole_type const&
 {
   return whole_;
 }
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr auto mixed_number<WRep, FRep, Ops>::fractional() const noexcept
-  -> const fractional_type&
+  -> fractional_type const&
 {
   return fractional_;
 }
@@ -154,7 +154,7 @@ constexpr void mixed_number<WRep, FRep, Ops>::fix() noexcept
 {
   if (is_improper(fractional_))
   {
-    const auto truncated_fractional = trunc(fractional_);
+    auto const truncated_fractional = trunc(fractional_);
 
     whole_ += whole_type(truncated_fractional);
     fractional_ -= truncated_fractional;
@@ -174,14 +174,14 @@ constexpr void mixed_number<WRep, FRep, Ops>::fix() noexcept
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr mixed_number<WRep, FRep, Ops>
-operator+(const mixed_number<WRep, FRep, Ops>& value) noexcept
+operator+(mixed_number<WRep, FRep, Ops> const& value) noexcept
 {
   return value;
 }
 
 template <typename WRep, typename FRep, typename Ops>
 constexpr mixed_number<WRep, FRep, Ops>
-operator-(const mixed_number<WRep, FRep, Ops>& value) noexcept
+operator-(mixed_number<WRep, FRep, Ops> const& value) noexcept
 {
   return {-value.whole(), -value.fractional()};
 }
@@ -194,15 +194,15 @@ template <typename WRep1,
 constexpr mixed_number<std::common_type_t<WRep1, WRep2>,
                        std::common_type_t<FRep1, FRep2>,
                        Ops>
-operator+(const mixed_number<WRep1, FRep1, Ops>& left,
-          const mixed_number<WRep2, FRep2, Ops>& right) noexcept
+operator+(mixed_number<WRep1, FRep1, Ops> const& left,
+          mixed_number<WRep2, FRep2, Ops> const& right) noexcept
 {
   using whole_type = std::common_type_t<WRep1, WRep2>;
   using fractional_type = ieme::fraction<std::common_type_t<FRep1, FRep2>, Ops>;
 
-  const auto whole = static_cast<whole_type>(left.whole())
+  auto const whole = static_cast<whole_type>(left.whole())
                      + static_cast<whole_type>(right.whole());
-  const auto fractional = static_cast<fractional_type>(left.fractional())
+  auto const fractional = static_cast<fractional_type>(left.fractional())
                           + static_cast<fractional_type>(right.fractional());
 
   return {whole, fractional};
@@ -212,8 +212,8 @@ template <typename WRep, typename FRep1, typename FRep2, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep, FRep2>,
                        std::common_type_t<FRep1, FRep2>,
                        Ops>
-operator+(const mixed_number<WRep, FRep1, Ops>& left,
-          const fraction<FRep2, Ops>& right) noexcept
+operator+(mixed_number<WRep, FRep1, Ops> const& left,
+          fraction<FRep2, Ops> const& right) noexcept
 {
   return left + mixed_number<FRep2, FRep2, Ops>(right);
 }
@@ -222,16 +222,16 @@ template <typename WRep1, typename FRep1, typename FRep2, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, FRep2>,
                        std::common_type_t<FRep1, FRep2>,
                        Ops>
-operator+(const fraction<FRep2, Ops>& left,
-          const mixed_number<WRep1, FRep1, Ops>& right) noexcept
+operator+(fraction<FRep2, Ops> const& left,
+          mixed_number<WRep1, FRep1, Ops> const& right) noexcept
 {
   return right + left;
 }
 
 template <typename WRep1, typename FRep, typename WRep2, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, WRep2>, FRep, Ops>
-operator+(const mixed_number<WRep1, FRep, Ops>& left,
-          const WRep2& right) noexcept
+operator+(mixed_number<WRep1, FRep, Ops> const& left,
+          WRep2 const& right) noexcept
 {
   using whole_type = std::common_type_t<WRep1, WRep2>;
 
@@ -242,8 +242,8 @@ operator+(const mixed_number<WRep1, FRep, Ops>& left,
 
 template <typename WRep1, typename WRep2, typename FRep, typename Ops>
 constexpr mixed_number<std::common_type_t<WRep1, WRep2>, FRep, Ops>
-operator+(const WRep1& left,
-          const mixed_number<WRep2, FRep, Ops>& right) noexcept
+operator+(WRep1 const& left,
+          mixed_number<WRep2, FRep, Ops> const& right) noexcept
 {
   return right + left;
 }

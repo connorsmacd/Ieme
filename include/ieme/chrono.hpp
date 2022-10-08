@@ -43,7 +43,7 @@ using hours = duration_like<std::chrono::hours>;
 
 template <typename Rep, typename Period, typename Ops = ops::defaults>
 constexpr duration_like<std::chrono::duration<Rep, Period>, Ops>
-to_fractional(const std::chrono::duration<Rep, Period>& duration) noexcept;
+to_fractional(std::chrono::duration<Rep, Period> const& duration) noexcept;
 
 
 template <typename Clock,
@@ -61,7 +61,7 @@ using time_point_like = time_point<typename TimePoint::clock,
 template <typename Clock, typename Duration, typename Ops = ops::defaults>
 constexpr time_point_like<std::chrono::time_point<Clock, Duration>, Ops>
 to_fractional(
-  const std::chrono::time_point<Clock, Duration>& time_point) noexcept;
+  std::chrono::time_point<Clock, Duration> const& time_point) noexcept;
 
 
 template <typename Clock,
@@ -91,7 +91,7 @@ public:
 
 template <typename Rep, typename Period, typename Ops>
 constexpr duration_like<std::chrono::duration<Rep, Period>, Ops>
-to_fractional(const std::chrono::duration<Rep, Period>& duration) noexcept
+to_fractional(std::chrono::duration<Rep, Period> const& duration) noexcept
 {
   return duration_like<std::chrono::duration<Rep, Period>, Ops>(duration);
 }
@@ -99,7 +99,7 @@ to_fractional(const std::chrono::duration<Rep, Period>& duration) noexcept
 template <typename Clock, typename Duration, typename Ops>
 constexpr time_point_like<std::chrono::time_point<Clock, Duration>, Ops>
 to_fractional(
-  const std::chrono::time_point<Clock, Duration>& time_point) noexcept
+  std::chrono::time_point<Clock, Duration> const& time_point) noexcept
 {
   return time_point_like<std::chrono::time_point<Clock, Duration>, Ops>(
     time_point);

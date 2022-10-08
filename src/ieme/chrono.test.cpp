@@ -23,7 +23,7 @@ TEST_CASE("Integer durations can be implicitly converted to fraction durations",
 TEST_CASE("Fraction durations can be constructed using integer durations",
           "[chrono]")
 {
-  const auto d = to_fractional(62h);
+  auto const d = to_fractional(62h);
 
   REQUIRE(std::ratio_equal_v<decltype(d)::period, std::chrono::hours::period>);
   REQUIRE(d.count() == 62);
@@ -32,7 +32,7 @@ TEST_CASE("Fraction durations can be constructed using integer durations",
 TEST_CASE("Fraction time points can be constructed using integer time points",
           "[chrono]")
 {
-  const auto t = to_fractional(std::chrono::system_clock::time_point(57s));
+  auto const t = to_fractional(std::chrono::system_clock::time_point(57s));
   REQUIRE(t.time_since_epoch() == seconds(57));
 }
 
@@ -42,7 +42,7 @@ TEST_CASE("Any clock can be wrapped into a fractional clock", "[clock]")
 
   REQUIRE(clock_type::is_steady == std::chrono::system_clock::is_steady);
 
-  const auto now = clock_type::now();
+  auto const now = clock_type::now();
 
   REQUIRE(std::ratio_equal_v<decltype(now)::period, std::ratio<1>>);
   REQUIRE(std::is_same_v<typename decltype(now)::rep::rep_type,

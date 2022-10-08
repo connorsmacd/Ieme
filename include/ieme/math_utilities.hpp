@@ -22,13 +22,13 @@ constexpr Int pow(Int base, Int exponent) noexcept;
 
 
 template <typename Int>
-constexpr Int abs(const Int value) noexcept
+constexpr Int abs(Int const value) noexcept
 {
   return (value >= Int(0)) ? value : -value;
 }
 
 template <typename Int>
-constexpr Int pow2(const Int exponent) noexcept
+constexpr Int pow2(Int const exponent) noexcept
 {
   using unsigned_type = std::make_unsigned_t<Int>;
 
@@ -36,7 +36,7 @@ constexpr Int pow2(const Int exponent) noexcept
 }
 
 template <typename Int>
-constexpr Int pow(const Int base, const Int exponent) noexcept
+constexpr Int pow(Int const base, Int const exponent) noexcept
 {
   if (exponent == Int(0))
     return Int(1);
@@ -44,7 +44,7 @@ constexpr Int pow(const Int base, const Int exponent) noexcept
   if (exponent % Int(2) == Int(1))
     return base * pow(base, exponent - Int(1));
 
-  const auto squareRoot = pow(base, exponent / Int(2));
+  auto const squareRoot = pow(base, exponent / Int(2));
 
   return squareRoot * squareRoot;
 }

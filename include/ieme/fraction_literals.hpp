@@ -36,25 +36,25 @@ operator""_fr(unsigned long long int value) noexcept;
 
 template <bool IsSigned, typename Ops>
 constexpr denominator_literal<IsSigned, Ops>
-operator+(const denominator_literal<IsSigned, Ops>& value) noexcept;
+operator+(denominator_literal<IsSigned, Ops> const& value) noexcept;
 
 template <bool IsSigned, typename Ops>
 constexpr denominator_literal<true, Ops>
-operator-(const denominator_literal<IsSigned, Ops>& value) noexcept;
+operator-(denominator_literal<IsSigned, Ops> const& value) noexcept;
 
 template <bool IsSigned, typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-operator/(const fraction<Rep, Ops>& left,
-          const denominator_literal<IsSigned, Ops>& right) noexcept;
+operator/(fraction<Rep, Ops> const& left,
+          denominator_literal<IsSigned, Ops> const& right) noexcept;
 
 template <bool IsSigned, typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-operator/(const Rep& left,
-          const denominator_literal<IsSigned, Ops>& right) noexcept;
+operator/(Rep const& left,
+          denominator_literal<IsSigned, Ops> const& right) noexcept;
 
 
 constexpr fraction<std::intmax_t, ops::defaults>
-operator""_Dec(const char* string);
+operator""_Dec(char const* string);
 
 
 // =============================================================================
@@ -62,51 +62,51 @@ operator""_Dec(const char* string);
 
 template <bool IsSigned, typename Ops>
 constexpr denominator_literal<IsSigned, Ops>::denominator_literal(
-  const value_type value) noexcept :
+  value_type const value) noexcept :
   value_ {value}
 {
 }
 
 constexpr denominator_literal<false>
-operator""_fr(const unsigned long long int value) noexcept
+operator""_fr(unsigned long long int const value) noexcept
 {
   return value;
 }
 
 template <bool IsSigned, typename Ops>
 constexpr denominator_literal<IsSigned, Ops>
-operator+(const denominator_literal<IsSigned, Ops>& value) noexcept
+operator+(denominator_literal<IsSigned, Ops> const& value) noexcept
 {
   return value;
 }
 
 template <bool IsSigned, typename Ops>
 constexpr denominator_literal<true, Ops>
-operator-(const denominator_literal<IsSigned, Ops>& value) noexcept
+operator-(denominator_literal<IsSigned, Ops> const& value) noexcept
 {
   return -typename denominator_literal<true, Ops>::value_type(value.value());
 }
 
 template <bool IsSigned, typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-operator/(const fraction<Rep, Ops>& left,
-          const denominator_literal<IsSigned, Ops>& right) noexcept
+operator/(fraction<Rep, Ops> const& left,
+          denominator_literal<IsSigned, Ops> const& right) noexcept
 {
   return left / Rep(right.value());
 }
 
 template <bool IsSigned, typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-operator/(const Rep& left,
-          const denominator_literal<IsSigned, Ops>& right) noexcept
+operator/(Rep const& left,
+          denominator_literal<IsSigned, Ops> const& right) noexcept
 {
   return {left, Rep(right.value())};
 }
 
 constexpr fraction<std::intmax_t, ops::defaults>
-operator""_Dec(const char* const string)
+operator""_Dec(char const* const string)
 {
-  const auto result
+  auto const result
     = floating_point_string_to_fraction<std::intmax_t, ops::defaults>(string);
 
   return is_defined(result) ? result : throw "invalid floating point literal";

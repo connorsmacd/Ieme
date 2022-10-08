@@ -23,13 +23,13 @@ template <typename Rep, typename Ops = ops::defaults>
 fraction<Rep, Ops> to_fraction(double value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr float to_float(const fraction<Rep, Ops>& value) noexcept;
+constexpr float to_float(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr double to_double(const fraction<Rep, Ops>& value) noexcept;
+constexpr double to_double(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr long double to_long_double(const fraction<Rep, Ops>& value) noexcept;
+constexpr long double to_long_double(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops>
@@ -59,14 +59,14 @@ fraction<Rep, Ops> floating_point_to_fraction(Float value) noexcept;
 
 template <typename Float, typename Rep, typename Ops>
 constexpr Float
-fraction_to_floating_point(const fraction<Rep, Ops>& value) noexcept;
+fraction_to_floating_point(fraction<Rep, Ops> const& value) noexcept;
 
 
 // =============================================================================
 
 
 template <typename Rep, typename Ops>
-fraction<Rep, Ops> to_fraction(const float value) noexcept
+fraction<Rep, Ops> to_fraction(float const value) noexcept
 {
   static_assert(std::numeric_limits<float>::is_iec559, "");
 
@@ -74,7 +74,7 @@ fraction<Rep, Ops> to_fraction(const float value) noexcept
 }
 
 template <typename Rep, typename Ops>
-fraction<Rep, Ops> to_fraction(const double value) noexcept
+fraction<Rep, Ops> to_fraction(double const value) noexcept
 {
   static_assert(std::numeric_limits<double>::is_iec559, "");
 
@@ -82,44 +82,44 @@ fraction<Rep, Ops> to_fraction(const double value) noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr float to_float(const fraction<Rep, Ops>& value) noexcept
+constexpr float to_float(fraction<Rep, Ops> const& value) noexcept
 {
   return fraction_to_floating_point<float>(value);
 }
 
 template <typename Rep, typename Ops>
-constexpr double to_double(const fraction<Rep, Ops>& value) noexcept
+constexpr double to_double(fraction<Rep, Ops> const& value) noexcept
 {
   return fraction_to_floating_point<double>(value);
 }
 
 template <typename Rep, typename Ops>
-constexpr long double to_long_double(const fraction<Rep, Ops>& value) noexcept
+constexpr long double to_long_double(fraction<Rep, Ops> const& value) noexcept
 {
   return fraction_to_floating_point<long double>(value);
 }
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-floating_point_string_to_fraction(const std::string_view string) noexcept
+floating_point_string_to_fraction(std::string_view const string) noexcept
 {
-  const auto scan_results = parse_utilities::scan_floating_point_string(string);
+  auto const scan_results = parse_utilities::scan_floating_point_string(string);
 
   if (!scan_results.is_valid)
     return limits<fraction<Rep, Ops>>::undefined();
 
-  const auto base_as_rep = Rep(scan_results.base);
+  auto const base_as_rep = Rep(scan_results.base);
 
-  const auto whole
+  auto const whole
     = parse_utilities::digit_sequence_to_int(scan_results.whole, base_as_rep);
 
-  const auto fractional_num = parse_utilities::digit_sequence_to_int(
+  auto const fractional_num = parse_utilities::digit_sequence_to_int(
     scan_results.fractional, base_as_rep);
-  const auto fractional_den
+  auto const fractional_den
     = math_utilities::pow(base_as_rep, Rep(scan_results.fractional_precision));
 
-  const auto exponent_base = (scan_results.base == 10U) ? Rep(10) : Rep(2);
-  const auto exponent
+  auto const exponent_base = (scan_results.base == 10U) ? Rep(10) : Rep(2);
+  auto const exponent
     = (scan_results.exponent_sign == '-' ? -1 : 1)
       * parse_utilities::digit_sequence_to_int(scan_results.exponent, 10);
 
@@ -133,13 +133,13 @@ template <typename Rep,
           typename UintRep,
           auto NumMantissaBits,
           auto NumExponentBits>
-fraction<Rep, Ops> floating_point_to_fraction(const Float value) noexcept
+fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
 {
-  const auto make_repeating_1s
+  auto const make_repeating_1s
     = [](const UintRep count) { return (UintRep(1) << count) - UintRep(1); };
 
-  const auto [sign_part, exponent_part, mantissa_part] = [&]() {
-    const auto as_uint_rep = [&]() {
+  auto const [sign_part, exponent_part, mantissa_part] = [&]() {
+    auto const as_uint_rep = [&]() {
       UintRep result {};
       std::memcpy(static_cast<void*>(&result),
                   static_cast<const void*>(&value),
@@ -147,7 +147,7 @@ fraction<Rep, Ops> floating_point_to_fraction(const Float value) noexcept
       return result;
     }();
 
-    const auto extract_bit_field
+    auto const extract_bit_field
       = [&](const UintRep position, const UintRep size) -> UintRep {
       return (as_uint_rep >> position) & make_repeating_1s(size);
     };
@@ -168,12 +168,12 @@ fraction<Rep, Ops> floating_point_to_fraction(const Float value) noexcept
       && mantissa_part != UintRep(0))
     return limits<fraction<Rep, Ops>>::undefined();
 
-  const auto sign = (sign_part == UintRep(0)) ? Rep(1) : Rep(-1);
+  auto const sign = (sign_part == UintRep(0)) ? Rep(1) : Rep(-1);
 
-  const auto exponent_bias = math_utilities::pow2(int(NumExponentBits) - 1) - 1;
-  const auto exponent = int(exponent_part) - exponent_bias;
+  auto const exponent_bias = math_utilities::pow2(int(NumExponentBits) - 1) - 1;
+  auto const exponent = int(exponent_part) - exponent_bias;
 
-  const auto mantissa
+  auto const mantissa
     = Rep(1)
       + fraction<Rep, Ops>(Rep(mantissa_part),
                            math_utilities::pow2(Rep(NumMantissaBits)));
@@ -183,9 +183,9 @@ fraction<Rep, Ops> floating_point_to_fraction(const Float value) noexcept
 
 template <typename Float, typename Rep, typename Ops>
 constexpr Float
-fraction_to_floating_point(const fraction<Rep, Ops>& value) noexcept
+fraction_to_floating_point(fraction<Rep, Ops> const& value) noexcept
 {
-  const auto reduced = reduce(value);
+  auto const reduced = reduce(value);
 
   return Float(reduced.num()) / Float(reduced.den());
 }

@@ -11,38 +11,38 @@ namespace ieme {
 
 
 template <typename Rep>
-constexpr raw_fraction<Rep> reciprocal(const raw_fraction<Rep>& value) noexcept;
+constexpr raw_fraction<Rep> reciprocal(raw_fraction<Rep> const& value) noexcept;
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-normalize_signs(const raw_fraction<Rep>& value) noexcept;
+normalize_signs(raw_fraction<Rep> const& value) noexcept;
 
 template <typename Rep>
-constexpr raw_fraction<Rep> reduce(const raw_fraction<Rep>& value,
+constexpr raw_fraction<Rep> reduce(raw_fraction<Rep> const& value,
                                    reduce_mode mode
                                    = reduce_mode::normalize_signs) noexcept;
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduce_normalize_signs(const raw_fraction<Rep>& value) noexcept;
+reduce_normalize_signs(raw_fraction<Rep> const& value) noexcept;
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduce_ignore_signs(const raw_fraction<Rep>& value) noexcept;
+reduce_ignore_signs(raw_fraction<Rep> const& value) noexcept;
 
 
 // =============================================================================
 
 
 template <typename Rep>
-constexpr raw_fraction<Rep> reciprocal(const raw_fraction<Rep>& value) noexcept
+constexpr raw_fraction<Rep> reciprocal(raw_fraction<Rep> const& value) noexcept
 {
   return {value.denominator, value.numerator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-normalize_signs(const raw_fraction<Rep>& value) noexcept
+normalize_signs(raw_fraction<Rep> const& value) noexcept
 {
   return (value.denominator > Rep(0))
            ? value
@@ -50,8 +50,8 @@ normalize_signs(const raw_fraction<Rep>& value) noexcept
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> reduce(const raw_fraction<Rep>& value,
-                                   const reduce_mode mode) noexcept
+constexpr raw_fraction<Rep> reduce(raw_fraction<Rep> const& value,
+                                   reduce_mode const mode) noexcept
 {
   switch (mode)
   {
@@ -66,19 +66,19 @@ constexpr raw_fraction<Rep> reduce(const raw_fraction<Rep>& value,
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduce_normalize_signs(const raw_fraction<Rep>& value) noexcept
+reduce_normalize_signs(raw_fraction<Rep> const& value) noexcept
 {
   return normalize_signs(reduce_ignore_signs(value));
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduce_ignore_signs(const raw_fraction<Rep>& value) noexcept
+reduce_ignore_signs(raw_fraction<Rep> const& value) noexcept
 {
   if (is_undefined(value))
     return {Rep(0), Rep(0)};
 
-  const auto gcd = std::gcd(value.numerator, value.denominator);
+  auto const gcd = std::gcd(value.numerator, value.denominator);
 
   return {value.numerator / gcd, value.denominator / gcd};
 }

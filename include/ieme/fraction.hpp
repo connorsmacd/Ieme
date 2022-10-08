@@ -18,7 +18,7 @@ class fraction;
 
 template <typename Rep, typename Ops>
 std::ostream& operator<<(std::ostream& stream,
-                         const fraction<Rep, Ops>& value) noexcept;
+                         fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
 std::istream& operator>>(std::istream& stream,
@@ -35,40 +35,40 @@ public:
 
   constexpr fraction() = default;
 
-  constexpr fraction(const raw_fraction_type& raw) noexcept;
+  constexpr fraction(raw_fraction_type const& raw) noexcept;
 
-  constexpr fraction(const Rep& numerator, const Rep& denominator = 1) noexcept;
+  constexpr fraction(Rep const& numerator, Rep const& denominator = 1) noexcept;
 
   template <typename OtherRep>
-  constexpr fraction(const fraction<OtherRep, Ops>& other) noexcept;
+  constexpr fraction(fraction<OtherRep, Ops> const& other) noexcept;
 
   template <typename OtherRep, typename OtherOps>
   explicit constexpr fraction(
-    const fraction<OtherRep, OtherOps>& other) noexcept;
+    fraction<OtherRep, OtherOps> const& other) noexcept;
 
   template <std::intmax_t Numerator, std::intmax_t Denominator>
   constexpr fraction(std::ratio<Numerator, Denominator> ratio) noexcept;
 
-  constexpr const Rep& numerator() const noexcept;
+  constexpr Rep const& numerator() const noexcept;
   constexpr Rep& numerator() noexcept;
 
-  constexpr const Rep& denominator() const noexcept;
+  constexpr Rep const& denominator() const noexcept;
   constexpr Rep& denominator() noexcept;
 
-  constexpr const Rep& num() const noexcept { return numerator(); }
+  constexpr Rep const& num() const noexcept { return numerator(); }
   constexpr Rep& num() noexcept { return numerator(); }
 
-  constexpr const Rep& den() const noexcept { return denominator(); }
+  constexpr Rep const& den() const noexcept { return denominator(); }
   constexpr Rep& den() noexcept { return denominator(); }
 
-  constexpr const raw_fraction_type& raw() const noexcept { return raw_; }
+  constexpr raw_fraction_type const& raw() const noexcept { return raw_; }
   constexpr raw_fraction_type& raw() noexcept { return raw_; }
 
 private:
   raw_fraction_type raw_ = {0, 1};
 
   friend std::ostream& operator<<<>(std::ostream& stream,
-                                    const fraction<Rep, Ops>& value) noexcept;
+                                    fraction<Rep, Ops> const& value) noexcept;
 
   friend std::istream& operator>><>(std::istream& stream,
                                     fraction<Rep, Ops>& value) noexcept;
@@ -76,120 +76,120 @@ private:
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-operator+(const fraction<Rep, Ops>& value) noexcept;
+operator+(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-operator-(const fraction<Rep, Ops>& value) noexcept;
+operator-(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator+(const fraction<LeftRep, Ops>& left,
-          const fraction<RightRep, Ops>& right) noexcept;
+operator+(fraction<LeftRep, Ops> const& left,
+          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator+(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
+operator+(fraction<LeftRep, Ops> const& left, RightRep const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator+(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
+operator+(LeftRep const& left, fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator+(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator+(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator-(const fraction<LeftRep, Ops>& left,
-          const fraction<RightRep, Ops>& right) noexcept;
+operator-(fraction<LeftRep, Ops> const& left,
+          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator-(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
+operator-(fraction<LeftRep, Ops> const& left, RightRep const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator-(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
+operator-(LeftRep const& left, fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator-(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator-(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator*(const fraction<LeftRep, Ops>& left,
-          const fraction<RightRep, Ops>& right) noexcept;
+operator*(fraction<LeftRep, Ops> const& left,
+          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator*(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
+operator*(fraction<LeftRep, Ops> const& left, RightRep const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator*(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
+operator*(LeftRep const& left, fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator*(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator*(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator/(const fraction<LeftRep, Ops>& left,
-          const fraction<RightRep, Ops>& right) noexcept;
+operator/(fraction<LeftRep, Ops> const& left,
+          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator/(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
+operator/(fraction<LeftRep, Ops> const& left, RightRep const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator/(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
+operator/(LeftRep const& left, fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator/(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator/(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator%(const fraction<LeftRep, Ops>& left,
-          const fraction<RightRep, Ops>& right) noexcept;
+operator%(fraction<LeftRep, Ops> const& left,
+          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator%(const fraction<LeftRep, Ops>& left, const RightRep& right) noexcept;
+operator%(fraction<LeftRep, Ops> const& left, RightRep const& right) noexcept;
 
 template <typename LeftRep, typename RightRep, typename Ops>
 constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>
-operator%(const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept;
+operator%(LeftRep const& left, fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator%(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator%(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
@@ -198,22 +198,22 @@ template <typename LeftRep,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>&
 operator+=(fraction<LeftRep, Ops>& left,
-           const fraction<RightRep, Ops>& right) noexcept;
+           fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>& operator+=(fraction<LeftRep, Ops>& left,
-                                             const RightRep& right) noexcept;
+                                             RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator+=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator+=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
@@ -222,22 +222,22 @@ template <typename LeftRep,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>&
 operator-=(fraction<LeftRep, Ops>& left,
-           const fraction<RightRep, Ops>& right) noexcept;
+           fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>& operator-=(fraction<LeftRep, Ops>& left,
-                                             const RightRep& right) noexcept;
+                                             RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator-=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator-=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
@@ -246,22 +246,22 @@ template <typename LeftRep,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>&
 operator*=(fraction<LeftRep, Ops>& left,
-           const fraction<RightRep, Ops>& right) noexcept;
+           fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>& operator*=(fraction<LeftRep, Ops>& left,
-                                             const RightRep& right) noexcept;
+                                             RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator*=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator*=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
@@ -270,22 +270,22 @@ template <typename LeftRep,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>&
 operator/=(fraction<LeftRep, Ops>& left,
-           const fraction<RightRep, Ops>& right) noexcept;
+           fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>& operator/=(fraction<LeftRep, Ops>& left,
-                                             const RightRep& right) noexcept;
+                                             RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator/=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator/=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
@@ -294,202 +294,202 @@ template <typename LeftRep,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>&
 operator%=(fraction<LeftRep, Ops>& left,
-           const fraction<RightRep, Ops>& right) noexcept;
+           fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::enable_if_t<std::is_convertible_v<RightRep, LeftRep>>>
 constexpr fraction<LeftRep, Ops>& operator%=(fraction<LeftRep, Ops>& left,
-                                             const RightRep& right) noexcept;
+                                             RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator%=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator%=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator==(const fraction<LeftRep, Ops>& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator==(fraction<LeftRep, Ops> const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator==(const fraction<LeftRep, Ops>& left,
-                          const RightRep& right) noexcept;
+constexpr bool operator==(fraction<LeftRep, Ops> const& left,
+                          RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator==(const LeftRep& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator==(LeftRep const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator==(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator==(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator!=(const fraction<LeftRep, Ops>& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator!=(fraction<LeftRep, Ops> const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator!=(const fraction<LeftRep, Ops>& left,
-                          const RightRep& right) noexcept;
+constexpr bool operator!=(fraction<LeftRep, Ops> const& left,
+                          RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator!=(const LeftRep& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator!=(LeftRep const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator!=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator!=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator<(const fraction<LeftRep, Ops>& left,
-                         const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator<(fraction<LeftRep, Ops> const& left,
+                         fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator<(const fraction<LeftRep, Ops>& left,
-                         const RightRep& right) noexcept;
+constexpr bool operator<(fraction<LeftRep, Ops> const& left,
+                         RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator<(const LeftRep& left,
-                         const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator<(LeftRep const& left,
+                         fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator<(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator<(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator<=(const fraction<LeftRep, Ops>& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator<=(fraction<LeftRep, Ops> const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator<=(const fraction<LeftRep, Ops>& left,
-                          const RightRep& right) noexcept;
+constexpr bool operator<=(fraction<LeftRep, Ops> const& left,
+                          RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator<=(const LeftRep& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator<=(LeftRep const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator<=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator<=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator>(const fraction<LeftRep, Ops>& left,
-                         const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator>(fraction<LeftRep, Ops> const& left,
+                         fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator>(const fraction<LeftRep, Ops>& left,
-                         const RightRep& right) noexcept;
+constexpr bool operator>(fraction<LeftRep, Ops> const& left,
+                         RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator>(const LeftRep& left,
-                         const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator>(LeftRep const& left,
+                         fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator>(const fraction<LeftRep, LeftOps>& left,
-                         const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator>(fraction<LeftRep, LeftOps> const& left,
+                         fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator>=(const fraction<LeftRep, Ops>& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator>=(fraction<LeftRep, Ops> const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator>=(const fraction<LeftRep, Ops>& left,
-                          const RightRep& right) noexcept;
+constexpr bool operator>=(fraction<LeftRep, Ops> const& left,
+                          RightRep const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename Ops,
           typename = std::common_type_t<LeftRep, RightRep>>
-constexpr bool operator>=(const LeftRep& left,
-                          const fraction<RightRep, Ops>& right) noexcept;
+constexpr bool operator>=(LeftRep const& left,
+                          fraction<RightRep, Ops> const& right) noexcept;
 
 template <typename LeftRep,
           typename RightRep,
           typename LeftOps,
           typename RightOps,
           typename = std::enable_if_t<!std::is_same_v<LeftOps, RightOps>>>
-constexpr void operator>=(const fraction<LeftRep, LeftOps>& left,
-                          const fraction<RightRep, RightOps>& right) noexcept
+constexpr void operator>=(fraction<LeftRep, LeftOps> const& left,
+                          fraction<RightRep, RightOps> const& right) noexcept
   = delete;
 
 
@@ -498,7 +498,7 @@ constexpr void operator>=(const fraction<LeftRep, LeftOps>& left,
 
 template <typename Rep, typename Ops>
 std::ostream& operator<<(std::ostream& stream,
-                         const fraction<Rep, Ops>& value) noexcept
+                         fraction<Rep, Ops> const& value) noexcept
 {
   return stream << value.raw_;
 }
@@ -511,14 +511,14 @@ std::istream& operator>>(std::istream& stream,
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>::fraction(const raw_fraction_type& raw) noexcept :
+constexpr fraction<Rep, Ops>::fraction(raw_fraction_type const& raw) noexcept :
   raw_ {raw}
 {
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops>::fraction(const Rep& numerator,
-                                       const Rep& denominator) noexcept :
+constexpr fraction<Rep, Ops>::fraction(Rep const& numerator,
+                                       Rep const& denominator) noexcept :
   raw_ {numerator, denominator}
 {
 }
@@ -526,7 +526,7 @@ constexpr fraction<Rep, Ops>::fraction(const Rep& numerator,
 template <typename Rep, typename Ops>
 template <typename OtherRep>
 constexpr fraction<Rep, Ops>::fraction(
-  const fraction<OtherRep, Ops>& other) noexcept :
+  fraction<OtherRep, Ops> const& other) noexcept :
   raw_ {other.raw()}
 {
 }
@@ -534,7 +534,7 @@ constexpr fraction<Rep, Ops>::fraction(
 template <typename Rep, typename Ops>
 template <typename OtherRep, typename OtherOps>
 constexpr fraction<Rep, Ops>::fraction(
-  const fraction<OtherRep, OtherOps>& other) noexcept :
+  fraction<OtherRep, OtherOps> const& other) noexcept :
   raw_ {other.raw()}
 {
 }
@@ -549,7 +549,7 @@ constexpr fraction<Rep, Ops>::fraction(
 }
 
 template <typename Rep, typename Ops>
-constexpr const Rep& fraction<Rep, Ops>::numerator() const noexcept
+constexpr Rep const& fraction<Rep, Ops>::numerator() const noexcept
 {
   return raw_.numerator;
 }
@@ -561,7 +561,7 @@ constexpr Rep& fraction<Rep, Ops>::numerator() noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr const Rep& fraction<Rep, Ops>::denominator() const noexcept
+constexpr Rep const& fraction<Rep, Ops>::denominator() const noexcept
 {
   return raw_.denominator;
 }
@@ -573,13 +573,13 @@ constexpr Rep& fraction<Rep, Ops>::denominator() noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator+(const fraction<Rep, Ops>& value) noexcept
+constexpr fraction<Rep, Ops> operator+(fraction<Rep, Ops> const& value) noexcept
 {
   return value;
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> operator-(const fraction<Rep, Ops>& value) noexcept
+constexpr fraction<Rep, Ops> operator-(fraction<Rep, Ops> const& value) noexcept
 {
   return Ops::negate(value.raw());
 }
@@ -627,24 +627,24 @@ constexpr fraction<Rep, Ops> operator-(const fraction<Rep, Ops>& value) noexcept
 #define IEME_DEFINE_FRACTION_ARITHMETIC_OPS(symbol, function)                  \
   template <typename LeftRep, typename RightRep, typename Ops>                 \
   constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>               \
-  operator symbol(const fraction<LeftRep, Ops>& left,                          \
-                  const fraction<RightRep, Ops>& right) noexcept               \
+  operator symbol(fraction<LeftRep, Ops> const& left,                          \
+                  fraction<RightRep, Ops> const& right) noexcept               \
   {                                                                            \
     IEME_DO_FRACTION_AND_FRACTION_OP(function)                                 \
   }                                                                            \
                                                                                \
   template <typename LeftRep, typename RightRep, typename Ops>                 \
   constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>               \
-  operator symbol(const fraction<LeftRep, Ops>& left,                          \
-                  const RightRep& right) noexcept                              \
+  operator symbol(fraction<LeftRep, Ops> const& left,                          \
+                  RightRep const& right) noexcept                              \
   {                                                                            \
     IEME_DO_FRACTION_AND_REP_OP(function)                                      \
   }                                                                            \
                                                                                \
   template <typename LeftRep, typename RightRep, typename Ops>                 \
   constexpr fraction<std::common_type_t<LeftRep, RightRep>, Ops>               \
-  operator symbol(const LeftRep& left,                                         \
-                  const fraction<RightRep, Ops>& right) noexcept               \
+  operator symbol(LeftRep const& left,                                         \
+                  fraction<RightRep, Ops> const& right) noexcept               \
   {                                                                            \
     IEME_DO_REP_AND_FRACTION_OP(function)                                      \
   }
@@ -659,7 +659,7 @@ IEME_DEFINE_FRACTION_ARITHMETIC_OPS(%, modulus)
   template <typename LeftRep, typename RightRep, typename Ops, typename>       \
   constexpr fraction<LeftRep, Ops>& operator symbol##=(                        \
     fraction<LeftRep, Ops>& left,                                              \
-    const fraction<RightRep, Ops>& right) noexcept                             \
+    fraction<RightRep, Ops> const& right) noexcept                             \
   {                                                                            \
     if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
       return left = left symbol right;                                         \
@@ -669,7 +669,7 @@ IEME_DEFINE_FRACTION_ARITHMETIC_OPS(%, modulus)
                                                                                \
   template <typename LeftRep, typename RightRep, typename Ops, typename>       \
   constexpr fraction<LeftRep, Ops>& operator symbol##=(                        \
-    fraction<LeftRep, Ops>& left, const RightRep& right) noexcept              \
+    fraction<LeftRep, Ops>& left, RightRep const& right) noexcept              \
   {                                                                            \
     if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
       return left = left symbol right;                                         \
@@ -686,22 +686,22 @@ IEME_DEFINE_FRACTION_COMPOUND_ASSIGNMENT_OPS(%)
 #define IEME_DEFINE_FRACTION_COMPARISON_OPS(symbol, function)                  \
   template <typename LeftRep, typename RightRep, typename Ops, typename>       \
   constexpr bool operator symbol(                                              \
-    const fraction<LeftRep, Ops>& left,                                        \
-    const fraction<RightRep, Ops>& right) noexcept                             \
+    fraction<LeftRep, Ops> const& left,                                        \
+    fraction<RightRep, Ops> const& right) noexcept                             \
   {                                                                            \
     IEME_DO_FRACTION_AND_FRACTION_OP(function)                                 \
   }                                                                            \
                                                                                \
   template <typename LeftRep, typename RightRep, typename Ops, typename>       \
-  constexpr bool operator symbol(const fraction<LeftRep, Ops>& left,           \
-                                 const RightRep& right) noexcept               \
+  constexpr bool operator symbol(fraction<LeftRep, Ops> const& left,           \
+                                 RightRep const& right) noexcept               \
   {                                                                            \
     IEME_DO_FRACTION_AND_REP_OP(function)                                      \
   }                                                                            \
                                                                                \
   template <typename LeftRep, typename RightRep, typename Ops, typename>       \
   constexpr bool operator symbol(                                              \
-    const LeftRep& left, const fraction<RightRep, Ops>& right) noexcept        \
+    LeftRep const& left, fraction<RightRep, Ops> const& right) noexcept        \
   {                                                                            \
     IEME_DO_REP_AND_FRACTION_OP(function)                                      \
   }

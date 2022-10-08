@@ -254,7 +254,7 @@ TEST_CASE("A fraction can be promoted and negated", "[fraction]")
 
 TEST_CASE("A fraction can be serialized", "[fraction]")
 {
-  const auto f = -5 / 7_fr;
+  auto const f = -5 / 7_fr;
 
   std::ostringstream stream;
   stream << f;

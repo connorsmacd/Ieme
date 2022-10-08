@@ -9,44 +9,44 @@ namespace ieme {
 
 
 template <typename Rep, typename Ops>
-constexpr bool is_defined(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_defined(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_undefined(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_undefined(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_positive(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_positive(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_non_negative(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_non_negative(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_zero(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_zero(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_non_positive(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_non_positive(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_negative(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_negative(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_integer(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_integer(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_unit_fraction(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_unit_fraction(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr bool
-is_reduced_ignore_signs(const fraction<Rep, Ops>& value) noexcept;
+is_reduced_ignore_signs(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_reduced(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_reduced(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_proper(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_proper(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr bool is_improper(const fraction<Rep, Ops>& value) noexcept;
+constexpr bool is_improper(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename LeftOps, typename RightOps>
 constexpr bool are_identical(const fraction<Rep, LeftOps>& left,
@@ -61,79 +61,79 @@ constexpr bool are_different(const fraction<Rep, LeftOps>& left,
 
 
 template <typename Rep, typename Ops>
-constexpr bool is_defined(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_defined(fraction<Rep, Ops> const& value) noexcept
 {
   return is_defined(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_undefined(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_undefined(fraction<Rep, Ops> const& value) noexcept
 {
   return is_undefined(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_positive(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_positive(fraction<Rep, Ops> const& value) noexcept
 {
   return is_positive(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_non_negative(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_non_negative(fraction<Rep, Ops> const& value) noexcept
 {
   return is_non_negative(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_zero(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_zero(fraction<Rep, Ops> const& value) noexcept
 {
   return is_zero(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_non_positive(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_non_positive(fraction<Rep, Ops> const& value) noexcept
 {
   return is_non_positive(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_negative(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_negative(fraction<Rep, Ops> const& value) noexcept
 {
   return is_negative(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_integer(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_integer(fraction<Rep, Ops> const& value) noexcept
 {
   return is_integer(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_unit_fraction(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_unit_fraction(fraction<Rep, Ops> const& value) noexcept
 {
   return is_unit_fraction(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_reduced_ignore_signs(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_reduced_ignore_signs(fraction<Rep, Ops> const& value) noexcept
 {
   return is_reduced_ignore_signs(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_reduced(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_reduced(fraction<Rep, Ops> const& value) noexcept
 {
   return is_reduced(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_proper(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_proper(fraction<Rep, Ops> const& value) noexcept
 {
   return is_proper(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr bool is_improper(const fraction<Rep, Ops>& value) noexcept
+constexpr bool is_improper(fraction<Rep, Ops> const& value) noexcept
 {
   return is_improper(value.raw());
 }

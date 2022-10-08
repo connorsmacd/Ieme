@@ -19,142 +19,142 @@ public:
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  negate(const raw_fraction<Rep>& value) noexcept;
+  negate(raw_fraction<Rep> const& value) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  plus(const raw_fraction<Rep>& left, const raw_fraction<Rep>& right) noexcept;
+  plus(raw_fraction<Rep> const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr raw_fraction<Rep> plus(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep>
-  plus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  static constexpr raw_fraction<Rep> plus(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  minus(const raw_fraction<Rep>& left, const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> minus(const raw_fraction<Rep>& left,
-                                           const Rep& right) noexcept;
+  plus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  minus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  minus(raw_fraction<Rep> const& left, raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> minus(raw_fraction<Rep> const& left,
+                                           Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  multiplies(const raw_fraction<Rep>& left,
-             const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> multiplies(const raw_fraction<Rep>& left,
-                                                const Rep& right) noexcept;
+  minus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  multiplies(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  multiplies(raw_fraction<Rep> const& left,
+             raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> multiplies(raw_fraction<Rep> const& left,
+                                                Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  divides(const raw_fraction<Rep>& left,
-          const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> divides(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept;
+  multiplies(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  divides(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  divides(raw_fraction<Rep> const& left,
+          raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> divides(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  modulus(const raw_fraction<Rep>& left,
-          const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> modulus(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept;
+  divides(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  modulus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  modulus(raw_fraction<Rep> const& left,
+          raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const raw_fraction<Rep>& left,
-                                 const raw_fraction<Rep>& right) noexcept;
+  static constexpr raw_fraction<Rep> modulus(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const raw_fraction<Rep>& left,
-                                 const Rep& right) noexcept;
+  static constexpr raw_fraction<Rep>
+  modulus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const Rep& left,
-                                 const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool equal_to(raw_fraction<Rep> const& left,
+                                 raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const raw_fraction<Rep>& left,
-                                     const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool equal_to(raw_fraction<Rep> const& left,
+                                 Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const raw_fraction<Rep>& left,
-                                     const Rep& right) noexcept;
+  static constexpr bool equal_to(Rep const& left,
+                                 raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const Rep& left,
-                                     const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool not_equal_to(raw_fraction<Rep> const& left,
+                                     raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const raw_fraction<Rep>& left,
-                             const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool not_equal_to(raw_fraction<Rep> const& left,
+                                     Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const raw_fraction<Rep>& left,
-                             const Rep& right) noexcept;
+  static constexpr bool not_equal_to(Rep const& left,
+                                     raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const Rep& left,
-                             const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less(raw_fraction<Rep> const& left,
+                             raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const raw_fraction<Rep>& left,
-                                   const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less(raw_fraction<Rep> const& left,
+                             Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const raw_fraction<Rep>& left,
-                                   const Rep& right) noexcept;
+  static constexpr bool less(Rep const& left,
+                             raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const Rep& left,
-                                   const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less_equal(raw_fraction<Rep> const& left,
+                                   raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const raw_fraction<Rep>& left,
-                                const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less_equal(raw_fraction<Rep> const& left,
+                                   Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const raw_fraction<Rep>& left,
-                                const Rep& right) noexcept;
+  static constexpr bool less_equal(Rep const& left,
+                                   raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const Rep& left,
-                                const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater(raw_fraction<Rep> const& left,
+                                raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const raw_fraction<Rep>& left,
-                                      const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater(raw_fraction<Rep> const& left,
+                                Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const raw_fraction<Rep>& left,
-                                      const Rep& right) noexcept;
+  static constexpr bool greater(Rep const& left,
+                                raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const Rep& left,
-                                      const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater_equal(raw_fraction<Rep> const& left,
+                                      raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr bool greater_equal(raw_fraction<Rep> const& left,
+                                      Rep const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr bool greater_equal(Rep const& left,
+                                      raw_fraction<Rep> const& right) noexcept;
 };
 
 
@@ -165,142 +165,142 @@ public:
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  negate(const raw_fraction<Rep>& value) noexcept;
+  negate(raw_fraction<Rep> const& value) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  plus(const raw_fraction<Rep>& left, const raw_fraction<Rep>& right) noexcept;
+  plus(raw_fraction<Rep> const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr raw_fraction<Rep> plus(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep>
-  plus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  static constexpr raw_fraction<Rep> plus(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  minus(const raw_fraction<Rep>& left, const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> minus(const raw_fraction<Rep>& left,
-                                           const Rep& right) noexcept;
+  plus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  minus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  minus(raw_fraction<Rep> const& left, raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> minus(raw_fraction<Rep> const& left,
+                                           Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  multiplies(const raw_fraction<Rep>& left,
-             const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> multiplies(const raw_fraction<Rep>& left,
-                                                const Rep& right) noexcept;
+  minus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  multiplies(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  multiplies(raw_fraction<Rep> const& left,
+             raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> multiplies(raw_fraction<Rep> const& left,
+                                                Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  divides(const raw_fraction<Rep>& left,
-          const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> divides(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept;
+  multiplies(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  divides(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  divides(raw_fraction<Rep> const& left,
+          raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> divides(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  modulus(const raw_fraction<Rep>& left,
-          const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> modulus(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept;
+  divides(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  modulus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  modulus(raw_fraction<Rep> const& left,
+          raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const raw_fraction<Rep>& left,
-                                 const raw_fraction<Rep>& right) noexcept;
+  static constexpr raw_fraction<Rep> modulus(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const raw_fraction<Rep>& left,
-                                 const Rep& right) noexcept;
+  static constexpr raw_fraction<Rep>
+  modulus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const Rep& left,
-                                 const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool equal_to(raw_fraction<Rep> const& left,
+                                 raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const raw_fraction<Rep>& left,
-                                     const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool equal_to(raw_fraction<Rep> const& left,
+                                 Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const raw_fraction<Rep>& left,
-                                     const Rep& right) noexcept;
+  static constexpr bool equal_to(Rep const& left,
+                                 raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const Rep& left,
-                                     const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool not_equal_to(raw_fraction<Rep> const& left,
+                                     raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const raw_fraction<Rep>& left,
-                             const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool not_equal_to(raw_fraction<Rep> const& left,
+                                     Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const raw_fraction<Rep>& left,
-                             const Rep& right) noexcept;
+  static constexpr bool not_equal_to(Rep const& left,
+                                     raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const Rep& left,
-                             const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less(raw_fraction<Rep> const& left,
+                             raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const raw_fraction<Rep>& left,
-                                   const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less(raw_fraction<Rep> const& left,
+                             Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const raw_fraction<Rep>& left,
-                                   const Rep& right) noexcept;
+  static constexpr bool less(Rep const& left,
+                             raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const Rep& left,
-                                   const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less_equal(raw_fraction<Rep> const& left,
+                                   raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const raw_fraction<Rep>& left,
-                                const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less_equal(raw_fraction<Rep> const& left,
+                                   Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const raw_fraction<Rep>& left,
-                                const Rep& right) noexcept;
+  static constexpr bool less_equal(Rep const& left,
+                                   raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const Rep& left,
-                                const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater(raw_fraction<Rep> const& left,
+                                raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const raw_fraction<Rep>& left,
-                                      const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater(raw_fraction<Rep> const& left,
+                                Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const raw_fraction<Rep>& left,
-                                      const Rep& right) noexcept;
+  static constexpr bool greater(Rep const& left,
+                                raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const Rep& left,
-                                      const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater_equal(raw_fraction<Rep> const& left,
+                                      raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr bool greater_equal(raw_fraction<Rep> const& left,
+                                      Rep const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr bool greater_equal(Rep const& left,
+                                      raw_fraction<Rep> const& right) noexcept;
 };
 
 
@@ -316,142 +316,142 @@ public:
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  negate(const raw_fraction<Rep>& value) noexcept;
+  negate(raw_fraction<Rep> const& value) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  plus(const raw_fraction<Rep>& left, const raw_fraction<Rep>& right) noexcept;
+  plus(raw_fraction<Rep> const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr raw_fraction<Rep> plus(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep>
-  plus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  static constexpr raw_fraction<Rep> plus(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  minus(const raw_fraction<Rep>& left, const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> minus(const raw_fraction<Rep>& left,
-                                           const Rep& right) noexcept;
+  plus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  minus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  minus(raw_fraction<Rep> const& left, raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> minus(raw_fraction<Rep> const& left,
+                                           Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  multiplies(const raw_fraction<Rep>& left,
-             const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> multiplies(const raw_fraction<Rep>& left,
-                                                const Rep& right) noexcept;
+  minus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  multiplies(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  multiplies(raw_fraction<Rep> const& left,
+             raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> multiplies(raw_fraction<Rep> const& left,
+                                                Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  divides(const raw_fraction<Rep>& left,
-          const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> divides(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept;
+  multiplies(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  divides(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  divides(raw_fraction<Rep> const& left,
+          raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr raw_fraction<Rep> divides(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  modulus(const raw_fraction<Rep>& left,
-          const raw_fraction<Rep>& right) noexcept;
-
-  template <typename Rep>
-  static constexpr raw_fraction<Rep> modulus(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept;
+  divides(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  modulus(const Rep& left, const raw_fraction<Rep>& right) noexcept;
+  modulus(raw_fraction<Rep> const& left,
+          raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const raw_fraction<Rep>& left,
-                                 const raw_fraction<Rep>& right) noexcept;
+  static constexpr raw_fraction<Rep> modulus(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const raw_fraction<Rep>& left,
-                                 const Rep& right) noexcept;
+  static constexpr raw_fraction<Rep>
+  modulus(Rep const& left, raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool equal_to(const Rep& left,
-                                 const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool equal_to(raw_fraction<Rep> const& left,
+                                 raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const raw_fraction<Rep>& left,
-                                     const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool equal_to(raw_fraction<Rep> const& left,
+                                 Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const raw_fraction<Rep>& left,
-                                     const Rep& right) noexcept;
+  static constexpr bool equal_to(Rep const& left,
+                                 raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool not_equal_to(const Rep& left,
-                                     const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool not_equal_to(raw_fraction<Rep> const& left,
+                                     raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const raw_fraction<Rep>& left,
-                             const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool not_equal_to(raw_fraction<Rep> const& left,
+                                     Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const raw_fraction<Rep>& left,
-                             const Rep& right) noexcept;
+  static constexpr bool not_equal_to(Rep const& left,
+                                     raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less(const Rep& left,
-                             const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less(raw_fraction<Rep> const& left,
+                             raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const raw_fraction<Rep>& left,
-                                   const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less(raw_fraction<Rep> const& left,
+                             Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const raw_fraction<Rep>& left,
-                                   const Rep& right) noexcept;
+  static constexpr bool less(Rep const& left,
+                             raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool less_equal(const Rep& left,
-                                   const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less_equal(raw_fraction<Rep> const& left,
+                                   raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const raw_fraction<Rep>& left,
-                                const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool less_equal(raw_fraction<Rep> const& left,
+                                   Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const raw_fraction<Rep>& left,
-                                const Rep& right) noexcept;
+  static constexpr bool less_equal(Rep const& left,
+                                   raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater(const Rep& left,
-                                const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater(raw_fraction<Rep> const& left,
+                                raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const raw_fraction<Rep>& left,
-                                      const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater(raw_fraction<Rep> const& left,
+                                Rep const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const raw_fraction<Rep>& left,
-                                      const Rep& right) noexcept;
+  static constexpr bool greater(Rep const& left,
+                                raw_fraction<Rep> const& right) noexcept;
 
   template <typename Rep>
-  static constexpr bool greater_equal(const Rep& left,
-                                      const raw_fraction<Rep>& right) noexcept;
+  static constexpr bool greater_equal(raw_fraction<Rep> const& left,
+                                      raw_fraction<Rep> const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr bool greater_equal(raw_fraction<Rep> const& left,
+                                      Rep const& right) noexcept;
+
+  template <typename Rep>
+  static constexpr bool greater_equal(Rep const& left,
+                                      raw_fraction<Rep> const& right) noexcept;
 };
 
 
@@ -467,44 +467,44 @@ public:
 
   template <typename Rep>
   static constexpr raw_fraction<Rep>
-  negate(const raw_fraction<Rep>& value) noexcept;
+  negate(raw_fraction<Rep> const& value) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr auto plus(const Left& left, const Right& right) noexcept;
+  static constexpr auto plus(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr auto minus(const Left& left, const Right& right) noexcept;
+  static constexpr auto minus(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr auto multiplies(const Left& left,
-                                   const Right& right) noexcept;
+  static constexpr auto multiplies(Left const& left,
+                                   Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr auto divides(const Left& left, const Right& right) noexcept;
+  static constexpr auto divides(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr auto modulus(const Left& left, const Right& right) noexcept;
+  static constexpr auto modulus(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr bool equal_to(const Left& left, const Right& right) noexcept;
+  static constexpr bool equal_to(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr bool not_equal_to(const Left& left,
-                                     const Right& right) noexcept;
+  static constexpr bool not_equal_to(Left const& left,
+                                     Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr bool less(const Left& left, const Right& right) noexcept;
+  static constexpr bool less(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr bool less_equal(const Left& left,
-                                   const Right& right) noexcept;
+  static constexpr bool less_equal(Left const& left,
+                                   Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr bool greater(const Left& left, const Right& right) noexcept;
+  static constexpr bool greater(Left const& left, Right const& right) noexcept;
 
   template <typename Left, typename Right>
-  static constexpr bool greater_equal(const Left& left,
-                                      const Right& right) noexcept;
+  static constexpr bool greater_equal(Left const& left,
+                                      Right const& right) noexcept;
 };
 
 
@@ -541,16 +541,16 @@ using defaults = IEME_DEFAULT_OPS_FALLBACK;
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::negate(const raw_fraction<Rep>& value) noexcept
+safe::negate(raw_fraction<Rep> const& value) noexcept
 {
   return {-value.numerator, value.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::plus(const raw_fraction<Rep>& left,
-                                       const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> safe::plus(raw_fraction<Rep> const& left,
+                                       raw_fraction<Rep> const& right) noexcept
 {
-  const auto lcm = std::lcm(left.denominator, right.denominator);
+  auto const lcm = std::lcm(left.denominator, right.denominator);
 
   return {lcm / left.denominator * left.numerator
             + lcm / right.denominator * right.numerator,
@@ -558,24 +558,24 @@ constexpr raw_fraction<Rep> safe::plus(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::plus(const raw_fraction<Rep>& left,
-                                       const Rep& right) noexcept
+constexpr raw_fraction<Rep> safe::plus(raw_fraction<Rep> const& left,
+                                       Rep const& right) noexcept
 {
   return {left.numerator + right * left.denominator, left.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::plus(const Rep& left,
-                                       const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> safe::plus(Rep const& left,
+                                       raw_fraction<Rep> const& right) noexcept
 {
   return plus(right, left);
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::minus(const raw_fraction<Rep>& left,
-                                        const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> safe::minus(raw_fraction<Rep> const& left,
+                                        raw_fraction<Rep> const& right) noexcept
 {
-  const auto lcm = std::lcm(left.denominator, right.denominator);
+  auto const lcm = std::lcm(left.denominator, right.denominator);
 
   return {lcm / left.denominator * left.numerator
             - lcm / right.denominator * right.numerator,
@@ -583,71 +583,71 @@ constexpr raw_fraction<Rep> safe::minus(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::minus(const raw_fraction<Rep>& left,
-                                        const Rep& right) noexcept
+constexpr raw_fraction<Rep> safe::minus(raw_fraction<Rep> const& left,
+                                        Rep const& right) noexcept
 {
   return {left.numerator - right * left.denominator, left.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::minus(const Rep& left,
-                                        const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> safe::minus(Rep const& left,
+                                        raw_fraction<Rep> const& right) noexcept
 {
   return {left * right.denominator - right.numerator, right.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::multiplies(const raw_fraction<Rep>& left,
-                 const raw_fraction<Rep>& right) noexcept
+safe::multiplies(raw_fraction<Rep> const& left,
+                 raw_fraction<Rep> const& right) noexcept
 {
   return {left.numerator * right.numerator,
           left.denominator * right.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::multiplies(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept
+constexpr raw_fraction<Rep> safe::multiplies(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept
 {
   return {left.numerator * right, left.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::multiplies(const Rep& left, const raw_fraction<Rep>& right) noexcept
+safe::multiplies(Rep const& left, raw_fraction<Rep> const& right) noexcept
 {
   return multiplies(right, left);
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::divides(const raw_fraction<Rep>& left,
-              const raw_fraction<Rep>& right) noexcept
+safe::divides(raw_fraction<Rep> const& left,
+              raw_fraction<Rep> const& right) noexcept
 {
   return {left.numerator * right.denominator,
           left.denominator * right.numerator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::divides(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept
+constexpr raw_fraction<Rep> safe::divides(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept
 {
   return {left.numerator, left.denominator * right};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::divides(const Rep& left, const raw_fraction<Rep>& right) noexcept
+safe::divides(Rep const& left, raw_fraction<Rep> const& right) noexcept
 {
   return {left * right.denominator, right.numerator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::modulus(const raw_fraction<Rep>& left,
-              const raw_fraction<Rep>& right) noexcept
+safe::modulus(raw_fraction<Rep> const& left,
+              raw_fraction<Rep> const& right) noexcept
 {
-  const auto lcm = std::lcm(left.denominator, right.denominator);
+  auto const lcm = std::lcm(left.denominator, right.denominator);
 
   return {(lcm / left.denominator * left.numerator)
             % (lcm / right.denominator * right.numerator),
@@ -655,159 +655,159 @@ safe::modulus(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> safe::modulus(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept
+constexpr raw_fraction<Rep> safe::modulus(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept
 {
   return {left.numerator % (left.denominator * right), left.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-safe::modulus(const Rep& left, const raw_fraction<Rep>& right) noexcept
+safe::modulus(Rep const& left, raw_fraction<Rep> const& right) noexcept
 {
   return {(right.denominator * left) % right.numerator, right.denominator};
 }
 
 template <typename Rep>
-constexpr bool safe::equal_to(const raw_fraction<Rep>& left,
-                              const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::equal_to(raw_fraction<Rep> const& left,
+                              raw_fraction<Rep> const& right) noexcept
 {
   if (is_undefined(left) || is_undefined(right))
     return false;
 
-  const auto lcm = std::lcm(left.denominator, right.denominator);
+  auto const lcm = std::lcm(left.denominator, right.denominator);
 
   return lcm / left.denominator * left.numerator
          == lcm / right.denominator * right.numerator;
 }
 
 template <typename Rep>
-constexpr bool safe::equal_to(const raw_fraction<Rep>& left,
-                              const Rep& right) noexcept
+constexpr bool safe::equal_to(raw_fraction<Rep> const& left,
+                              Rep const& right) noexcept
 {
   return left.numerator == right * left.denominator && is_defined(left);
 }
 
 template <typename Rep>
-constexpr bool safe::equal_to(const Rep& left,
-                              const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::equal_to(Rep const& left,
+                              raw_fraction<Rep> const& right) noexcept
 {
   return equal_to(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::not_equal_to(const raw_fraction<Rep>& left,
-                                  const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::not_equal_to(raw_fraction<Rep> const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return !equal_to(left, right);
 }
 
 template <typename Rep>
-constexpr bool safe::not_equal_to(const raw_fraction<Rep>& left,
-                                  const Rep& right) noexcept
+constexpr bool safe::not_equal_to(raw_fraction<Rep> const& left,
+                                  Rep const& right) noexcept
 {
   return !equal_to(left, right);
 }
 
 template <typename Rep>
-constexpr bool safe::not_equal_to(const Rep& left,
-                                  const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::not_equal_to(Rep const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return not_equal_to(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::less(const raw_fraction<Rep>& left,
-                          const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::less(raw_fraction<Rep> const& left,
+                          raw_fraction<Rep> const& right) noexcept
 {
   if (is_undefined(left) || is_undefined(right))
     return false;
 
-  const auto lcm = std::lcm(left.denominator, right.denominator);
+  auto const lcm = std::lcm(left.denominator, right.denominator);
 
   return lcm / left.denominator * left.numerator
          < lcm / right.denominator * right.numerator;
 }
 
 template <typename Rep>
-constexpr bool safe::less(const raw_fraction<Rep>& left,
-                          const Rep& right) noexcept
+constexpr bool safe::less(raw_fraction<Rep> const& left,
+                          Rep const& right) noexcept
 {
   return left.numerator < right * left.denominator && is_defined(left);
 }
 
 template <typename Rep>
-constexpr bool safe::less(const Rep& left,
-                          const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::less(Rep const& left,
+                          raw_fraction<Rep> const& right) noexcept
 {
   return left * right.denominator < right.numerator && is_defined(right);
 }
 
 template <typename Rep>
-constexpr bool safe::less_equal(const raw_fraction<Rep>& left,
-                                const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::less_equal(raw_fraction<Rep> const& left,
+                                raw_fraction<Rep> const& right) noexcept
 {
   if (is_undefined(left) || is_undefined(right))
     return false;
 
-  const auto lcm = std::lcm(left.denominator, right.denominator);
+  auto const lcm = std::lcm(left.denominator, right.denominator);
 
   return lcm / left.denominator * left.numerator
          <= lcm / right.denominator * right.numerator;
 }
 
 template <typename Rep>
-constexpr bool safe::less_equal(const raw_fraction<Rep>& left,
-                                const Rep& right) noexcept
+constexpr bool safe::less_equal(raw_fraction<Rep> const& left,
+                                Rep const& right) noexcept
 {
   return left.numerator <= right * left.denominator && is_defined(left);
 }
 
 template <typename Rep>
-constexpr bool safe::less_equal(const Rep& left,
-                                const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::less_equal(Rep const& left,
+                                raw_fraction<Rep> const& right) noexcept
 {
   return left * right.denominator <= right.numerator && is_defined(right);
 }
 
 template <typename Rep>
-constexpr bool safe::greater(const raw_fraction<Rep>& left,
-                             const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::greater(raw_fraction<Rep> const& left,
+                             raw_fraction<Rep> const& right) noexcept
 {
   return less(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::greater(const raw_fraction<Rep>& left,
-                             const Rep& right) noexcept
+constexpr bool safe::greater(raw_fraction<Rep> const& left,
+                             Rep const& right) noexcept
 {
   return less(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::greater(const Rep& left,
-                             const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::greater(Rep const& left,
+                             raw_fraction<Rep> const& right) noexcept
 {
   return less(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::greater_equal(const raw_fraction<Rep>& left,
-                                   const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::greater_equal(raw_fraction<Rep> const& left,
+                                   raw_fraction<Rep> const& right) noexcept
 {
   return less_equal(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::greater_equal(const raw_fraction<Rep>& left,
-                                   const Rep& right) noexcept
+constexpr bool safe::greater_equal(raw_fraction<Rep> const& left,
+                                   Rep const& right) noexcept
 {
   return less_equal(right, left);
 }
 
 template <typename Rep>
-constexpr bool safe::greater_equal(const Rep& left,
-                                   const raw_fraction<Rep>& right) noexcept
+constexpr bool safe::greater_equal(Rep const& left,
+                                   raw_fraction<Rep> const& right) noexcept
 {
   return less_equal(right, left);
 }
@@ -815,14 +815,14 @@ constexpr bool safe::greater_equal(const Rep& left,
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::negate(const raw_fraction<Rep>& value) noexcept
+fast::negate(raw_fraction<Rep> const& value) noexcept
 {
   return {-value.numerator, value.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::plus(const raw_fraction<Rep>& left,
-                                       const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> fast::plus(raw_fraction<Rep> const& left,
+                                       raw_fraction<Rep> const& right) noexcept
 {
   return {left.numerator * right.denominator
             + right.numerator * left.denominator,
@@ -830,22 +830,22 @@ constexpr raw_fraction<Rep> fast::plus(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::plus(const raw_fraction<Rep>& left,
-                                       const Rep& right) noexcept
+constexpr raw_fraction<Rep> fast::plus(raw_fraction<Rep> const& left,
+                                       Rep const& right) noexcept
 {
   return {left.numerator + right * left.denominator, left.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::plus(const Rep& left,
-                                       const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> fast::plus(Rep const& left,
+                                       raw_fraction<Rep> const& right) noexcept
 {
   return plus(right, left);
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::minus(const raw_fraction<Rep>& left,
-                                        const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> fast::minus(raw_fraction<Rep> const& left,
+                                        raw_fraction<Rep> const& right) noexcept
 {
   return {left.numerator * right.denominator
             - right.numerator * left.denominator,
@@ -853,69 +853,69 @@ constexpr raw_fraction<Rep> fast::minus(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::minus(const raw_fraction<Rep>& left,
-                                        const Rep& right) noexcept
+constexpr raw_fraction<Rep> fast::minus(raw_fraction<Rep> const& left,
+                                        Rep const& right) noexcept
 {
   return {left.numerator - right * left.denominator, left.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::minus(const Rep& left,
-                                        const raw_fraction<Rep>& right) noexcept
+constexpr raw_fraction<Rep> fast::minus(Rep const& left,
+                                        raw_fraction<Rep> const& right) noexcept
 {
   return {left * right.denominator - right.numerator, right.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::multiplies(const raw_fraction<Rep>& left,
-                 const raw_fraction<Rep>& right) noexcept
+fast::multiplies(raw_fraction<Rep> const& left,
+                 raw_fraction<Rep> const& right) noexcept
 {
   return {left.numerator * right.numerator,
           left.denominator * right.denominator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::multiplies(const raw_fraction<Rep>& left,
-                                             const Rep& right) noexcept
+constexpr raw_fraction<Rep> fast::multiplies(raw_fraction<Rep> const& left,
+                                             Rep const& right) noexcept
 {
   return {left.numerator * right, left.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::multiplies(const Rep& left, const raw_fraction<Rep>& right) noexcept
+fast::multiplies(Rep const& left, raw_fraction<Rep> const& right) noexcept
 {
   return multiplies(right, left);
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::divides(const raw_fraction<Rep>& left,
-              const raw_fraction<Rep>& right) noexcept
+fast::divides(raw_fraction<Rep> const& left,
+              raw_fraction<Rep> const& right) noexcept
 {
   return {left.numerator * right.denominator,
           left.denominator * right.numerator};
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::divides(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept
+constexpr raw_fraction<Rep> fast::divides(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept
 {
   return {left.numerator, left.denominator * right};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::divides(const Rep& left, const raw_fraction<Rep>& right) noexcept
+fast::divides(Rep const& left, raw_fraction<Rep> const& right) noexcept
 {
   return {left * right.denominator, right.numerator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::modulus(const raw_fraction<Rep>& left,
-              const raw_fraction<Rep>& right) noexcept
+fast::modulus(raw_fraction<Rep> const& left,
+              raw_fraction<Rep> const& right) noexcept
 {
   return {(left.numerator * right.denominator)
             % (right.numerator * left.denominator),
@@ -923,22 +923,22 @@ fast::modulus(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr raw_fraction<Rep> fast::modulus(const raw_fraction<Rep>& left,
-                                          const Rep& right) noexcept
+constexpr raw_fraction<Rep> fast::modulus(raw_fraction<Rep> const& left,
+                                          Rep const& right) noexcept
 {
   return {left.numerator % (right * left.denominator), left.denominator};
 }
 
 template <typename Rep>
 constexpr raw_fraction<Rep>
-fast::modulus(const Rep& left, const raw_fraction<Rep>& right) noexcept
+fast::modulus(Rep const& left, raw_fraction<Rep> const& right) noexcept
 {
   return {(left * right.denominator) % right.numerator, right.denominator};
 }
 
 template <typename Rep>
-constexpr bool fast::equal_to(const raw_fraction<Rep>& left,
-                              const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::equal_to(raw_fraction<Rep> const& left,
+                              raw_fraction<Rep> const& right) noexcept
 {
   return left.numerator * right.denominator
            == right.numerator * left.denominator
@@ -946,65 +946,65 @@ constexpr bool fast::equal_to(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr bool fast::equal_to(const raw_fraction<Rep>& left,
-                              const Rep& right) noexcept
+constexpr bool fast::equal_to(raw_fraction<Rep> const& left,
+                              Rep const& right) noexcept
 {
   return left.numerator == right * left.denominator && is_defined(left);
 }
 
 template <typename Rep>
-constexpr bool fast::equal_to(const Rep& left,
-                              const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::equal_to(Rep const& left,
+                              raw_fraction<Rep> const& right) noexcept
 {
   return equal_to(right, left);
 }
 
 template <typename Rep>
-constexpr bool fast::not_equal_to(const raw_fraction<Rep>& left,
-                                  const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::not_equal_to(raw_fraction<Rep> const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return !equal_to(left, right);
 }
 
 template <typename Rep>
-constexpr bool fast::not_equal_to(const raw_fraction<Rep>& left,
-                                  const Rep& right) noexcept
+constexpr bool fast::not_equal_to(raw_fraction<Rep> const& left,
+                                  Rep const& right) noexcept
 {
   return !equal_to(left, right);
 }
 
 template <typename Rep>
-constexpr bool fast::not_equal_to(const Rep& left,
-                                  const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::not_equal_to(Rep const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return !equal_to(left, right);
 }
 
 template <typename Rep>
-constexpr bool fast::less(const raw_fraction<Rep>& left,
-                          const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::less(raw_fraction<Rep> const& left,
+                          raw_fraction<Rep> const& right) noexcept
 {
   return left.numerator * right.denominator < right.numerator * left.denominator
          && is_defined(left) && is_defined(right);
 }
 
 template <typename Rep>
-constexpr bool fast::less(const raw_fraction<Rep>& left,
-                          const Rep& right) noexcept
+constexpr bool fast::less(raw_fraction<Rep> const& left,
+                          Rep const& right) noexcept
 {
   return left.numerator < right * left.denominator && is_defined(left);
 }
 
 template <typename Rep>
-constexpr bool fast::less(const Rep& left,
-                          const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::less(Rep const& left,
+                          raw_fraction<Rep> const& right) noexcept
 {
   return left * right.denominator < right.numerator && is_defined(right);
 }
 
 template <typename Rep>
-constexpr bool fast::less_equal(const raw_fraction<Rep>& left,
-                                const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::less_equal(raw_fraction<Rep> const& left,
+                                raw_fraction<Rep> const& right) noexcept
 {
   return left.numerator * right.denominator
            <= right.numerator * left.denominator
@@ -1012,57 +1012,57 @@ constexpr bool fast::less_equal(const raw_fraction<Rep>& left,
 }
 
 template <typename Rep>
-constexpr bool fast::less_equal(const raw_fraction<Rep>& left,
-                                const Rep& right) noexcept
+constexpr bool fast::less_equal(raw_fraction<Rep> const& left,
+                                Rep const& right) noexcept
 {
   return left.numerator <= right * left.denominator && is_defined(left);
 }
 
 template <typename Rep>
-constexpr bool fast::less_equal(const Rep& left,
-                                const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::less_equal(Rep const& left,
+                                raw_fraction<Rep> const& right) noexcept
 {
   return left * right.denominator <= right.numerator && is_defined(right);
 }
 
 template <typename Rep>
-constexpr bool fast::greater(const raw_fraction<Rep>& left,
-                             const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::greater(raw_fraction<Rep> const& left,
+                             raw_fraction<Rep> const& right) noexcept
 {
   return less(right, left);
 }
 
 template <typename Rep>
-constexpr bool fast::greater(const raw_fraction<Rep>& left,
-                             const Rep& right) noexcept
+constexpr bool fast::greater(raw_fraction<Rep> const& left,
+                             Rep const& right) noexcept
 {
   return less(right, left);
 }
 
 template <typename Rep>
-constexpr bool fast::greater(const Rep& left,
-                             const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::greater(Rep const& left,
+                             raw_fraction<Rep> const& right) noexcept
 {
   return less(right, left);
 }
 
 template <typename Rep>
-constexpr bool fast::greater_equal(const raw_fraction<Rep>& left,
-                                   const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::greater_equal(raw_fraction<Rep> const& left,
+                                   raw_fraction<Rep> const& right) noexcept
 {
   return less_equal(right, left);
 }
 
 template <typename Rep>
-constexpr bool fast::greater_equal(const raw_fraction<Rep>& left,
-                                   const Rep& right) noexcept
+constexpr bool fast::greater_equal(raw_fraction<Rep> const& left,
+                                   Rep const& right) noexcept
 {
   return less_equal(right, left);
 }
 
 template <typename Rep>
-constexpr bool fast::greater_equal(const Rep& left,
-                                   const raw_fraction<Rep>& right) noexcept
+constexpr bool fast::greater_equal(Rep const& left,
+                                   raw_fraction<Rep> const& right) noexcept
 {
   return less_equal(right, left);
 }
@@ -1071,7 +1071,7 @@ constexpr bool fast::greater_equal(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::negate(const raw_fraction<Rep>& value) noexcept
+reduced_input<Ops, Mode>::negate(raw_fraction<Rep> const& value) noexcept
 {
   return ops_type::negate(reduce(value));
 }
@@ -1079,8 +1079,8 @@ reduced_input<Ops, Mode>::negate(const raw_fraction<Rep>& value) noexcept
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::plus(const raw_fraction<Rep>& left,
-                               const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::plus(raw_fraction<Rep> const& left,
+                               raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::plus(reduce(left, mode), reduce(right, mode));
 }
@@ -1088,8 +1088,8 @@ reduced_input<Ops, Mode>::plus(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::plus(const raw_fraction<Rep>& left,
-                               const Rep& right) noexcept
+reduced_input<Ops, Mode>::plus(raw_fraction<Rep> const& left,
+                               Rep const& right) noexcept
 {
   return ops_type::plus(reduce(left, mode), right);
 }
@@ -1097,8 +1097,8 @@ reduced_input<Ops, Mode>::plus(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::plus(const Rep& left,
-                               const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::plus(Rep const& left,
+                               raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::plus(left, reduce(right, mode));
 }
@@ -1106,8 +1106,8 @@ reduced_input<Ops, Mode>::plus(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::minus(const raw_fraction<Rep>& left,
-                                const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::minus(raw_fraction<Rep> const& left,
+                                raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::minus(reduce(left, mode), reduce(right, mode));
 }
@@ -1115,8 +1115,8 @@ reduced_input<Ops, Mode>::minus(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::minus(const raw_fraction<Rep>& left,
-                                const Rep& right) noexcept
+reduced_input<Ops, Mode>::minus(raw_fraction<Rep> const& left,
+                                Rep const& right) noexcept
 {
   return ops_type::minus(reduce(left, mode), right);
 }
@@ -1124,8 +1124,8 @@ reduced_input<Ops, Mode>::minus(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::minus(const Rep& left,
-                                const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::minus(Rep const& left,
+                                raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::minus(left, reduce(right, mode));
 }
@@ -1133,8 +1133,8 @@ reduced_input<Ops, Mode>::minus(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::multiplies(const raw_fraction<Rep>& left,
-                                     const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::multiplies(raw_fraction<Rep> const& left,
+                                     raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::multiplies(reduce(left, mode), reduce(right, mode));
 }
@@ -1142,8 +1142,8 @@ reduced_input<Ops, Mode>::multiplies(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::multiplies(const raw_fraction<Rep>& left,
-                                     const Rep& right) noexcept
+reduced_input<Ops, Mode>::multiplies(raw_fraction<Rep> const& left,
+                                     Rep const& right) noexcept
 {
   return ops_type::multiplies(reduce(left, mode), right);
 }
@@ -1151,8 +1151,8 @@ reduced_input<Ops, Mode>::multiplies(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::multiplies(const Rep& left,
-                                     const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::multiplies(Rep const& left,
+                                     raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::multiplies(left, reduce(right, mode));
 }
@@ -1160,8 +1160,8 @@ reduced_input<Ops, Mode>::multiplies(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::divides(const raw_fraction<Rep>& left,
-                                  const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::divides(raw_fraction<Rep> const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::divides(reduce(left, mode), reduce(right, mode));
 }
@@ -1169,8 +1169,8 @@ reduced_input<Ops, Mode>::divides(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::divides(const raw_fraction<Rep>& left,
-                                  const Rep& right) noexcept
+reduced_input<Ops, Mode>::divides(raw_fraction<Rep> const& left,
+                                  Rep const& right) noexcept
 {
   return ops_type::divides(reduce(left, mode), right);
 }
@@ -1178,8 +1178,8 @@ reduced_input<Ops, Mode>::divides(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::divides(const Rep& left,
-                                  const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::divides(Rep const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::divides(left, reduce(right, mode));
 }
@@ -1187,8 +1187,8 @@ reduced_input<Ops, Mode>::divides(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::modulus(const raw_fraction<Rep>& left,
-                                  const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::modulus(raw_fraction<Rep> const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::modulus(reduce(left, mode), reduce(right, mode));
 }
@@ -1196,8 +1196,8 @@ reduced_input<Ops, Mode>::modulus(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::modulus(const raw_fraction<Rep>& left,
-                                  const Rep& right) noexcept
+reduced_input<Ops, Mode>::modulus(raw_fraction<Rep> const& left,
+                                  Rep const& right) noexcept
 {
   return ops_type::modulus(reduce(left, mode), right);
 }
@@ -1205,8 +1205,8 @@ reduced_input<Ops, Mode>::modulus(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_input<Ops, Mode>::modulus(const Rep& left,
-                                  const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::modulus(Rep const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::modulus(left, reduce(right, mode));
 }
@@ -1214,16 +1214,16 @@ reduced_input<Ops, Mode>::modulus(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::equal_to(const raw_fraction<Rep>& left,
-                                   const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::equal_to(raw_fraction<Rep> const& left,
+                                   raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::equal_to(reduce(left, mode), reduce(right, mode));
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
-constexpr bool reduced_input<Ops, Mode>::equal_to(const raw_fraction<Rep>& left,
-                                                  const Rep& right) noexcept
+constexpr bool reduced_input<Ops, Mode>::equal_to(raw_fraction<Rep> const& left,
+                                                  Rep const& right) noexcept
 {
   return ops_type::equal_to(reduce(left, mode), right);
 }
@@ -1231,8 +1231,8 @@ constexpr bool reduced_input<Ops, Mode>::equal_to(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::equal_to(const Rep& left,
-                                   const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::equal_to(Rep const& left,
+                                   raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::equal_to(left, reduce(right, mode));
 }
@@ -1240,8 +1240,8 @@ reduced_input<Ops, Mode>::equal_to(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::not_equal_to(const raw_fraction<Rep>& left,
-                                       const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::not_equal_to(raw_fraction<Rep> const& left,
+                                       raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::not_equal_to(reduce(left, mode), reduce(right, mode));
 }
@@ -1249,8 +1249,8 @@ reduced_input<Ops, Mode>::not_equal_to(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::not_equal_to(const raw_fraction<Rep>& left,
-                                       const Rep& right) noexcept
+reduced_input<Ops, Mode>::not_equal_to(raw_fraction<Rep> const& left,
+                                       Rep const& right) noexcept
 {
   return ops_type::not_equal_to(reduce(left, mode), right);
 }
@@ -1258,8 +1258,8 @@ reduced_input<Ops, Mode>::not_equal_to(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::not_equal_to(const Rep& left,
-                                       const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::not_equal_to(Rep const& left,
+                                       raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::not_equal_to(left, reduce(right, mode));
 }
@@ -1267,16 +1267,16 @@ reduced_input<Ops, Mode>::not_equal_to(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::less(const raw_fraction<Rep>& left,
-                               const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::less(raw_fraction<Rep> const& left,
+                               raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::less(reduce(left, mode), reduce(right, mode));
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
-constexpr bool reduced_input<Ops, Mode>::less(const raw_fraction<Rep>& left,
-                                              const Rep& right) noexcept
+constexpr bool reduced_input<Ops, Mode>::less(raw_fraction<Rep> const& left,
+                                              Rep const& right) noexcept
 {
   return ops_type::less(reduce(left, mode), right);
 }
@@ -1284,8 +1284,8 @@ constexpr bool reduced_input<Ops, Mode>::less(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::less(const Rep& left,
-                               const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::less(Rep const& left,
+                               raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::less(left, reduce(right, mode));
 }
@@ -1293,8 +1293,8 @@ reduced_input<Ops, Mode>::less(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::less_equal(const raw_fraction<Rep>& left,
-                                     const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::less_equal(raw_fraction<Rep> const& left,
+                                     raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::less_equal(reduce(left, mode), reduce(right, mode));
 }
@@ -1302,8 +1302,8 @@ reduced_input<Ops, Mode>::less_equal(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::less_equal(const raw_fraction<Rep>& left,
-                                     const Rep& right) noexcept
+reduced_input<Ops, Mode>::less_equal(raw_fraction<Rep> const& left,
+                                     Rep const& right) noexcept
 {
   return ops_type::less_equal(reduce(left, mode), right);
 }
@@ -1311,8 +1311,8 @@ reduced_input<Ops, Mode>::less_equal(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::less_equal(const Rep& left,
-                                     const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::less_equal(Rep const& left,
+                                     raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::less_equal(left, reduce(right, mode));
 }
@@ -1320,16 +1320,16 @@ reduced_input<Ops, Mode>::less_equal(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::greater(const raw_fraction<Rep>& left,
-                                  const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::greater(raw_fraction<Rep> const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::greater(reduce(left, mode), reduce(right, mode));
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
-constexpr bool reduced_input<Ops, Mode>::greater(const raw_fraction<Rep>& left,
-                                                 const Rep& right) noexcept
+constexpr bool reduced_input<Ops, Mode>::greater(raw_fraction<Rep> const& left,
+                                                 Rep const& right) noexcept
 {
   return ops_type::greater(reduce(left, mode), right);
 }
@@ -1337,8 +1337,8 @@ constexpr bool reduced_input<Ops, Mode>::greater(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::greater(const Rep& left,
-                                  const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::greater(Rep const& left,
+                                  raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::greater(left, reduce(right, mode));
 }
@@ -1346,8 +1346,8 @@ reduced_input<Ops, Mode>::greater(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::greater_equal(const raw_fraction<Rep>& left,
-                                        const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::greater_equal(raw_fraction<Rep> const& left,
+                                        raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::greater_equal(reduce(left, mode), reduce(right, mode));
 }
@@ -1355,8 +1355,8 @@ reduced_input<Ops, Mode>::greater_equal(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::greater_equal(const raw_fraction<Rep>& left,
-                                        const Rep& right) noexcept
+reduced_input<Ops, Mode>::greater_equal(raw_fraction<Rep> const& left,
+                                        Rep const& right) noexcept
 {
   return ops_type::greater_equal(reduce(left, mode), right);
 }
@@ -1364,8 +1364,8 @@ reduced_input<Ops, Mode>::greater_equal(const raw_fraction<Rep>& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr bool
-reduced_input<Ops, Mode>::greater_equal(const Rep& left,
-                                        const raw_fraction<Rep>& right) noexcept
+reduced_input<Ops, Mode>::greater_equal(Rep const& left,
+                                        raw_fraction<Rep> const& right) noexcept
 {
   return ops_type::greater_equal(left, reduce(right, mode));
 }
@@ -1374,23 +1374,23 @@ reduced_input<Ops, Mode>::greater_equal(const Rep& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Rep>
 constexpr raw_fraction<Rep>
-reduced_output<Ops, Mode>::negate(const raw_fraction<Rep>& value) noexcept
+reduced_output<Ops, Mode>::negate(raw_fraction<Rep> const& value) noexcept
 {
   return reduce(ops_type::negate(value), mode);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr auto reduced_output<Ops, Mode>::plus(const Left& left,
-                                               const Right& right) noexcept
+constexpr auto reduced_output<Ops, Mode>::plus(Left const& left,
+                                               Right const& right) noexcept
 {
   return reduce(ops_type::plus(left, right), mode);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr auto reduced_output<Ops, Mode>::minus(const Left& left,
-                                                const Right& right) noexcept
+constexpr auto reduced_output<Ops, Mode>::minus(Left const& left,
+                                                Right const& right) noexcept
 {
   return reduce(ops_type::minus(left, right), mode);
 }
@@ -1398,32 +1398,32 @@ constexpr auto reduced_output<Ops, Mode>::minus(const Left& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
 constexpr auto
-reduced_output<Ops, Mode>::multiplies(const Left& left,
-                                      const Right& right) noexcept
+reduced_output<Ops, Mode>::multiplies(Left const& left,
+                                      Right const& right) noexcept
 {
   return reduce(ops_type::multiplies(left, right), mode);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr auto reduced_output<Ops, Mode>::divides(const Left& left,
-                                                  const Right& right) noexcept
+constexpr auto reduced_output<Ops, Mode>::divides(Left const& left,
+                                                  Right const& right) noexcept
 {
   return reduce(ops_type::divides(left, right), mode);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr auto reduced_output<Ops, Mode>::modulus(const Left& left,
-                                                  const Right& right) noexcept
+constexpr auto reduced_output<Ops, Mode>::modulus(Left const& left,
+                                                  Right const& right) noexcept
 {
   return reduce(ops_type::modulus(left, right), mode);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr bool reduced_output<Ops, Mode>::equal_to(const Left& left,
-                                                   const Right& right) noexcept
+constexpr bool reduced_output<Ops, Mode>::equal_to(Left const& left,
+                                                   Right const& right) noexcept
 {
   return ops_type::equal_to(left, right);
 }
@@ -1431,16 +1431,16 @@ constexpr bool reduced_output<Ops, Mode>::equal_to(const Left& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
 constexpr bool
-reduced_output<Ops, Mode>::not_equal_to(const Left& left,
-                                        const Right& right) noexcept
+reduced_output<Ops, Mode>::not_equal_to(Left const& left,
+                                        Right const& right) noexcept
 {
   return ops_type::not_equal_to(left, right);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr bool reduced_output<Ops, Mode>::less(const Left& left,
-                                               const Right& right) noexcept
+constexpr bool reduced_output<Ops, Mode>::less(Left const& left,
+                                               Right const& right) noexcept
 {
   return ops_type::less(left, right);
 }
@@ -1448,16 +1448,16 @@ constexpr bool reduced_output<Ops, Mode>::less(const Left& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
 constexpr bool
-reduced_output<Ops, Mode>::less_equal(const Left& left,
-                                      const Right& right) noexcept
+reduced_output<Ops, Mode>::less_equal(Left const& left,
+                                      Right const& right) noexcept
 {
   return ops_type::less_equal(left, right);
 }
 
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
-constexpr bool reduced_output<Ops, Mode>::greater(const Left& left,
-                                                  const Right& right) noexcept
+constexpr bool reduced_output<Ops, Mode>::greater(Left const& left,
+                                                  Right const& right) noexcept
 {
   return ops_type::greater(left, right);
 }
@@ -1465,8 +1465,8 @@ constexpr bool reduced_output<Ops, Mode>::greater(const Left& left,
 template <typename Ops, reduce_mode Mode>
 template <typename Left, typename Right>
 constexpr bool
-reduced_output<Ops, Mode>::greater_equal(const Left& left,
-                                         const Right& right) noexcept
+reduced_output<Ops, Mode>::greater_equal(Left const& left,
+                                         Right const& right) noexcept
 {
   return ops_type::greater_equal(left, right);
 }

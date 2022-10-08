@@ -34,21 +34,21 @@ constexpr Int digit_sequence_to_int(std::string_view sequence,
 
 
 constexpr floating_point_string_scan_results
-scan_floating_point_string(const std::string_view string) noexcept
+scan_floating_point_string(std::string_view const string) noexcept
 {
   if (string.size() < 2)
     return {};
 
   auto remaining_string = string;
 
-  const auto last_pos = [&]() { return remaining_string.size() - 1; };
+  auto const last_pos = [&]() { return remaining_string.size() - 1; };
 
   floating_point_string_scan_results results;
   results.is_valid = true;
 
   if (remaining_string.size() > 2)
   {
-    const auto first_two = remaining_string.substr(0, 2);
+    auto const first_two = remaining_string.substr(0, 2);
 
     if (first_two == "0x" || first_two == "0X")
     {
@@ -57,11 +57,11 @@ scan_floating_point_string(const std::string_view string) noexcept
     }
   }
 
-  const auto radix_separator_pos = remaining_string.find('.');
+  auto const radix_separator_pos = remaining_string.find('.');
 
   results.whole = remaining_string.substr(0, radix_separator_pos);
 
-  const auto no_whole = results.whole.empty();
+  auto const no_whole = results.whole.empty();
 
   if (!(no_whole || is_valid_digit_sequence(results.whole, results.base)))
     return {};
@@ -74,16 +74,16 @@ scan_floating_point_string(const std::string_view string) noexcept
     return {};
   }
 
-  const auto no_radix_separator = radix_separator_pos == std::string_view::npos;
+  auto const no_radix_separator = radix_separator_pos == std::string_view::npos;
 
   if (!no_radix_separator)
     remaining_string.remove_prefix(radix_separator_pos + 1);
 
-  const auto exponent_separator_pos = [&]() {
-    const auto [lower, upper] = (results.base == 10) ? std::make_pair('e', 'E')
+  auto const exponent_separator_pos = [&]() {
+    auto const [lower, upper] = (results.base == 10) ? std::make_pair('e', 'E')
                                                      : std::make_pair('p', 'P');
 
-    if (const auto lower_pos = remaining_string.find(lower);
+    if (auto const lower_pos = remaining_string.find(lower);
         lower_pos != std::string_view::npos)
       return lower_pos;
 
@@ -93,7 +93,7 @@ scan_floating_point_string(const std::string_view string) noexcept
   if (exponent_separator_pos == last_pos())
     return {};
 
-  const auto no_exponent_separator
+  auto const no_exponent_separator
     = exponent_separator_pos == std::string_view::npos;
 
   if (no_radix_separator && no_exponent_separator)
@@ -104,7 +104,7 @@ scan_floating_point_string(const std::string_view string) noexcept
 
   results.fractional = remaining_string.substr(0, exponent_separator_pos);
 
-  const auto no_fractional = results.fractional.empty();
+  auto const no_fractional = results.fractional.empty();
 
   if (no_whole && no_fractional)
     return {};
@@ -116,7 +116,7 @@ scan_floating_point_string(const std::string_view string) noexcept
   results.fractional_precision = [&]() {
     auto result = 0U;
 
-    for (const auto digit : results.fractional)
+    for (auto const digit : results.fractional)
       if (digit != '\'')
         ++result;
 
@@ -142,12 +142,12 @@ scan_floating_point_string(const std::string_view string) noexcept
   return results;
 }
 
-constexpr bool is_valid_digit_sequence(const std::string_view sequence,
-                                       const unsigned int base) noexcept
+constexpr bool is_valid_digit_sequence(std::string_view const sequence,
+                                       unsigned int const base) noexcept
 {
   auto digit_preceeded = false;
 
-  for (const auto c : sequence)
+  for (auto const c : sequence)
   {
     if (c == '\'')
     {
@@ -170,8 +170,8 @@ constexpr bool is_valid_digit_sequence(const std::string_view sequence,
 }
 
 template <typename Int>
-constexpr Int digit_sequence_to_int(const std::string_view sequence,
-                                    const Int base) noexcept
+constexpr Int digit_sequence_to_int(std::string_view const sequence,
+                                    Int const base) noexcept
 {
   auto result = Int(0);
   auto base_power = Int(1);
@@ -181,7 +181,7 @@ constexpr Int digit_sequence_to_int(const std::string_view sequence,
     if (*it == '\'')
       continue;
 
-    const auto digit_as_int = [&]() {
+    auto const digit_as_int = [&]() {
       if (*it >= 'A' && *it <= 'F')
         return Int(*it - 'A' + 10);
 

@@ -16,75 +16,75 @@ enum class round_mode { trunc, ceil, floor, round };
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-reciprocal(const fraction<Rep, Ops>& value) noexcept;
+reciprocal(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-normalize_signs(const fraction<Rep, Ops>& value) noexcept;
+normalize_signs(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value,
+constexpr fraction<Rep, Ops> reduce(fraction<Rep, Ops> const& value,
                                     reduce_mode mode
                                     = reduce_mode::normalize_signs) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-reduce_normalize_signs(const fraction<Rep, Ops>& value) noexcept;
+reduce_normalize_signs(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-reduce_ignore_signs(const fraction<Rep, Ops>& value) noexcept;
+reduce_ignore_signs(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept;
+constexpr fraction<Rep, Ops> abs(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep to_whole(const fraction<Rep, Ops>& value,
+constexpr Rep to_whole(fraction<Rep, Ops> const& value,
                        round_mode mode = round_mode::round) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep trunc(const fraction<Rep, Ops>& value) noexcept;
+constexpr Rep trunc(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep ceil(const fraction<Rep, Ops>& value) noexcept;
+constexpr Rep ceil(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep floor(const fraction<Rep, Ops>& value) noexcept;
+constexpr Rep floor(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr Rep round(const fraction<Rep, Ops>& value) noexcept;
+constexpr Rep round(fraction<Rep, Ops> const& value) noexcept;
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
-                                          const Rep& new_denominator,
+constexpr fraction<Rep, Ops> redenominate(fraction<Rep, Ops> const& value,
+                                          Rep const& new_denominator,
                                           round_mode mode
                                           = round_mode::round) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-trunc_redenominate(const fraction<Rep, Ops>& value,
-                   const Rep& new_denominator) noexcept;
+trunc_redenominate(fraction<Rep, Ops> const& value,
+                   Rep const& new_denominator) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-ceil_redenominate(const fraction<Rep, Ops>& value,
-                  const Rep& new_denominator) noexcept;
+ceil_redenominate(fraction<Rep, Ops> const& value,
+                  Rep const& new_denominator) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-floor_redenominate(const fraction<Rep, Ops>& value,
-                   const Rep& new_denominator) noexcept;
+floor_redenominate(fraction<Rep, Ops> const& value,
+                   Rep const& new_denominator) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-round_redenominate(const fraction<Rep, Ops>& value,
-                   const Rep& new_denominator) noexcept;
+round_redenominate(fraction<Rep, Ops> const& value,
+                   Rep const& new_denominator) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops> pow2(int exponent) noexcept;
 
 template <typename Rep, typename Ops = ops::defaults>
-constexpr fraction<Rep, Ops> pow(const Rep& base, int exponent) noexcept;
+constexpr fraction<Rep, Ops> pow(Rep const& base, int exponent) noexcept;
 
 
 // =============================================================================
@@ -92,48 +92,48 @@ constexpr fraction<Rep, Ops> pow(const Rep& base, int exponent) noexcept;
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-reciprocal(const fraction<Rep, Ops>& value) noexcept
+reciprocal(fraction<Rep, Ops> const& value) noexcept
 {
   return reciprocal(value.raw());
 }
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-normalize_signs(const fraction<Rep, Ops>& value) noexcept
+normalize_signs(fraction<Rep, Ops> const& value) noexcept
 {
   return normalize_signs(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> reduce(const fraction<Rep, Ops>& value,
-                                    const reduce_mode mode) noexcept
+constexpr fraction<Rep, Ops> reduce(fraction<Rep, Ops> const& value,
+                                    reduce_mode const mode) noexcept
 {
   return reduce(value.raw(), mode);
 }
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-reduce_normalize_signs(const fraction<Rep, Ops>& value) noexcept
+reduce_normalize_signs(fraction<Rep, Ops> const& value) noexcept
 {
   return reduce_normalize_signs(value.raw());
 }
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
-reduce_ignore_signs(const fraction<Rep, Ops>& value) noexcept
+reduce_ignore_signs(fraction<Rep, Ops> const& value) noexcept
 {
   return reduce_ignore_signs(value.raw());
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> abs(const fraction<Rep, Ops>& value) noexcept
+constexpr fraction<Rep, Ops> abs(fraction<Rep, Ops> const& value) noexcept
 {
   return is_non_negative(value) ? value : -value;
 }
 
 template <typename Rep, typename Ops>
-constexpr Rep to_whole(const fraction<Rep, Ops>& value,
-                       const round_mode mode) noexcept
+constexpr Rep to_whole(fraction<Rep, Ops> const& value,
+                       round_mode const mode) noexcept
 {
   switch (mode)
   {
@@ -151,33 +151,33 @@ constexpr Rep to_whole(const fraction<Rep, Ops>& value,
 }
 
 template <typename Rep, typename Ops>
-constexpr Rep trunc(const fraction<Rep, Ops>& value) noexcept
+constexpr Rep trunc(fraction<Rep, Ops> const& value) noexcept
 {
   return value.numerator() / value.denominator();
 }
 
 template <typename Rep, typename Ops>
-constexpr Rep ceil(const fraction<Rep, Ops>& value) noexcept
+constexpr Rep ceil(fraction<Rep, Ops> const& value) noexcept
 {
-  const auto truncated = trunc(value);
+  auto const truncated = trunc(value);
 
   return (is_integer(value) || truncated < Rep(0)) ? truncated
                                                    : truncated + Rep(1);
 }
 
 template <typename Rep, typename Ops>
-constexpr Rep floor(const fraction<Rep, Ops>& value) noexcept
+constexpr Rep floor(fraction<Rep, Ops> const& value) noexcept
 {
-  const auto truncated = trunc(value);
+  auto const truncated = trunc(value);
 
   return (is_integer(value) || truncated >= Rep(0)) ? truncated
                                                     : truncated - Rep(1);
 }
 
 template <typename Rep, typename Ops>
-constexpr Rep round(const fraction<Rep, Ops>& value) noexcept
+constexpr Rep round(fraction<Rep, Ops> const& value) noexcept
 {
-  const auto floored = floor(value);
+  auto const floored = floor(value);
 
   return (value - floored < fraction<Rep, Ops>(Rep(1), Rep(2)))
            ? floored
@@ -185,9 +185,9 @@ constexpr Rep round(const fraction<Rep, Ops>& value) noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
-                                          const Rep& new_denominator,
-                                          const round_mode mode) noexcept
+constexpr fraction<Rep, Ops> redenominate(fraction<Rep, Ops> const& value,
+                                          Rep const& new_denominator,
+                                          round_mode const mode) noexcept
 {
   switch (mode)
   {
@@ -205,15 +205,15 @@ constexpr fraction<Rep, Ops> redenominate(const fraction<Rep, Ops>& value,
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> trunc_redenominate(const fraction<Rep, Ops>& value,
-                                                const Rep& denominator) noexcept
+constexpr fraction<Rep, Ops> trunc_redenominate(fraction<Rep, Ops> const& value,
+                                                Rep const& denominator) noexcept
 {
   return {trunc(value * denominator), denominator};
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> ceil_redenominate(const fraction<Rep, Ops>& value,
-                                               const Rep& denominator) noexcept
+constexpr fraction<Rep, Ops> ceil_redenominate(fraction<Rep, Ops> const& value,
+                                               Rep const& denominator) noexcept
 {
   return {(denominator >= Rep(0)) ? ceil(value * denominator)
                                   : -ceil(value * -denominator),
@@ -221,8 +221,8 @@ constexpr fraction<Rep, Ops> ceil_redenominate(const fraction<Rep, Ops>& value,
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> floor_redenominate(const fraction<Rep, Ops>& value,
-                                                const Rep& denominator) noexcept
+constexpr fraction<Rep, Ops> floor_redenominate(fraction<Rep, Ops> const& value,
+                                                Rep const& denominator) noexcept
 {
   return {(denominator >= Rep(0)) ? floor(value * denominator)
                                   : -floor(value * -denominator),
@@ -230,14 +230,14 @@ constexpr fraction<Rep, Ops> floor_redenominate(const fraction<Rep, Ops>& value,
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> round_redenominate(const fraction<Rep, Ops>& value,
-                                                const Rep& denominator) noexcept
+constexpr fraction<Rep, Ops> round_redenominate(fraction<Rep, Ops> const& value,
+                                                Rep const& denominator) noexcept
 {
   return {round(value * denominator), denominator};
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> pow2(const int exponent) noexcept
+constexpr fraction<Rep, Ops> pow2(int const exponent) noexcept
 {
   return (exponent >= 0)
            ? fraction<Rep, Ops>(math_utilities::pow2(Rep(exponent)))
@@ -245,7 +245,7 @@ constexpr fraction<Rep, Ops> pow2(const int exponent) noexcept
 }
 
 template <typename Rep, typename Ops>
-constexpr fraction<Rep, Ops> pow(const Rep& base, const int exponent) noexcept
+constexpr fraction<Rep, Ops> pow(Rep const& base, int const exponent) noexcept
 {
   return (exponent >= 0)
            ? fraction<Rep, Ops>(math_utilities::pow(base, Rep(exponent)))
