@@ -7,7 +7,7 @@ f = 1/2_fr + 3/4_fr;          // f = 5/4
 f = 1/2_fr - 4/5_fr;          // f = -3/10
 f = 3/4_fr * 3/7_fr;          // f = 9/28
 f = 8;                        // f = 8/1
-f = 0.759_Dec;                // f = 759/1000
+f = 0.759_dec;                // f = 759/1000
 f = reciprocal(3/4_fr);       // f = 4/3
 f = reduce(16/24_fr);         // f = 2/3
 int i = round(19/10_fr);      // i = 2
@@ -74,7 +74,7 @@ using namespace ieme::fraction_literals;
 
 auto f5 = -2/7_fr; // -2/7 (fraction<int>)
 auto f6 = 7U/9_fr; // 7/9 (fraction<unsigned int>)
-auto f7 = 2.37_Dec;  // 237/100 (fraction<std::intmax_t>)
+auto f7 = 2.37_dec;  // 237/100 (fraction<std::intmax_t>)
 ```
 
 ### Math

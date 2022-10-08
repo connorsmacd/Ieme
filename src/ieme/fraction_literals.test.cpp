@@ -40,10 +40,10 @@ TEST_CASE("Fraction literals can be used within complex arithmetic expressions",
 TEST_CASE("Decimal fraction literals have the expected fractional equivalents",
           "[literals]")
 {
-  REQUIRE(2.3_Dec == 2 + 3 / 10_fr);
-  REQUIRE(94.332_Dec == 94L + 332 / 1'000_fr);
-  REQUIRE(9.22E+3_Dec == 9'220);
-  REQUIRE(7.543E-10_Dec == 7'543L / 10'000'000'000'000_fr);
-  REQUIRE(0xC.Ap2_Dec == 0x65 / 0x2_fr);
-  REQUIRE(0xC1.A1p-10_Dec == 0xC1A1 / 0x40000_fr);
+  REQUIRE(2.3_dec == 2 + 3 / 10_fr);
+  REQUIRE(94.332_dec == 94L + 332 / 1'000_fr);
+  REQUIRE(9.22E+3_dec == 9'220);
+  REQUIRE(7.543E-10_dec == 7'543L / 10'000'000'000'000_fr);
+  REQUIRE(0xC.Ap2_dec == 0x65 / 0x2_fr);
+  REQUIRE(0xC1.A1p-10_dec == 0xC1A1 / 0x40000_fr);
 }

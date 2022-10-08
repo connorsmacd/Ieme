@@ -54,7 +54,7 @@ operator/(Rep const& left,
 
 
 constexpr fraction<std::intmax_t, ops::defaults>
-operator""_Dec(char const* string);
+operator""_dec(char const* string);
 
 
 // =============================================================================
@@ -104,7 +104,7 @@ operator/(Rep const& left,
 }
 
 constexpr fraction<std::intmax_t, ops::defaults>
-operator""_Dec(char const* const string)
+operator""_dec(char const* const string)
 {
   auto const result
     = floating_point_string_to_fraction<std::intmax_t, ops::defaults>(string);
