@@ -17,8 +17,8 @@ std::size_t hash(raw_fraction<Rep> const& value) noexcept;
 template <typename Rep, typename Ops>
 std::size_t hash(fraction<Rep, Ops> const& value) noexcept;
 
-template <typename Rep, typename Ops>
-std::size_t hash(mixed_number<Rep, Ops> const& value) noexcept;
+template <typename WRep, typename FRep, typename Ops>
+std::size_t hash(mixed_number<WRep, FRep, Ops> const& value) noexcept;
 
 
 constexpr std::size_t hash_combine(std::size_t left,
@@ -41,9 +41,10 @@ struct hash<ieme::fraction<Rep, Ops>> {
   size_t operator()(ieme::fraction<Rep, Ops> const& value) const noexcept;
 };
 
-template <typename Rep, typename Ops>
-struct hash<ieme::mixed_number<Rep, Ops>> {
-  size_t operator()(ieme::mixed_number<Rep, Ops> const& value) const noexcept;
+template <typename WRep, typename FRep, typename Ops>
+struct hash<ieme::mixed_number<WRep, FRep, Ops>> {
+  size_t
+  operator()(ieme::mixed_number<WRep, FRep, Ops> const& value) const noexcept;
 };
 
 
@@ -69,10 +70,10 @@ std::size_t hash(fraction<Rep, Ops> const& value) noexcept
   return hash(value.raw());
 }
 
-template <typename Rep, typename Ops>
-std::size_t hash(mixed_number<Rep, Ops> const& value) noexcept
+template <typename WRep, typename FRep, typename Ops>
+std::size_t hash(mixed_number<WRep, FRep, Ops> const& value) noexcept
 {
-  return hash_combine(std::hash<Rep>()(value.whole()),
+  return hash_combine(std::hash<WRep>()(value.whole()),
                       hash(value.fractional()));
 }
 
@@ -90,22 +91,22 @@ namespace std {
 
 
 template <typename Rep>
-size_t hash<ieme::raw_fraction<Rep>>::
-operator()(ieme::raw_fraction<Rep> const& value) const noexcept
+size_t hash<ieme::raw_fraction<Rep>>::operator()(
+  ieme::raw_fraction<Rep> const& value) const noexcept
 {
   return ieme::hash(value);
 }
 
 template <typename Rep, typename Ops>
-size_t hash<ieme::fraction<Rep, Ops>>::
-operator()(ieme::fraction<Rep, Ops> const& value) const noexcept
+size_t hash<ieme::fraction<Rep, Ops>>::operator()(
+  ieme::fraction<Rep, Ops> const& value) const noexcept
 {
   return ieme::hash(value);
 }
 
-template <typename Rep, typename Ops>
-size_t hash<ieme::mixed_number<Rep, Ops>>::
-operator()(ieme::mixed_number<Rep, Ops> const& value) const noexcept
+template <typename WRep, typename FRep, typename Ops>
+size_t hash<ieme::mixed_number<WRep, FRep, Ops>>::operator()(
+  ieme::mixed_number<WRep, FRep, Ops> const& value) const noexcept
 {
   return ieme::hash(value);
 }
