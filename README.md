@@ -65,10 +65,10 @@ target_link_libraries(YourTarget Ieme::Ieme)
 ```c++
 using namespace ieme;
 
-auto f1 = fraction<int>();           // 0/1
-auto f2 = fraction<int>(3, 4);       // 3/4
-auto f3 = fraction<int>(-2);         // -2/1
-auto f4 = fraction<int>(std::milli); // 1/1000
+auto f1 = fraction<int>();             // 0/1
+auto f2 = fraction<int>(3, 4);         // 3/4
+auto f3 = fraction<int>(-2);           // -2/1
+auto f4 = fraction<int>(std::milli{}); // 1/1000
 
 using namespace ieme::fraction_literals;
 
