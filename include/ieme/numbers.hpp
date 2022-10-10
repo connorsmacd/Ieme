@@ -19,6 +19,8 @@ static constexpr auto _2 = number<2, T>;
 
 template <typename T>
 static constexpr auto _10 = number<10, T>;
+
+
 } // namespace ieme
 
 
