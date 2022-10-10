@@ -3,6 +3,7 @@
 
 #include <ieme/fraction.hpp>
 #include <ieme/mixed_number.hpp>
+#include <ieme/numbers.hpp>
 
 #include <limits>
 
@@ -162,13 +163,13 @@ constexpr auto limits<fraction<Rep, Ops>>::min() noexcept -> fraction_type
 template <typename Rep, typename Ops>
 constexpr auto limits<fraction<Rep, Ops>>::smallest() noexcept -> fraction_type
 {
-  return {Rep(1), std::numeric_limits<Rep>::max()};
+  return {_1<Rep>, std::numeric_limits<Rep>::max()};
 }
 
 template <typename Rep, typename Ops>
 constexpr auto limits<fraction<Rep, Ops>>::undefined() noexcept -> fraction_type
 {
-  return {Rep(0), Rep(0)};
+  return {_0<Rep>, _0<Rep>};
 }
 
 template <typename Rep, typename Ops>

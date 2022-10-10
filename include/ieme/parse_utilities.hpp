@@ -185,8 +185,8 @@ template <typename Int>
 constexpr Int digit_sequence_to_int(std::string_view const sequence,
                                     Int const base) noexcept
 {
-  auto result = Int(0);
-  auto base_power = Int(1);
+  auto result = _0<Int>;
+  auto base_power = _1<Int>;
 
   for (auto it = sequence.rbegin(); it != sequence.rend(); ++it)
   {
@@ -195,12 +195,12 @@ constexpr Int digit_sequence_to_int(std::string_view const sequence,
 
     auto const digit_as_int = [&]() {
       if (*it >= 'A' && *it <= 'F')
-        return Int(*it - 'A' + 10);
+        return static_cast<Int>(*it - 'A' + 10);
 
       if (*it >= 'a' && *it <= 'f')
-        return Int(*it - 'a' + 10);
+        return static_cast<Int>(*it - 'a' + 10);
 
-      return Int(*it - '0');
+      return static_cast<Int>(*it - '0');
     }();
 
     result += digit_as_int * base_power;

@@ -132,9 +132,10 @@ constexpr bool is_reduced_ignore_signs(raw_fraction<Rep> const& value) noexcept
 template <typename Rep>
 constexpr bool is_reduced(raw_fraction<Rep> const& value) noexcept
 {
-  return (
-    value.numerator > _0<
-      Rep> || value.denominator > _0<Rep>) &&is_reduced_ignore_signs(value);
+  auto const signs_are_normalized
+    = value.numerator > _0<Rep> || value.denominator > _0<Rep>;
+
+  return signs_are_normalized && is_reduced_ignore_signs(value);
 }
 
 template <typename Rep>

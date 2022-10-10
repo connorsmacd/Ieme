@@ -109,15 +109,15 @@ floating_point_string_to_fraction(std::string_view const string) noexcept
   if (!scan_results.is_valid)
     return limits<fraction<Rep, Ops>>::undefined();
 
-  auto const base_as_rep = Rep(scan_results.base);
+  auto const base_as_rep = static_cast<Rep>(scan_results.base);
 
   auto const whole
     = parse_utilities::digit_sequence_to_int(scan_results.whole, base_as_rep);
 
   auto const fractional_num = parse_utilities::digit_sequence_to_int(
     scan_results.fractional, base_as_rep);
-  auto const fractional_den
-    = math_utilities::pow(base_as_rep, Rep(scan_results.fractional_precision));
+  auto const fractional_den = math_utilities::pow(
+    base_as_rep, static_cast<Rep>(scan_results.fractional_precision));
 
   auto const exponent_base = (scan_results.base == 10U) ? _10<Rep> : _2<Rep>;
   auto const exponent_sign_multiplier = [&] {
@@ -184,9 +184,14 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
     = math_utilities::pow2(number<NumExponentBits, int> - 1) - 1;
   auto const exponent = static_cast<int>(exponent_part) - exponent_bias;
 
-  auto const mantissa
-    = _1<
-        Rep> + fraction<Rep, Ops>(Rep(mantissa_part), math_utilities::pow2(number<NumMantissaBits, Rep>));
+  auto const mantissa_fraction_denominator
+    = math_utilities::pow2(number<NumMantissaBits, Rep>);
+  auto const mantissa_fraction_numerator = static_cast<Rep>(mantissa_part);
+
+  auto const mantissa_fraction = fraction<Rep, Ops>(
+    mantissa_fraction_numerator, mantissa_fraction_denominator);
+
+  auto const mantissa = _1<Rep> + mantissa_fraction;
 
   return sign * mantissa * pow2<Rep, Ops>(exponent);
 }
@@ -197,7 +202,7 @@ fraction_to_floating_point(fraction<Rep, Ops> const& value) noexcept
 {
   auto const reduced = reduce(value);
 
-  return Float(reduced.num()) / Float(reduced.den());
+  return static_cast<Float>(reduced.num()) / static_cast<Float>(reduced.den());
 }
 
 

@@ -1,6 +1,7 @@
 #ifndef IEME_RAW_FRACTION_MATH_HPP
 #define IEME_RAW_FRACTION_MATH_HPP
 
+#include <ieme/numbers.hpp>
 #include <ieme/raw_fraction.hpp>
 #include <ieme/reduce_mode.hpp>
 
@@ -44,7 +45,7 @@ template <typename Rep>
 constexpr raw_fraction<Rep>
 normalize_signs(raw_fraction<Rep> const& value) noexcept
 {
-  return (value.denominator > Rep(0))
+  return (value.denominator > _0<Rep>)
            ? value
            : raw_fraction<Rep>(-value.numerator, -value.denominator);
 }
@@ -61,7 +62,7 @@ constexpr raw_fraction<Rep> reduce(raw_fraction<Rep> const& value,
       return reduce_ignore_signs(value);
   }
 
-  return {Rep(0), Rep(0)};
+  return {_0<Rep>, _0<Rep>};
 }
 
 template <typename Rep>
@@ -76,7 +77,7 @@ constexpr raw_fraction<Rep>
 reduce_ignore_signs(raw_fraction<Rep> const& value) noexcept
 {
   if (is_undefined(value))
-    return {Rep(0), Rep(0)};
+    return {_0<Rep>, _0<Rep>};
 
   auto const gcd = std::gcd(value.numerator, value.denominator);
 

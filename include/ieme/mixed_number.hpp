@@ -107,7 +107,7 @@ template <typename OtherFRep>
 constexpr mixed_number<WRep, FRep, Ops>::mixed_number(
   fraction<OtherFRep, ops_type> const& value) noexcept :
   whole_ {whole_type(trunc(value))},
-  fractional_ {fractional_type(value - OtherFRep(whole_))}
+  fractional_ {fractional_type(value - static_cast<OtherFRep>(whole_))}
 {
 }
 
@@ -156,19 +156,19 @@ constexpr void mixed_number<WRep, FRep, Ops>::fix() noexcept
   {
     auto const truncated_fractional = trunc(fractional_);
 
-    whole_ += whole_type(truncated_fractional);
+    whole_ += static_cast<whole_type>(truncated_fractional);
     fractional_ -= truncated_fractional;
   }
 
-  if (whole_ > 0 && is_negative(fractional_))
+  if (whole_ > _0<whole_type> && is_negative(fractional_))
   {
-    whole_ -= whole_type(1);
-    fractional_ = fractional_rep_type(1) + fractional_;
+    whole_ -= _1<whole_type>;
+    fractional_ = _1<fractional_rep_type> + fractional_;
   }
-  else if (whole_ < 0 && is_positive(fractional_))
+  else if (whole_ < _0<whole_type> && is_positive(fractional_))
   {
-    whole_ += whole_type(1);
-    fractional_ = fractional_rep_type(-1) + fractional_;
+    whole_ += _1<whole_type>;
+    fractional_ = -_1<fractional_rep_type> + fractional_;
   }
 }
 

@@ -92,7 +92,7 @@ constexpr fraction<Rep, Ops>
 operator/(fraction<Rep, Ops> const& left,
           denominator_literal<IsSigned, Ops> const& right) noexcept
 {
-  return left / Rep(right.value());
+  return left / static_cast<Rep>(right.value());
 }
 
 template <bool IsSigned, typename Rep, typename Ops>
@@ -100,7 +100,7 @@ constexpr fraction<Rep, Ops>
 operator/(Rep const& left,
           denominator_literal<IsSigned, Ops> const& right) noexcept
 {
-  return {left, Rep(right.value())};
+  return {left, static_cast<Rep>(right.value())};
 }
 
 constexpr fraction<std::intmax_t, ops::defaults>

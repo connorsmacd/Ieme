@@ -38,11 +38,10 @@ std::istream& operator>>(std::istream& stream,
 
 
 template <typename Rep>
-constexpr raw_fraction<Rep>::raw_fraction(
-  Rep const& init_numerator,
-  Rep const& init_denominator) noexcept :
-  numerator {init_numerator},
-  denominator {init_denominator}
+constexpr raw_fraction<Rep>::raw_fraction(Rep const& init_numerator,
+                                          Rep const& init_denominator) noexcept
+  :
+  numerator {init_numerator}, denominator {init_denominator}
 {
 }
 
@@ -50,7 +49,8 @@ template <typename Rep>
 template <typename OtherRep, typename>
 constexpr raw_fraction<Rep>::raw_fraction(
   raw_fraction<OtherRep> const& other) noexcept :
-  raw_fraction {Rep(other.numerator), Rep(other.denominator)}
+  raw_fraction {static_cast<Rep>(other.numerator),
+                static_cast<Rep>(other.denominator)}
 {
 }
 

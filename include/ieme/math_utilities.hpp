@@ -34,7 +34,7 @@ constexpr Int pow2(Int const exponent) noexcept
 {
   using unsigned_type = std::make_unsigned_t<Int>;
 
-  return Int(_1<unsigned_type> << unsigned_type(exponent));
+  return static_cast<Int>(_1<unsigned_type> << unsigned_type(exponent));
 }
 
 template <typename Int>

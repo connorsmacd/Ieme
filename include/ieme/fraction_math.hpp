@@ -241,17 +241,20 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> pow2(int const exponent) noexcept
 {
   return (exponent >= 0)
-           ? fraction<Rep, Ops>(math_utilities::pow2(Rep(exponent)))
-           : fraction<Rep, Ops>(_1<Rep>, math_utilities::pow2(Rep(-exponent)));
+           ? fraction<Rep, Ops>(
+             math_utilities::pow2(static_cast<Rep>(exponent)))
+           : fraction<Rep, Ops>(
+             _1<Rep>, math_utilities::pow2(static_cast<Rep>(-exponent)));
 }
 
 template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops> pow(Rep const& base, int const exponent) noexcept
 {
   return (exponent >= 0)
-           ? fraction<Rep, Ops>(math_utilities::pow(base, Rep(exponent)))
-           : fraction<Rep, Ops>(_1<Rep>,
-                                math_utilities::pow(base, Rep(-exponent)));
+           ? fraction<Rep, Ops>(
+             math_utilities::pow(base, static_cast<Rep>(exponent)))
+           : fraction<Rep, Ops>(
+             _1<Rep>, math_utilities::pow(base, static_cast<Rep>(-exponent)));
 }
 
 

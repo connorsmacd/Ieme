@@ -591,12 +591,14 @@ constexpr fraction<Rep, Ops> operator-(fraction<Rep, Ops> const& value) noexcept
   if constexpr (std::is_same_v<LeftRep, RightRep>)                             \
     return Ops::function(left.raw(), right.raw());                             \
   else if constexpr (std::is_same_v<LeftRep, common_rep_type>)                 \
-    return Ops::function(left.raw(), common_raw_type(right.raw()));            \
+    return Ops::function(left.raw(),                                           \
+                         static_cast<common_raw_type>(right.raw()));           \
   else if constexpr (std::is_same_v<RightRep, common_rep_type>)                \
-    return Ops::function(common_raw_type(left.raw()), right.raw());            \
+    return Ops::function(static_cast<common_raw_type>(left.raw()),             \
+                         right.raw());                                         \
   else                                                                         \
-    return Ops::function(common_raw_type(left.raw()),                          \
-                         common_raw_type(right.raw()));
+    return Ops::function(static_cast<common_raw_type>(left.raw()),             \
+                         static_cast<common_raw_type>(right.raw()));
 
 #define IEME_DO_FRACTION_AND_REP_OP(function)                                  \
   using common_rep_type = std::common_type_t<LeftRep, RightRep>;               \
@@ -605,11 +607,12 @@ constexpr fraction<Rep, Ops> operator-(fraction<Rep, Ops> const& value) noexcept
   if constexpr (std::is_same_v<LeftRep, RightRep>)                             \
     return Ops::function(left.raw(), right);                                   \
   else if constexpr (std::is_same_v<LeftRep, common_rep_type>)                 \
-    return Ops::function(left.raw(), common_rep_type(right));                  \
+    return Ops::function(left.raw(), static_cast<common_rep_type>(right));     \
   else if constexpr (std::is_same_v<RightRep, common_rep_type>)                \
-    return Ops::function(common_raw_type(left.raw()), right);                  \
+    return Ops::function(static_cast<common_raw_type>(left.raw()), right);     \
   else                                                                         \
-    return Ops::function(common_raw_type(left.raw()), common_rep_type(right));
+    return Ops::function(static_cast<common_raw_type>(left.raw()),             \
+                         static_cast<common_rep_type>(right));
 
 #define IEME_DO_REP_AND_FRACTION_OP(function)                                  \
   using common_rep_type = std::common_type_t<LeftRep, RightRep>;               \
@@ -618,11 +621,12 @@ constexpr fraction<Rep, Ops> operator-(fraction<Rep, Ops> const& value) noexcept
   if constexpr (std::is_same_v<LeftRep, RightRep>)                             \
     return Ops::function(left, right.raw());                                   \
   else if constexpr (std::is_same_v<LeftRep, common_rep_type>)                 \
-    return Ops::function(left, common_raw_type(right.raw()));                  \
+    return Ops::function(left, static_cast<common_raw_type>(right.raw()));     \
   else if constexpr (std::is_same_v<RightRep, common_rep_type>)                \
-    return Ops::function(common_rep_type(left), right.raw());                  \
+    return Ops::function(static_cast<common_rep_type>(left), right.raw());     \
   else                                                                         \
-    return Ops::function(common_rep_type(left), common_raw_type(right.raw()));
+    return Ops::function(static_cast<common_rep_type>(left),                   \
+                         static_cast<common_raw_type>(right.raw()));
 
 #define IEME_DEFINE_FRACTION_ARITHMETIC_OPS(symbol, function)                  \
   template <typename LeftRep, typename RightRep, typename Ops>                 \
@@ -674,7 +678,7 @@ IEME_DEFINE_FRACTION_ARITHMETIC_OPS(%, modulus)
     if constexpr (std::is_same_v<LeftRep, RightRep>)                           \
       return left = left symbol right;                                         \
     else                                                                       \
-      return left = left symbol LeftRep(right);                                \
+      return left = left symbol static_cast<LeftRep>(right);                   \
   }
 
 IEME_DEFINE_FRACTION_COMPOUND_ASSIGNMENT_OPS(+)
