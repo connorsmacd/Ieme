@@ -4,6 +4,7 @@
 #include <ieme/fraction.hpp>
 #include <ieme/fraction_math.hpp>
 #include <ieme/limits.hpp>
+#include <ieme/numbers.hpp>
 #include <ieme/parse_utilities.hpp>
 
 #include <cstdint>
@@ -118,7 +119,7 @@ floating_point_string_to_fraction(std::string_view const string) noexcept
   auto const fractional_den
     = math_utilities::pow(base_as_rep, Rep(scan_results.fractional_precision));
 
-  auto const exponent_base = (scan_results.base == 10U) ? Rep(10) : Rep(2);
+  auto const exponent_base = (scan_results.base == 10U) ? _10<Rep> : _2<Rep>;
   auto const exponent_sign_multiplier = [&] {
     switch (scan_results.exponent_sign)
     {
@@ -145,7 +146,7 @@ template <typename Rep,
 fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
 {
   auto const make_repeating_1s
-    = [](UintRep const count) { return (UintRep(1) << count) - UintRep(1); };
+    = [](UintRep const count) { return (_1<UintRep> << count) - _1<UintRep>; };
 
   auto const [sign_part, exponent_part, mantissa_part] = [&]() {
     auto const as_uint_rep = [&]() {
@@ -174,19 +175,18 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
   }();
 
   if (exponent_part == make_repeating_1s(NumExponentBits)
-      && mantissa_part != UintRep(0))
+      && mantissa_part != _0<UintRep>)
     return limits<fraction<Rep, Ops>>::undefined();
 
-  auto const sign = (sign_part == UintRep(0)) ? Rep(1) : Rep(-1);
+  auto const sign = (sign_part == _0<UintRep>) ? _1<Rep> : -_1<Rep>;
 
   auto const exponent_bias
-    = math_utilities::pow2(static_cast<int>(NumExponentBits) - 1) - 1;
+    = math_utilities::pow2(number<NumExponentBits, int> - 1) - 1;
   auto const exponent = static_cast<int>(exponent_part) - exponent_bias;
 
   auto const mantissa
-    = Rep(1)
-      + fraction<Rep, Ops>(Rep(mantissa_part),
-                           math_utilities::pow2(Rep(NumMantissaBits)));
+    = _1<
+        Rep> + fraction<Rep, Ops>(Rep(mantissa_part), math_utilities::pow2(number<NumMantissaBits, Rep>));
 
   return sign * mantissa * pow2<Rep, Ops>(exponent);
 }
