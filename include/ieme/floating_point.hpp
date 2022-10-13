@@ -37,6 +37,7 @@ constexpr fraction<Rep, Ops>
 floating_point_string_to_fraction(std::string_view string) noexcept;
 
 
+// TODO: use std::endian after move to C++20
 enum class endian {
 #ifdef _WIN32
   little = 0,
