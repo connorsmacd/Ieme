@@ -119,7 +119,7 @@ floating_point_string_to_fraction(std::string_view const string) noexcept
   auto const fractional_den = math_utilities::pow(
     base_as_rep, static_cast<Rep>(scan_results.fractional_precision));
 
-  auto const exponent_base = (scan_results.base == 10U) ? _10<Rep> : _2<Rep>;
+  auto const exponent_base = (scan_results.base == 10) ? _10<Rep> : _2<Rep>;
   auto const exponent_sign_multiplier = [&] {
     switch (scan_results.exponent_sign)
     {
