@@ -159,8 +159,8 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
     }();
 
     auto const extract_bit_field
-      = [&](UintRep const position, UintRep const size) -> UintRep {
-      return (as_uint_rep >> position) & make_repeating_1s(size);
+      = [&](UintRep const offset, UintRep const size) -> UintRep {
+      return (as_uint_rep >> offset) & make_repeating_1s(size);
     };
 
     static constexpr auto num_sign_bits = _1<UintRep>;
