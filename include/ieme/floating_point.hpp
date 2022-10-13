@@ -49,7 +49,6 @@ enum class endian {
 #endif
 };
 
-// TODO: use std::bit_cast when it's available so this can be constexpr
 template <typename Rep,
           typename Ops,
           typename Float,
@@ -151,6 +150,8 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
   auto const [sign_part, exponent_part, mantissa_part] = [&]() {
     auto const as_uint_rep = [&]() {
       UintRep result {};
+      // TODO: use std::bit_cast when it's available so
+      // floating_point_to_fraction can be constexpr
       std::memcpy(static_cast<void*>(&result),
                   static_cast<void const*>(&value),
                   sizeof(Float));
@@ -162,30 +163,50 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
       return (as_uint_rep >> position) & make_repeating_1s(size);
     };
 
-    if constexpr (endian::native == endian::little)
-      return std::make_tuple(
-        extract_bit_field(NumMantissaBits + NumExponentBits, 1),
-        extract_bit_field(NumMantissaBits, NumExponentBits),
-        extract_bit_field(0, NumMantissaBits));
-    else if (endian::native == endian::big)
-      return std::make_tuple(
-        extract_bit_field(0, 1),
-        extract_bit_field(1, NumExponentBits),
-        extract_bit_field(NumExponentBits + 1, NumMantissaBits));
+    static constexpr auto num_sign_bits = _1<UintRep>;
+    static constexpr auto num_exponent_bits = number<NumExponentBits, UintRep>;
+    static constexpr auto num_mantissa_bits = number<NumMantissaBits, UintRep>;
+
+    struct bitfield_offsets {
+      UintRep sign_bit = {};
+      UintRep exponent_bits = {};
+      UintRep mantissa_bits = {};
+    };
+
+    static constexpr auto offsets = []() -> bitfield_offsets {
+      switch (endian::native)
+      {
+        case endian::little:
+          return {num_mantissa_bits + num_exponent_bits,
+                  num_mantissa_bits,
+                  _0<UintRep>};
+        case endian::big:
+          return {
+            _0<UintRep>, num_sign_bits, num_sign_bits + num_exponent_bits};
+      }
+    }();
+
+    return std::make_tuple(
+      extract_bit_field(offsets.sign_bit, num_sign_bits),
+      extract_bit_field(offsets.exponent_bits, num_exponent_bits),
+      extract_bit_field(offsets.mantissa_bits, num_mantissa_bits));
   }();
 
-  if (exponent_part == make_repeating_1s(NumExponentBits)
-      && mantissa_part != _0<UintRep>)
+  if (auto const is_NaN = exponent_part == make_repeating_1s(NumExponentBits)
+                          && mantissa_part != _0<UintRep>;
+      is_NaN)
     return limits<fraction<Rep, Ops>>::undefined();
 
   auto const sign = (sign_part == _0<UintRep>) ? _1<Rep> : -_1<Rep>;
 
-  auto const exponent_bias
+  static constexpr auto exponent_bias
     = math_utilities::pow2(number<NumExponentBits, int> - 1) - 1;
+
   auto const exponent = static_cast<int>(exponent_part) - exponent_bias;
 
-  auto const mantissa_fraction_denominator
+  static constexpr auto mantissa_fraction_denominator
     = math_utilities::pow2(number<NumMantissaBits, Rep>);
+
   auto const mantissa_fraction_numerator = static_cast<Rep>(mantissa_part);
 
   auto const mantissa_fraction = fraction<Rep, Ops>(
