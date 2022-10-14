@@ -1,6 +1,7 @@
 #ifndef IEME_PARSE_UTILITIES_HPP
 #define IEME_PARSE_UTILITIES_HPP
 
+#include <optional>
 #include <string_view>
 #include <utility>
 
@@ -16,7 +17,6 @@ enum class sign : bool {
 
 
 struct floating_point_string_scan_results {
-  bool is_valid = false;
   int base = 10;
   std::string_view whole;
   std::string_view fractional;
@@ -25,7 +25,7 @@ struct floating_point_string_scan_results {
   std::string_view exponent;
 };
 
-constexpr floating_point_string_scan_results
+constexpr std::optional<floating_point_string_scan_results>
 scan_floating_point_string(std::string_view string) noexcept;
 
 constexpr bool is_valid_digit_sequence(std::string_view sequence,
@@ -39,18 +39,17 @@ constexpr Int digit_sequence_to_int(std::string_view sequence,
 // =============================================================================
 
 
-constexpr floating_point_string_scan_results
+constexpr std::optional<floating_point_string_scan_results>
 scan_floating_point_string(std::string_view const string) noexcept
 {
   if (string.size() < 2)
-    return {};
+    return std::nullopt;
 
   auto remaining_string = string;
 
   auto const last_pos = [&]() { return remaining_string.size() - 1; };
 
   floating_point_string_scan_results results;
-  results.is_valid = true;
 
   if (remaining_string.size() > 2)
   {
@@ -70,14 +69,14 @@ scan_floating_point_string(std::string_view const string) noexcept
   auto const no_whole = results.whole.empty();
 
   if (!(no_whole || is_valid_digit_sequence(results.whole, results.base)))
-    return {};
+    return std::nullopt;
 
   if (radix_separator_pos == last_pos())
   {
     if (results.base == 10)
       return results;
 
-    return {};
+    return std::nullopt;
   }
 
   auto const no_radix_separator = radix_separator_pos == std::string_view::npos;
@@ -97,27 +96,27 @@ scan_floating_point_string(std::string_view const string) noexcept
   }();
 
   if (exponent_separator_pos == last_pos())
-    return {};
+    return std::nullopt;
 
   auto const no_exponent_separator
     = exponent_separator_pos == std::string_view::npos;
 
   if (no_radix_separator && no_exponent_separator)
-    return {};
+    return std::nullopt;
 
   if (results.base == 16 && no_exponent_separator)
-    return {};
+    return std::nullopt;
 
   results.fractional = remaining_string.substr(0, exponent_separator_pos);
 
   auto const no_fractional = results.fractional.empty();
 
   if (no_whole && no_fractional)
-    return {};
+    return std::nullopt;
 
   if (!(no_fractional
         || is_valid_digit_sequence(results.fractional, results.base)))
-    return {};
+    return std::nullopt;
 
   results.fractional_precision = [&]() {
     auto result = 0U;
@@ -149,7 +148,7 @@ scan_floating_point_string(std::string_view const string) noexcept
   results.exponent = remaining_string;
 
   if (!is_valid_digit_sequence(results.exponent, 10))
-    return {};
+    return std::nullopt;
 
   return results;
 }

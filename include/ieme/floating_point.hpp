@@ -104,10 +104,13 @@ template <typename Rep, typename Ops>
 constexpr fraction<Rep, Ops>
 floating_point_string_to_fraction(std::string_view const string) noexcept
 {
-  auto const scan_results = parse_utilities::scan_floating_point_string(string);
+  auto const maybe_scan_results
+    = parse_utilities::scan_floating_point_string(string);
 
-  if (!scan_results.is_valid)
+  if (!maybe_scan_results.has_value())
     return limits<fraction<Rep, Ops>>::undefined();
+
+  auto const& scan_results = maybe_scan_results.value();
 
   auto const base_as_rep = static_cast<Rep>(scan_results.base);
 
