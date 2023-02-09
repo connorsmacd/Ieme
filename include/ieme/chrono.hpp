@@ -7,6 +7,7 @@
 
 #include <chrono>
 #include <ratio>
+#include <type_traits>
 
 
 namespace std {
@@ -14,8 +15,7 @@ namespace chrono {
 
 
 template <typename Rep, typename Ops>
-struct treat_as_floating_point<ieme::fraction<Rep, Ops>> {
-  static constexpr bool value = true;
+struct treat_as_floating_point<ieme::fraction<Rep, Ops>> : std::true_type {
 };
 
 
