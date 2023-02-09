@@ -7,6 +7,7 @@
 #include <ieme/numbers.hpp>
 #include <ieme/parse_utilities.hpp>
 
+#include <bit>
 #include <cstdint>
 #include <limits>
 #include <string>
@@ -36,19 +37,6 @@ template <typename Rep, typename Ops = ops::defaults>
 constexpr fraction<Rep, Ops>
 floating_point_string_to_fraction(std::string_view string) noexcept;
 
-
-// TODO: use std::endian after move to C++20
-enum class endian {
-#ifdef _WIN32
-  little = 0,
-  big = 1,
-  native = little
-#else
-  little = __ORDER_LITTLE_ENDIAN__,
-  big = __ORDER_BIG_ENDIAN__,
-  native = __BYTE_ORDER__
-#endif
-};
 
 template <typename Rep,
           typename Ops,
@@ -178,13 +166,13 @@ fraction<Rep, Ops> floating_point_to_fraction(Float const value) noexcept
     };
 
     static constexpr auto offsets = []() -> bitfield_offsets {
-      switch (endian::native)
+      switch (std::endian::native)
       {
-        case endian::little:
+        case std::endian::little:
           return {num_mantissa_bits + num_exponent_bits,
                   num_mantissa_bits,
                   _0<UintRep>};
-        case endian::big:
+        case std::endian::big:
           return {
             _0<UintRep>, num_sign_bits, num_sign_bits + num_exponent_bits};
       }
